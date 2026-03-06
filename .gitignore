@@ -1,0 +1,11 @@
+.venv/
+__pycache__/
+*.pyc
+*.pt
+*.pth
+*.onnx
+01_training/data/
+01_training/outputs/
+.DS_Store
+.idea/
+.vscode/

@@ -1,0 +1,17 @@
+ultralytics==8.3.0
+torch
+torchvision
+onnx
+onnxruntime
+opencv-python
+Pillow
+matplotlib
+seaborn
+scikit-learn
+streamlit
+plotly
+pandas
+numpy
+fastapi
+uvicorn
+grad-cam
