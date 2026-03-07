@@ -4,6 +4,7 @@ import numpy as np
 import yaml
 import argparse
 import shutil
+import random
 from pathlib import Path
 from collections import defaultdict
 
@@ -123,7 +124,9 @@ def process_category(data_dir, category, output_dir, img_size):
     
     stats = {
         'train_images': 0,
+        'train_defects': 0,
         'val_images': 0,
+        'val_defects': 0,
         'total_defects': 0
     }
     
@@ -149,9 +152,12 @@ def process_category(data_dir, category, output_dir, img_size):
             
             stats['train_images'] += 1
     
-    # Process test images with defects
+    # Process test images with defects (split 80% train / 20% val)
     test_dir = category_path / 'test'
     if test_dir.exists():
+        # Set random seed for reproducible splits
+        random.seed(42)
+        
         for defect_type in defect_types:
             test_defect_dir = test_dir / defect_type
             ground_truth_defect_dir = ground_truth_dir / defect_type
@@ -159,7 +165,23 @@ def process_category(data_dir, category, output_dir, img_size):
             if test_defect_dir.exists() and ground_truth_defect_dir.exists():
                 print(f"Processing test images for defect type: {defect_type}")
                 
-                for img_file in test_defect_dir.glob('*.png'):
+                # Get all image files and shuffle for random split
+                img_files = list(test_defect_dir.glob('*.png'))
+                random.shuffle(img_files)
+                
+                # Calculate split indices (80% train, 20% val)
+                n_total = len(img_files)
+                n_train = int(n_total * 0.8)
+                
+                train_files = img_files[:n_train]
+                val_files = img_files[n_train:]
+                
+                print(f"  - {defect_type}: {n_total} total → {len(train_files)} train, {len(val_files)} val")
+                
+                # Process training defect images
+                for img_file in train_files:
+                    split = 'train'
+                    
                     # Load test image
                     image = cv2.imread(str(img_file))
                     if image is None:
@@ -187,17 +209,63 @@ def process_category(data_dir, category, output_dir, img_size):
                     resized_img, scale, x_offset, y_offset = resize_image(image, img_size)
                     
                     # Save image
-                    output_img_path = category_output_dir / 'images' / 'val' / f"{defect_type}_{img_file.stem}.jpg"
+                    output_img_path = category_output_dir / 'images' / split / f"{defect_type}_{img_file.stem}.jpg"
                     cv2.imwrite(str(output_img_path), resized_img)
                     
                     # Create label file
-                    label_path = category_output_dir / 'labels' / 'val' / f"{defect_type}_{img_file.stem}.txt"
+                    label_path = category_output_dir / 'labels' / split / f"{defect_type}_{img_file.stem}.txt"
+                    class_id = class_mapping[defect_type]
+                    
+                    with open(label_path, 'w') as f:
+                        f.write(f"{class_id} {bbox[0]:.6f} {bbox[1]:.6f} {bbox[2]:.6f} {bbox[3]:.6f}\n")
+                    
+                    stats['train_images'] += 1
+                    stats['train_defects'] += 1
+                    stats['total_defects'] += 1
+                
+                # Process validation defect images
+                for img_file in val_files:
+                    split = 'val'
+                    
+                    # Load test image
+                    image = cv2.imread(str(img_file))
+                    if image is None:
+                        continue
+                    
+                    # Find corresponding ground truth mask (with _mask suffix)
+                    mask_filename = f"{img_file.stem}_mask.png"
+                    mask_file = ground_truth_defect_dir / mask_filename
+                    if not mask_file.exists():
+                        print(f"Warning: No ground truth mask found for {mask_filename}")
+                        continue
+                    
+                    # Load mask
+                    mask = cv2.imread(str(mask_file), cv2.IMREAD_GRAYSCALE)
+                    if mask is None:
+                        continue
+                    
+                    # Convert mask to bbox
+                    bbox = mask_to_bbox(mask)
+                    if bbox is None:
+                        print(f"Warning: No contours found in mask {mask_file.name}")
+                        continue
+                    
+                    # Resize image and adjust bbox
+                    resized_img, scale, x_offset, y_offset = resize_image(image, img_size)
+                    
+                    # Save image
+                    output_img_path = category_output_dir / 'images' / split / f"{defect_type}_{img_file.stem}.jpg"
+                    cv2.imwrite(str(output_img_path), resized_img)
+                    
+                    # Create label file
+                    label_path = category_output_dir / 'labels' / split / f"{defect_type}_{img_file.stem}.txt"
                     class_id = class_mapping[defect_type]
                     
                     with open(label_path, 'w') as f:
                         f.write(f"{class_id} {bbox[0]:.6f} {bbox[1]:.6f} {bbox[2]:.6f} {bbox[3]:.6f}\n")
                     
                     stats['val_images'] += 1
+                    stats['val_defects'] += 1
                     stats['total_defects'] += 1
     
     # Create dataset.yaml
@@ -214,8 +282,8 @@ def process_category(data_dir, category, output_dir, img_size):
         yaml.dump(dataset_config, f, default_flow_style=False)
     
     print(f"\nConversion completed for {category}:")
-    print(f"  - Training images: {stats['train_images']}")
-    print(f"  - Validation images: {stats['val_images']}")
+    print(f"  - Training images: {stats['train_images']} (good: {stats['train_images'] - stats['train_defects']}, defects: {stats['train_defects']})")
+    print(f"  - Validation images: {stats['val_images']} (all defects: {stats['val_defects']})")
     print(f"  - Total defects detected: {stats['total_defects']}")
     print(f"  - Classes: {len(defect_types)} ({', '.join(defect_types)})")
     print(f"  - Output directory: {category_output_dir}")

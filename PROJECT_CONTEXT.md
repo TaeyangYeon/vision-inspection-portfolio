@@ -89,10 +89,10 @@ vision-inspection-portfolio/
 - Day 1 ✅ Python environment setup + GitHub init
 - Day 2 ✅ .NET + Avalonia setup
 - Day 3 ✅ MVTec dataset + YOLO conversion scripts
-- Day 4 ✅ YOLOv8 first training run (Google Colab) - Colab notebook created, bottle dataset compressed
-- Day 5 ⬜ Augmentation experiments
-- Day 6 ⬜ Full training run (100 epochs)
-- Day 7 ⬜ Buffer + model evaluation
+- Day 4 ✅ YOLOv8 first training run - 10 epoch test, mAP50: 0.4755
+- Day 5 ✅ Augmentation experiments + Full training 100 epochs, mAP50: 0.8692
+- Day 6 ✅ ONNX export complete (best.onnx 12.3MB, saved to both projects)
+- Day 7 ⬜ Buffer + GitHub push
 
 ### WEEK 2 (Day 8~14) - Training Pipeline
 - Day 8 ⬜ mAP / Confusion Matrix / PR Curve analysis
@@ -177,5 +177,5 @@ vision-inspection-portfolio/
 3. Claude will resume from exact current state.
 
 ---
-Last updated: Day 4 complete
-Next: Day 5 - Augmentation experiments on Google Colab
+Last updated: Day 6 complete
+Next: Day 7 - Buffer day, then Week 2 Program 1 Streamlit UI
