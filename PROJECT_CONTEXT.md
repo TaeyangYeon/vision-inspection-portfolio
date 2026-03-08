@@ -98,7 +98,7 @@ vision-inspection-portfolio/
 - Day 8 ✅ Streamlit app structure created, navigation layout complete
   NOTE: Encoding issue fixed - Claude Code generates files with non-UTF-8 bytes when using emojis.
   Solution: Never use emojis in any Python source files. Use plain text only.
-- Day 9 ⬜ best.pt → best.onnx conversion + verification
+- Day 9 ✅ Data tab complete - image viewer with BBox overlay + class distribution chart
 - Day 10 ⬜ Buffer (retrain if mAP insufficient)
 - Day 11 ⬜ Program 1 Streamlit basic layout
 - Day 12 ⬜ Data tab - image load + label overlay view
@@ -200,5 +200,5 @@ vision-inspection-portfolio/
 3. Claude will resume from exact current state.
 
 ---
-Last updated: Day 8 complete
-Next: Day 9 - Data tab implementation (image viewer, augmentation preview)
+Last updated: Day 9 complete
+Next: Day 10 - Augmentation preview tab
