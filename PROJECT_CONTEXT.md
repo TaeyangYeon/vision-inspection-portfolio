@@ -100,7 +100,7 @@ vision-inspection-portfolio/
   Solution: Never use emojis in any Python source files. Use plain text only.
 - Day 9 ✅ Data tab complete - image viewer with BBox overlay + class distribution chart
 - Day 10 ✅ Augmentation preview added to Data tab - 8 augmentation types with interactive controls
-- Day 11 ⬜ Program 1 Streamlit basic layout
+- Day 11 ✅ Train tab complete - parameter form, training command builder, results viewer with loss curves and mAP chart
 - Day 12 ⬜ Data tab - image load + label overlay view
 - Day 13 ⬜ Data tab - Augmentation preview
 - Day 14 ⬜ Data tab - class distribution chart
@@ -200,5 +200,5 @@ vision-inspection-portfolio/
 3. Claude will resume from exact current state.
 
 ---
-Last updated: Day 10 complete
-Next: Day 11 - Train tab implementation
+Last updated: Day 11 complete
+Next: Day 12 - Eval tab with Confusion Matrix and PR Curve
