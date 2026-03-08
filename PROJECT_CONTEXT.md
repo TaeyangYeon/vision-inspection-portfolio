@@ -95,7 +95,9 @@ vision-inspection-portfolio/
 - Day 7 ✅ Code cleanup, Streamlit environment verified
 
 ### WEEK 2 (Day 8~14) - Training Pipeline
-- Day 8 ⬜ mAP / Confusion Matrix / PR Curve analysis
+- Day 8 ✅ Streamlit app structure created, navigation layout complete
+  NOTE: Encoding issue fixed - Claude Code generates files with non-UTF-8 bytes when using emojis.
+  Solution: Never use emojis in any Python source files. Use plain text only.
 - Day 9 ⬜ best.pt → best.onnx conversion + verification
 - Day 10 ⬜ Buffer (retrain if mAP insufficient)
 - Day 11 ⬜ Program 1 Streamlit basic layout
@@ -163,6 +165,27 @@ vision-inspection-portfolio/
 - Day 59 ⬜ Final GitHub push + repository cleanup
 - Day 60 ⬜ Portfolio submission ready
 
+## Known Issues & Solutions
+
+### Issue 1: Python file encoding error (UnicodeDecodeError)
+- Symptom: UnicodeDecodeError utf-8 codec can't decode byte in Python files
+- Cause: Claude Code generates files with non-UTF-8 encoding when emojis are included in source code
+- Solution: Never use emojis in Python source files (main.py, data_tab.py, etc.)
+- Prevention: When asking Claude Code to create Python files, always add this instruction:
+  "Use plain text only, no emojis anywhere in the file content"
+
+### Issue 2: dataset.yaml path uses local Mac path
+- Symptom: FileNotFoundError when running YOLO training on Colab
+- Cause: convert_to_yolo.py saves absolute local path in dataset.yaml
+- Solution: After uploading to Colab, overwrite dataset.yaml path with Colab path using Python
+- Prevention: convert_to_yolo.py should use relative paths in dataset.yaml
+
+### Issue 3: YOLO training mAP was 0.02 on first run
+- Symptom: mAP50 = 0.0243 after 10 epochs
+- Cause: convert_to_yolo.py was sending ALL defect images to val/ and good images to train/
+  Result: train set had 0 defect samples for model to learn from
+- Solution: Fixed split logic - defect images now split 80% train / 20% val
+
 ## Key Technical Decisions
 - GradCAM: custom PyTorch hook (no library) → stronger interview answer
 - ONNX Runtime in C#: Python-free inference → unique selling point
@@ -177,5 +200,5 @@ vision-inspection-portfolio/
 3. Claude will resume from exact current state.
 
 ---
-Last updated: Day 7 complete
-Next: Day 8 - Program 1 Streamlit basic layout
+Last updated: Day 8 complete
+Next: Day 9 - Data tab implementation (image viewer, augmentation preview)
