@@ -6,6 +6,7 @@ from pathlib import Path
 import random
 import plotly.express as px
 import pandas as pd
+from components.augmentation import apply_augmentations
 
 BASE_PATH = Path(__file__).parent.parent.parent
 
@@ -52,6 +53,58 @@ def draw_labels(image, label_path, class_names):
         cv2.putText(image, label, (x1, y1 - 8),
                     cv2.FONT_HERSHEY_SIMPLEX, 0.5, color, 2)
     return image
+
+def render_augmentation_preview(image: np.ndarray):
+    st.subheader("Augmentation Preview")
+    st.caption("Select augmentations to preview how training data will be transformed")
+
+    col_a, col_b, col_c = st.columns(3)
+
+    with col_a:
+        st.markdown("**Geometric**")
+        h_flip = st.checkbox("Horizontal Flip", value=True)
+        v_flip = st.checkbox("Vertical Flip", value=False)
+        rotation = st.checkbox("Rotation", value=False)
+        rotation_angle = st.slider("Rotation Angle", -45, 45, 15) if rotation else 15
+        mosaic = st.checkbox("Mosaic", value=False)
+
+    with col_b:
+        st.markdown("**Color**")
+        brightness = st.checkbox("Brightness", value=True)
+        brightness_factor = st.slider("Brightness Factor", 0.5, 2.0, 1.5) if brightness else 1.5
+        hsv_shift = st.checkbox("HSV Shift", value=False)
+        hue_shift = st.slider("Hue Shift", 0, 60, 20) if hsv_shift else 20
+        sat_factor = st.slider("Saturation Factor", 0.5, 2.0, 1.3) if hsv_shift else 1.3
+
+    with col_c:
+        st.markdown("**Noise / Blur**")
+        gaussian_noise = st.checkbox("Gaussian Noise", value=False)
+        blur = st.checkbox("Blur", value=False)
+        blur_kernel = st.slider("Blur Kernel Size", 3, 15, 5) if blur else 5
+
+    config = {
+        "horizontal_flip": h_flip,
+        "vertical_flip": v_flip,
+        "rotation": rotation,
+        "rotation_angle": rotation_angle,
+        "mosaic": mosaic,
+        "brightness": brightness,
+        "brightness_factor": brightness_factor,
+        "hsv_shift": hsv_shift,
+        "hue_shift": hue_shift,
+        "sat_factor": sat_factor,
+        "gaussian_noise": gaussian_noise,
+        "blur": blur,
+        "blur_kernel": blur_kernel,
+    }
+
+    aug_results = apply_augmentations(image, config)
+
+    num_cols = min(len(aug_results), 4)
+    cols = st.columns(num_cols)
+    for i, (name, aug_img) in enumerate(aug_results.items()):
+        with cols[i % num_cols]:
+            st.image(aug_img, caption=name, use_container_width=True)
 
 def render_class_distribution(category: str, split: str, class_names: dict):
     label_dir = BASE_PATH / f"data/processed/{category}/labels/{split}"
@@ -148,9 +201,15 @@ def render_data_tab():
                 else:
                     st.info("No defects - clean image")
 
-            st.image(img, use_column_width=True, caption=selected_path.name)
+            st.image(img, use_container_width=True, caption=selected_path.name)
         else:
             st.error("Image not found.")
 
     st.markdown("---")
     render_class_distribution(category, split, class_names)
+
+    st.markdown("---")
+    if selected_path.exists():
+        raw_img = cv2.imread(str(selected_path))
+        raw_img = cv2.cvtColor(raw_img, cv2.COLOR_BGR2RGB)
+        render_augmentation_preview(raw_img)
