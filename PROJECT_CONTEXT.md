@@ -170,7 +170,7 @@ vision-inspection-portfolio/
 ### WEEK 3 (Day 15~21) - Program 1 Vision Depth
 - Day 15 - DONE: Export tab complete - model info, ONNX speed benchmark, PT vs ONNX output comparison
 - Day 16 - TODO: Export tab - ONNX conversion + PT vs ONNX result comparison
-- Day 17 - TODO: Program 1 full UI polish + bug fixes
+- Day 17 - DONE: Program 1 integration test all passed, GradCAM structure designed, data_loader utility created
 - Day 18 - TODO: Program 1 integration test + GitHub push
 - Day 19 - TODO: GradCAM theory + PyTorch hook concept code
 - Day 20 - TODO: forward hook implementation (activation map extraction)
@@ -266,6 +266,6 @@ vision-inspection-portfolio/
 3. Claude will resume from exact current state.
 
 ---
-Last updated: Day 15 complete
-Next: Day 16 - Program 1 full UI polish and bug fixes
+Last updated: Day 17 complete
+Next: Day 18 - GradCAM core implementation with PyTorch hooks
 ---
