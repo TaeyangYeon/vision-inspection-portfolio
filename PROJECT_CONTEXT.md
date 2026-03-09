@@ -172,7 +172,12 @@ vision-inspection-portfolio/
 - Day 16 - TODO: Export tab - ONNX conversion + PT vs ONNX result comparison
 - Day 17 - DONE: Program 1 integration test all passed, GradCAM structure designed, data_loader utility created
 - Day 18 - DONE: GradCAM core implemented with PyTorch hooks, YOLO wrapper created, test script passed
-- Day 19 - TODO: GradCAM theory + PyTorch hook concept code
+- Day 19 - DONE: GradCAM activation map visualizer + Streamlit GradCAM tab added (5 tabs total)
+  - gradcam_visualize.py: 9 target layers analyzed (C2f + SPPF)
+  - Layer progression: 160x160 (early) to 20x20 (deep) feature maps
+  - SPPF layer showed highest activation (0.4316) for defect features
+  - GradCAM tab added to Streamlit with 3-column view (original/heatmap/overlay)
+  - Fixed: st.columns() NameError - use list indexing instead of variable unpacking
 - Day 20 - TODO: forward hook implementation (activation map extraction)
 - Day 21 - TODO: backward hook implementation (gradient extraction)
 
@@ -229,6 +234,17 @@ vision-inspection-portfolio/
 
 ## Known Issues and Solutions
 
+### Issue 5: GradCAM CAM Statistics NameError (sc2 not defined)
+- Symptom: NameError: name 'sc2' is not defined in gradcam_tab.py
+- Cause: st.columns() unpacking variables go out of scope inside nested with blocks
+- Solution: Use list indexing instead of variable unpacking
+  Wrong:   sc1, sc2, sc3 = st.columns(3)
+  Correct: cam_stats = st.columns(3)
+           with cam_stats[0]: ...
+           with cam_stats[1]: ...
+           with cam_stats[2]: ...
+- Prevention: Always use list indexing for st.columns() inside nested blocks
+
 ### Issue 1: Python file encoding error (UnicodeDecodeError)
 - Symptom: UnicodeDecodeError utf-8 codec can't decode byte in Python files
 - Cause: Claude Code generates files with non-UTF-8 encoding when emojis are included
@@ -266,6 +282,6 @@ vision-inspection-portfolio/
 3. Claude will resume from exact current state.
 
 ---
-Last updated: Day 18 complete
-Next: Day 19 - GradCAM forward hook deep dive and activation map visualization
+Last updated: Day 19 complete
+Next: Day 20 - GradCAM YOLO test with best.pt + multi-class heatmap comparison
 ---

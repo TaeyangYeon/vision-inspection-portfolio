@@ -8,6 +8,7 @@ from pages.data_tab import render_data_tab
 from pages.train_tab import render_train_tab
 from pages.eval_tab import render_eval_tab
 from pages.export_tab import render_export_tab
+from pages.gradcam_tab import render_gradcam_tab
 
 st.set_page_config(
     page_title="Vision Model Trainer",
@@ -22,7 +23,7 @@ st.sidebar.markdown("---")
 
 tab = st.sidebar.radio(
     "Select Tab",
-    ["Data", "Train", "Eval", "Export"],
+    ["Data", "Train", "Eval", "Export", "GradCAM"],
     label_visibility="collapsed"
 )
 
@@ -46,3 +47,5 @@ elif tab == "Eval":
     render_eval_tab()
 elif tab == "Export":
     render_export_tab()
+elif tab == "GradCAM":
+    render_gradcam_tab()
