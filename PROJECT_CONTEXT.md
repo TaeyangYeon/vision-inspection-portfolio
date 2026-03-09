@@ -14,7 +14,7 @@ Target companies: Semiconductor equipment (SFA, Hanwha), Machine vision (Cognex,
 Program 1: Model Trainer (Python + Streamlit UI)
 - YOLOv8 fine-tuning
 - Custom GradCAM implementation with PyTorch hooks
-- Confusion Matrix / PR Curve evaluation
+- Confusion Matrix / PR Curve / FP/FN analysis
 - ONNX export and verification
 
 Program 2: Inspection System (C# + Avalonia UI)
@@ -34,27 +34,44 @@ vision-inspection-portfolio/
 │   ├── data/
 │   │   ├── raw/          # MVTec AD dataset (15 categories)
 │   │   └── processed/    # YOLO format converted data
-│   ├── models/           # Trained model files
-│   ├── outputs/          # Training results
+│   ├── models/           # Trained model files (best.onnx)
+│   ├── outputs/          # Training results (results.csv per run)
 │   ├── scripts/
 │   │   ├── explore_data.py       # Dataset structure analysis
 │   │   ├── convert_to_yolo.py    # MVTec to YOLO format converter
 │   │   └── visualize_labels.py   # Label verification visualizer
+│   ├── app/
+│   │   ├── main.py               # Streamlit entry point
+│   │   ├── pages/
+│   │   │   ├── data_tab.py       # Data management tab
+│   │   │   ├── train_tab.py      # Training monitor tab
+│   │   │   ├── eval_tab.py       # Evaluation results tab
+│   │   │   └── export_tab.py     # ONNX export tab
+│   │   ├── components/
+│   │   │   ├── augmentation.py   # Augmentation preview
+│   │   │   └── charts.py         # Reusable chart components
+│   │   └── utils/
+│   │       ├── data_loader.py    # Dataset loading utilities
+│   │       └── model_utils.py    # Model related utilities
 │   └── .venv/            # Python virtual environment
 ├── 02_inspection/
 │   └── InspectionSystem/ # C# Avalonia project
 └── PROJECT_CONTEXT.md
 
-## Environment
+## nvironment
 - Mac (Intel)
 - Python 3.11 (pyenv)
 - .NET 10 SDK
 - Avalonia Templates installed
 - Git configured: TaeyangYeon / acrobatyeon@gmail.com
 
+## Streamlit App
+- Run command: cd ~/vision-inspection-portfolio/01_training && source .venv/bin/activate && streamlit run app/main.py
+- Local URL: http://localhost:8501
+
 ## Daily Progress
 
-### Day 1 ✅
+### Day 1 - DONE
 - pyenv + Python 3.11 installed
 - Project folder structure created
 - venv created and activated
@@ -63,7 +80,7 @@ vision-inspection-portfolio/
 - Git initialized and configured
 - First commit pushed to GitHub
 
-### Day 2 ✅
+### Day 2 - DONE
 - .NET 10 SDK confirmed (9 and 10 both installed)
 - Avalonia templates installed
 - InspectionSystem project created (avalonia.mvvm template)
@@ -71,108 +88,153 @@ vision-inspection-portfolio/
 - Hello World build and run successful
 - Project folder structure organized (Models, Services, ViewModels, Views, Assets, Helpers)
 
-### Day 3 ✅
+### Day 3 - DONE
 - MVTec AD dataset downloaded (Kaggle) and extracted
 - 15 categories / 5,354 total images confirmed
 - explore_data.py: dataset structure analysis script
-- convert_to_yolo.py: MVTec mask → YOLO bbox conversion
+- convert_to_yolo.py: MVTec mask to YOLO bbox conversion
   - cv2.findContours used for mask to bbox conversion
-  - good images → train/ with empty labels
-  - defect images → val/ with bbox labels
+  - good images go to train/ with empty labels
+  - defect images split 80% train / 20% val with bbox labels
   - dataset.yaml generated per category
 - visualize_labels.py: bbox visualization verification
 - Bottle category conversion verified successfully
 
+### Day 4 - DONE
+- Google Colab notebook created: 01_training/train_colab.ipynb
+- Bottle dataset compressed and uploaded to Google Drive
+- YOLOv8n 10 epoch test run completed
+- mAP50: 0.4755 / Precision: 0.769 / Recall: 0.403
+
+### Day 5 - DONE
+- Augmentation experiments (Mosaic, Flip, HSV)
+- Full training 100 epochs completed on Colab T4 GPU
+- mAP50: 0.8692 / mAP50-95: 0.677 / Precision: 0.807 / Recall: 0.800
+- Class results: broken_large 0.912 / broken_small 0.898 / contamination 0.798
+
+### Day 6 - DONE
+- ONNX export complete: best.onnx (12.3MB)
+- Saved to: 01_training/models/best.onnx
+- Saved to: 02_inspection/models/best.onnx
+
+### Day 7 - DONE
+- Code cleanup completed
+- Streamlit environment verified
+- check_env.py passed all checks
+
+### Day 8 - DONE
+- Streamlit app structure created (app/ folder with pages/, components/, utils/)
+- Main navigation with 4 tabs: Data / Train / Eval / Export
+- Sidebar project status panel
+- IMPORTANT: Never use emojis in Python source files (causes UnicodeDecodeError)
+
+### Day 9 - DONE
+- Data tab: image viewer with BBox overlay
+- Data tab: class distribution bar chart (Plotly)
+- Category / split selector
+- Show/hide labels toggle
+- Random image button
+
+### Day 10 - DONE
+- Augmentation preview section added to Data tab
+- 8 augmentation types: Horizontal Flip, Vertical Flip, Rotation, Brightness, HSV Shift, Gaussian Noise, Blur, Mosaic
+- Interactive sliders for each augmentation parameter
+- Fixed deprecated use_column_width to use_container_width
+
+### Day 11 - DONE
+- Train tab: parameter form (model size, epochs, batch, lr, augmentation settings)
+- Train tab: training command builder (generates YOLO CLI command)
+- Train tab: results viewer with Loss curves and mAP chart (Plotly)
+- results.csv downloaded from Colab and placed in outputs/bottle_full/
+
 ## 60-Day Plan
 
 ### WEEK 1 (Day 1~7) - Environment + Data
-- Day 1 ✅ Python environment setup + GitHub init
-- Day 2 ✅ .NET + Avalonia setup
-- Day 3 ✅ MVTec dataset + YOLO conversion scripts
-- Day 4 ✅ YOLOv8 first training run - 10 epoch test, mAP50: 0.4755
-- Day 5 ✅ Augmentation experiments + Full training 100 epochs, mAP50: 0.8692
-- Day 6 ✅ ONNX export complete (best.onnx 12.3MB, saved to both projects)
-- Day 7 ✅ Code cleanup, Streamlit environment verified
+- Day 1 - DONE: Python environment setup + GitHub init
+- Day 2 - DONE: .NET + Avalonia setup
+- Day 3 - DONE: MVTec dataset + YOLO conversion scripts
+- Day 4 - DONE: YOLOv8 first training run - 10 epoch test mAP50 0.4755
+- Day 5 - DONE: Augmentation experiments + Full training 100 epochs mAP50 0.8692
+- Day 6 - DONE: ONNX export complete best.onnx 12.3MB saved to both projects
+- Day 7 - DONE: Code cleanup Streamlit environment verified
 
-### WEEK 2 (Day 8~14) - Training Pipeline
-- Day 8 ✅ Streamlit app structure created, navigation layout complete
-  NOTE: Encoding issue fixed - Claude Code generates files with non-UTF-8 bytes when using emojis.
-  Solution: Never use emojis in any Python source files. Use plain text only.
-- Day 9 ✅ Data tab complete - image viewer with BBox overlay + class distribution chart
-- Day 10 ✅ Augmentation preview added to Data tab - 8 augmentation types with interactive controls
-- Day 11 ✅ Train tab complete - parameter form, training command builder, results viewer with loss curves and mAP chart
-- Day 12 ⬜ Data tab - image load + label overlay view
-- Day 13 ⬜ Data tab - Augmentation preview
-- Day 14 ⬜ Data tab - class distribution chart
+### WEEK 2 (Day 8~14) - Program 1 Core UI
+- Day 8 - DONE: Streamlit app structure and navigation layout
+- Day 9 - DONE: Data tab image viewer with BBox overlay and class distribution chart
+- Day 10 - DONE: Augmentation preview with 8 types and interactive controls
+- Day 11 - DONE: Train tab parameter form training command builder results viewer
+- Day 12 - DONE: Eval tab complete - Confusion Matrix, PR Curve, F1 Curve, per-class metrics (all Plotly interactive)
+- Day 13 - TODO: Eval tab - PR Curve + F1 Curve
+- Day 14 - TODO: Eval tab - Sample image inference viewer (real ONNX model)
 
-### WEEK 3 (Day 15~21) - Program 1 UI
-- Day 15 ⬜ Train tab - parameter input form
-- Day 16 ⬜ Train tab - start/stop button connection
-- Day 17 ⬜ Train tab - Loss curve realtime update
-- Day 18 ⬜ Train tab - mAP realtime graph
-- Day 19 ⬜ Eval tab - Confusion Matrix rendering
-- Day 20 ⬜ Eval tab - PR Curve rendering
-- Day 21 ⬜ Export tab - ONNX conversion + PT vs ONNX comparison
+### WEEK 3 (Day 15~21) - Program 1 Vision Depth
+- Day 15 - TODO: Eval tab - FP/FN case analysis viewer
+- Day 16 - TODO: Export tab - ONNX conversion + PT vs ONNX result comparison
+- Day 17 - TODO: Program 1 full UI polish + bug fixes
+- Day 18 - TODO: Program 1 integration test + GitHub push
+- Day 19 - TODO: GradCAM theory + PyTorch hook concept code
+- Day 20 - TODO: forward hook implementation (activation map extraction)
+- Day 21 - TODO: backward hook implementation (gradient extraction)
 
-### WEEK 4 (Day 22~28) - Program 1 Complete + GradCAM Start
-- Day 22 ⬜ Program 1 full flow test + bug fixes
-- Day 23 ⬜ Buffer + GitHub push
-- Day 24 ⬜ GradCAM theory + PyTorch hook concept code
-- Day 25 ⬜ forward hook implementation (activation map)
-- Day 26 ⬜ backward hook implementation (gradient extraction)
-- Day 27 ⬜ CAM weight calculation + heatmap generation
-- Day 28 ⬜ YOLO layer target + heatmap overlay
+### WEEK 4 (Day 22~28) - GradCAM Complete
+- Day 22 - TODO: CAM weight calculation + heatmap generation
+- Day 23 - TODO: YOLO layer target + heatmap overlay
+- Day 24 - TODO: Library result vs custom implementation comparison and validation
+- Day 25 - TODO: GradCAM Streamlit viewer added to Program 1
+- Day 26 - TODO: GradCAM buffer + stabilization + GitHub push
+- Day 27 - TODO: Avalonia project structure redesign + MVVM pattern
+- Day 28 - TODO: ONNX Runtime model load + single image inference test
 
-### WEEK 5 (Day 29~35) - GradCAM Complete + Program 2 Start
-- Day 29 ⬜ Library result vs custom implementation comparison
-- Day 30 ⬜ Buffer + GradCAM stabilization
-- Day 31 ⬜ Avalonia project structure + NuGet packages
-- Day 32 ⬜ ONNX Runtime model load + single image inference
-- Day 33 ⬜ Inference result parsing (BBox / class / confidence)
-- Day 34 ⬜ BBox overlay rendering on image
-- Day 35 ⬜ Video file frame extraction + continuous inference
+### WEEK 5 (Day 29~35) - Program 2 Inference Engine
+- Day 29 - TODO: Inference result parsing (BBox / class / confidence)
+- Day 30 - TODO: OpenCvSharp BBox overlay rendering
+- Day 31 - TODO: Video file frame extraction + continuous inference
+- Day 32 - TODO: FastAPI server setup (GradCAM call from C#)
+- Day 33 - TODO: C# to Python FastAPI communication test
+- Day 34 - TODO: Inference engine buffer + stabilization
+- Day 35 - TODO: GitHub push
 
-### WEEK 6 (Day 36~42) - Program 2 UI
-- Day 36 ⬜ FastAPI server setup (GradCAM call)
-- Day 37 ⬜ Main window layout XAML
-- Day 38 ⬜ Left panel - inspection image view (BBox overlay)
-- Day 39 ⬜ Right panel - Result panel (OK/NG / type / confidence / speed)
-- Day 40 ⬜ Right panel - Params panel (Confidence / IoU sliders)
-- Day 41 ⬜ GradCAM tab - Split view (original / heatmap)
-- Day 42 ⬜ Buffer + GitHub push
+### WEEK 6 (Day 36~42) - Program 2 Avalonia UI
+- Day 36 - TODO: Main window layout XAML
+- Day 37 - TODO: Left panel - inspection image view (BBox overlay)
+- Day 38 - TODO: Right panel - Result panel (OK/NG / type / confidence / speed)
+- Day 39 - TODO: Right panel - Params panel (Confidence / IoU sliders)
+- Day 40 - TODO: GradCAM tab - Split view (original / heatmap)
+- Day 41 - TODO: Bottom - session statistics bar + button connections
+- Day 42 - TODO: ROI drag selection feature
 
-### WEEK 7 (Day 43~49) - Advanced Features
-- Day 43 ⬜ Bottom - session statistics bar + button connections
-- Day 44 ⬜ ROI drag selection feature
-- Day 45 ⬜ Inference speed measurement + bottleneck analysis (target 30fps)
-- Day 46 ⬜ Multithread processing (prevent UI freezing)
-- Day 47 ⬜ NG image auto-save + CSV export
-- Day 48 ⬜ Settings screen (model swap / save path)
-- Day 49 ⬜ Edge case testing (empty image / multiple defects)
+### WEEK 7 (Day 43~49) - Advanced Features + Optimization
+- Day 43 - TODO: Inference speed measurement + bottleneck analysis (target 30fps)
+- Day 44 - TODO: Multithread processing (prevent UI freezing)
+- Day 45 - TODO: NG image auto-save + CSV export
+- Day 46 - TODO: Settings screen (model swap / save path)
+- Day 47 - TODO: Edge case testing (empty image / multiple defects)
+- Day 48 - TODO: Program 2 full integration test
+- Day 49 - TODO: Buffer + GitHub push
 
-### WEEK 8 (Day 50~56) - Optimization + Stabilization
-- Day 50 ⬜ Full integration test
-- Day 51 ⬜ Buffer + GitHub push
-- Day 52 ⬜ README writing (architecture diagram + performance metrics)
-- Day 53 ⬜ Demo video recording (Program 1 → Program 2)
-- Day 54 ⬜ GitHub cleanup (commit history / Wiki / tech decision docs)
-- Day 55 ⬜ Resume one-liner + final check
-- Day 56 ⬜ Final buffer
+### WEEK 8 (Day 50~56) - Vision Expertise Depth
+- Day 50 - TODO: Multi-category support (add tile/carpet training)
+- Day 51 - TODO: Model ensemble experiment (YOLOv8n vs YOLOv8s comparison)
+- Day 52 - TODO: Inference speed benchmark (FPS comparison table by model size)
+- Day 53 - TODO: Small defect detection improvement (tile size experiment)
+- Day 54 - TODO: Full performance metrics summary (mAP / FPS / accuracy)
+- Day 55 - TODO: Buffer + GitHub push
+- Day 56 - TODO: README writing (architecture diagram + performance metrics)
 
 ### WEEK 9 (Day 57~60) - Portfolio Complete
-- Day 57 ⬜ Final performance metrics: mAP / FPS / inference time
-- Day 58 ⬜ Interview preparation: key talking points per feature
-- Day 59 ⬜ Final GitHub push + repository cleanup
-- Day 60 ⬜ Portfolio submission ready
+- Day 57 - TODO: Demo video recording (Program 1 to Program 2)
+- Day 58 - TODO: GitHub Wiki - GradCAM custom implementation docs
+- Day 59 - TODO: Resume one-liner + interview prep (key talking points)
+- Day 60 - TODO: Final GitHub push + portfolio submission ready
 
-## Known Issues & Solutions
+## Known Issues and Solutions
 
 ### Issue 1: Python file encoding error (UnicodeDecodeError)
 - Symptom: UnicodeDecodeError utf-8 codec can't decode byte in Python files
-- Cause: Claude Code generates files with non-UTF-8 encoding when emojis are included in source code
-- Solution: Never use emojis in Python source files (main.py, data_tab.py, etc.)
-- Prevention: When asking Claude Code to create Python files, always add this instruction:
-  "Use plain text only, no emojis anywhere in the file content"
+- Cause: Claude Code generates files with non-UTF-8 encoding when emojis are included
+- Solution: Never use emojis in Python source files
+- Prevention: Always add this to Claude Code prompts when creating Python files:
+  "Use plain text only, no emojis anywhere in the file content. Save with UTF-8 encoding."
 
 ### Issue 2: dataset.yaml path uses local Mac path
 - Symptom: FileNotFoundError when running YOLO training on Colab
@@ -182,16 +244,20 @@ vision-inspection-portfolio/
 
 ### Issue 3: YOLO training mAP was 0.02 on first run
 - Symptom: mAP50 = 0.0243 after 10 epochs
-- Cause: convert_to_yolo.py was sending ALL defect images to val/ and good images to train/
-  Result: train set had 0 defect samples for model to learn from
+- Cause: convert_to_yolo.py was sending ALL defect images to val/ with no defects in train/
 - Solution: Fixed split logic - defect images now split 80% train / 20% val
 
+### Issue 4: Streamlit use_column_width deprecated warning
+- Symptom: Yellow warning box above images in Streamlit
+- Solution: Replace use_column_width=True with use_container_width=True
+
 ## Key Technical Decisions
-- GradCAM: custom PyTorch hook (no library) → stronger interview answer
-- ONNX Runtime in C#: Python-free inference → unique selling point
+- GradCAM: custom PyTorch hook implementation (no library) - stronger interview answer
+- ONNX Runtime in C#: Python-free inference - unique selling point
 - Avalonia UI: cross-platform WPF alternative for Mac development
 - MVTec AD: industry standard anomaly detection benchmark dataset
-- .NET 10: latest SDK, full Avalonia support
+- .NET 10: latest SDK with full Avalonia support
+- Intel Mac: training on Google Colab T4 GPU, inference locally via ONNX CPU
 
 ## How To Continue In New Chat
 1. Upload this PROJECT_CONTEXT.md file
@@ -200,5 +266,6 @@ vision-inspection-portfolio/
 3. Claude will resume from exact current state.
 
 ---
-Last updated: Day 11 complete
-Next: Day 12 - Eval tab with Confusion Matrix and PR Curve
+Last updated: Day 12 complete
+Next: Day 13 - Eval tab sample image inference viewer with real ONNX model
+---
