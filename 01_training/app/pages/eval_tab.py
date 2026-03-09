@@ -8,9 +8,133 @@ from pathlib import Path
 import onnxruntime as ort
 import yaml
 from utils.model_utils import preprocess_image, postprocess_output, draw_detections
+from utils.fpfn_utils import yolo_to_pixel, classify_detections, draw_fpfn
 import cv2
 
 BASE_PATH = Path(__file__).parent.parent.parent
+
+def render_fpfn_viewer():
+    st.subheader("FP / FN Case Analysis")
+    st.caption("TP=green / FP=red (false alarm) / FN=blue (missed defect)")
+
+    model_path = BASE_PATH / "models/best.onnx"
+    if not model_path.exists():
+        st.error("ONNX model not found.")
+        return
+
+    categories = []
+    processed_dir = BASE_PATH / "data/processed"
+    if processed_dir.exists():
+        categories = [d.name for d in processed_dir.iterdir() if d.is_dir()]
+
+    if not categories:
+        st.error("No processed datasets found.")
+        return
+
+    col1, col2 = st.columns([1, 3])
+
+    with col1:
+        category = st.selectbox("Category", categories, key="fpfn_category")
+        conf_thresh = st.slider("Confidence Threshold", 0.1, 0.9, 0.25, key="fpfn_conf")
+        iou_thresh = st.slider("IoU Threshold", 0.1, 0.9, 0.5, key="fpfn_iou")
+        filter_type = st.selectbox(
+            "Filter by Case",
+            ["All", "Has FP", "Has FN", "Has TP only"],
+            key="fpfn_filter"
+        )
+        run_analysis = st.button("Run FP/FN Analysis", type="primary")
+
+    with col2:
+        if run_analysis:
+            import onnxruntime as ort
+            from utils.model_utils import preprocess_image, postprocess_output
+
+            yaml_path = BASE_PATH / f"data/processed/{category}/dataset.yaml"
+            class_names = {}
+            if yaml_path.exists():
+                with open(yaml_path, "r") as f:
+                    yaml_data = yaml.safe_load(f)
+                    class_names = yaml_data.get("names", {})
+
+            val_img_dir = BASE_PATH / f"data/processed/{category}/images/val"
+            val_lbl_dir = BASE_PATH / f"data/processed/{category}/labels/val"
+            images = sorted(list(val_img_dir.glob("*.jpg")) + list(val_img_dir.glob("*.png")))
+
+            if not images:
+                st.warning("No val images found.")
+                return
+
+            session = ort.InferenceSession(str(model_path))
+            input_name = session.get_inputs()[0].name
+
+            results = []
+            progress = st.progress(0)
+
+            for idx, img_path in enumerate(images):
+                img_bgr = cv2.imread(str(img_path))
+                img_rgb = cv2.cvtColor(img_bgr, cv2.COLOR_BGR2RGB)
+                h, w = img_rgb.shape[:2]
+
+                lbl_path = val_lbl_dir / f"{img_path.stem}.txt"
+                gt_boxes = []
+                gt_cls = []
+                if lbl_path.exists() and lbl_path.stat().st_size > 0:
+                    for line in lbl_path.read_text().strip().splitlines():
+                        cls_id, box = yolo_to_pixel(line, w, h)
+                        gt_boxes.append(box)
+                        gt_cls.append(cls_id)
+
+                tensor, scale, orig_shape = preprocess_image(img_rgb)
+                output = session.run(None, {input_name: tensor})
+                pred_boxes, pred_scores, pred_cls = postprocess_output(
+                    output[0], conf_thresh, iou_thresh, orig_shape, scale
+                )
+
+                tp, fp, fn = classify_detections(
+                    pred_boxes, pred_scores, pred_cls,
+                    gt_boxes, gt_cls, iou_thresh
+                )
+
+                results.append({
+                    "img_path": img_path,
+                    "img_rgb": img_rgb,
+                    "tp": tp, "fp": fp, "fn": fn,
+                    "gt_boxes": gt_boxes, "gt_cls": gt_cls,
+                })
+
+                progress.progress((idx + 1) / len(images))
+
+            if filter_type == "Has FP":
+                results = [r for r in results if r["fp"]]
+            elif filter_type == "Has FN":
+                results = [r for r in results if r["fn"]]
+            elif filter_type == "Has TP only":
+                results = [r for r in results if r["tp"] and not r["fp"] and not r["fn"]]
+
+            total_tp = sum(len(r["tp"]) for r in results)
+            total_fp = sum(len(r["fp"]) for r in results)
+            total_fn = sum(len(r["fn"]) for r in results)
+
+            st.markdown("---")
+            mc1, mc2, mc3 = st.columns(3)
+            with mc1:
+                st.metric("Total TP", total_tp, help="Correct detections")
+            with mc2:
+                st.metric("Total FP", total_fp, help="False alarms")
+            with mc3:
+                st.metric("Total FN", total_fn, help="Missed defects")
+
+            st.markdown("---")
+            st.write(f"Showing {len(results)} images after filter: {filter_type}")
+
+            for r in results[:12]:
+                annotated = draw_fpfn(
+                    r["img_rgb"], r["tp"], r["fp"], r["fn"], class_names
+                )
+                caption = f"{r['img_path'].name} | TP:{len(r['tp'])} FP:{len(r['fp'])} FN:{len(r['fn'])}"
+                st.image(annotated, caption=caption, use_container_width=True)
+        else:
+            st.info("Set parameters and click Run FP/FN Analysis.")
 
 def render_sample_inference(run_name: str):
     st.subheader("Sample Image Inference Viewer")
@@ -352,3 +476,6 @@ def render_eval_tab():
 
     st.markdown("---")
     render_sample_inference(selected_run)
+
+    st.markdown("---")
+    render_fpfn_viewer()
