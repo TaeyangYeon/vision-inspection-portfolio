@@ -23,6 +23,10 @@ Program 2: Inspection System (C# + Avalonia UI)
 - GradCAM heatmap visualization (Split view)
 - ROI drag selection
 - Session statistics + CSV export
+- SOLID principles strictly applied throughout
+- MVVM pattern with full separation of concerns
+- Avalonia UI with FluentAvalonia for modern Material-like design
+- NUnit unit tests for every implemented feature
 
 ## Repository
 URL: https://github.com/TaeyangYeon/vision-inspection-portfolio
@@ -190,14 +194,14 @@ vision-inspection-portfolio/
 - Day 27 - TODO: Avalonia project structure redesign + MVVM pattern
 - Day 28 - TODO: ONNX Runtime model load + single image inference test
 
-### WEEK 5 (Day 29~35) - Program 2 Inference Engine
-- Day 29 - TODO: Inference result parsing (BBox / class / confidence)
-- Day 30 - TODO: OpenCvSharp BBox overlay rendering
-- Day 31 - TODO: Video file frame extraction + continuous inference
-- Day 32 - TODO: FastAPI server setup (GradCAM call from C#)
-- Day 33 - TODO: C# to Python FastAPI communication test
-- Day 34 - TODO: Inference engine buffer + stabilization
-- Day 35 - TODO: GitHub push
+### WEEK 5 (Day 29~35) - Program 2 Foundation (SOLID + NUnit)
+- Day 29 - TODO: Project restructure - Core / UI / Tests separation + DI setup
+- Day 30 - TODO: Define all interfaces (IInferenceEngine, IImageProcessor, IGradCamService)
+- Day 31 - TODO: OnnxInferenceEngine implementation + NUnit tests
+- Day 32 - TODO: ImageProcessor implementation + NUnit tests
+- Day 33 - TODO: GradCamService (C# calls Python FastAPI) + NUnit tests
+- Day 34 - TODO: SessionLogger + SettingsService + NUnit tests
+- Day 35 - TODO: DI container setup + integration test + GitHub push
 
 ### WEEK 6 (Day 36~42) - Program 2 Avalonia UI
 - Day 36 - TODO: Main window layout XAML
@@ -274,6 +278,16 @@ vision-inspection-portfolio/
 - MVTec AD: industry standard anomaly detection benchmark dataset
 - .NET 10: latest SDK with full Avalonia support
 - Intel Mac: training on Google Colab T4 GPU, inference locally via ONNX CPU
+- Program 2 C# Design Principles:
+  - SOLID strictly applied:
+    S - Single Responsibility: each class has one reason to change
+    O - Open/Closed: open for extension closed for modification (interfaces + abstractions)
+    I - Interface Segregation: small focused interfaces per feature
+    D - Dependency Inversion: depend on abstractions not concrete classes (DI container)
+  - MVVM pattern: Model / ViewModel / View fully separated
+  - NUnit + test project for every feature (target 80%+ coverage)
+  - FluentAvalonia for modern UI design (Material-like components)
+  - Dependency Injection via Microsoft.Extensions.DependencyInjection
 
 ## How To Continue In New Chat
 1. Upload this PROJECT_CONTEXT.md file
@@ -282,6 +296,6 @@ vision-inspection-portfolio/
 3. Claude will resume from exact current state.
 
 ---
-Last updated: Day 19 complete
-Next: Day 20 - GradCAM YOLO test with best.pt + multi-class heatmap comparison
+Last updated: Day 19 complete - Program 2 architecture redesigned with SOLID + NUnit + FluentAvalonia
+Next: Day 20 - GradCAM multi-class comparison + complete Program 1
 ---
