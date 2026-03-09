@@ -165,10 +165,10 @@ vision-inspection-portfolio/
 - Day 11 - DONE: Train tab parameter form training command builder results viewer
 - Day 12 - DONE: Eval tab complete - Confusion Matrix, PR Curve, F1 Curve, per-class metrics (all Plotly interactive)
 - Day 13 - DONE: Eval tab - sample image inference viewer with real ONNX model, confidence/IoU sliders, FP/FN detection
-- Day 14 - TODO: Eval tab - Sample image inference viewer (real ONNX model)
+- Day 14 - DONE: Eval tab FP/FN case analysis viewer - TP/FP/FN classification with color coding, filter by case type, batch analysis on val set
 
 ### WEEK 3 (Day 15~21) - Program 1 Vision Depth
-- Day 15 - TODO: Eval tab - FP/FN case analysis viewer
+- Day 15 - DONE: Export tab complete - model info, ONNX speed benchmark, PT vs ONNX output comparison
 - Day 16 - TODO: Export tab - ONNX conversion + PT vs ONNX result comparison
 - Day 17 - TODO: Program 1 full UI polish + bug fixes
 - Day 18 - TODO: Program 1 integration test + GitHub push
@@ -266,6 +266,6 @@ vision-inspection-portfolio/
 3. Claude will resume from exact current state.
 
 ---
-Last updated: Day 13 complete
-Next: Day 14 - Eval tab FP/FN case analysis viewer
+Last updated: Day 15 complete
+Next: Day 16 - Program 1 full UI polish and bug fixes
 ---
