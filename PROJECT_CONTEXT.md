@@ -164,7 +164,7 @@ vision-inspection-portfolio/
 - Day 10 - DONE: Augmentation preview with 8 types and interactive controls
 - Day 11 - DONE: Train tab parameter form training command builder results viewer
 - Day 12 - DONE: Eval tab complete - Confusion Matrix, PR Curve, F1 Curve, per-class metrics (all Plotly interactive)
-- Day 13 - TODO: Eval tab - PR Curve + F1 Curve
+- Day 13 - DONE: Eval tab - sample image inference viewer with real ONNX model, confidence/IoU sliders, FP/FN detection
 - Day 14 - TODO: Eval tab - Sample image inference viewer (real ONNX model)
 
 ### WEEK 3 (Day 15~21) - Program 1 Vision Depth
@@ -266,6 +266,6 @@ vision-inspection-portfolio/
 3. Claude will resume from exact current state.
 
 ---
-Last updated: Day 12 complete
-Next: Day 13 - Eval tab sample image inference viewer with real ONNX model
+Last updated: Day 13 complete
+Next: Day 14 - Eval tab FP/FN case analysis viewer
 ---

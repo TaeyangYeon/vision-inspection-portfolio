@@ -5,8 +5,111 @@ import plotly.graph_objects as go
 import plotly.express as px
 import pandas as pd
 from pathlib import Path
+import onnxruntime as ort
+import yaml
+from utils.model_utils import preprocess_image, postprocess_output, draw_detections
+import cv2
 
 BASE_PATH = Path(__file__).parent.parent.parent
+
+def render_sample_inference(run_name: str):
+    st.subheader("Sample Image Inference Viewer")
+    st.caption("Run real ONNX model inference on dataset images")
+
+    model_path = BASE_PATH / "models/best.onnx"
+    if not model_path.exists():
+        st.error("ONNX model not found at models/best.onnx")
+        return
+
+    categories = []
+    processed_dir = BASE_PATH / "data/processed"
+    if processed_dir.exists():
+        categories = [d.name for d in processed_dir.iterdir() if d.is_dir()]
+
+    if not categories:
+        st.error("No processed datasets found.")
+        return
+
+    col1, col2 = st.columns([1, 3])
+
+    with col1:
+        category = st.selectbox("Category", categories, key="infer_category")
+        split = st.selectbox("Split", ["val", "train"], key="infer_split")
+        conf_thresh = st.slider("Confidence Threshold", 0.1, 0.9, 0.25, key="infer_conf")
+        iou_thresh = st.slider("IoU Threshold", 0.1, 0.9, 0.45, key="infer_iou")
+
+        yaml_path = BASE_PATH / f"data/processed/{category}/dataset.yaml"
+        class_names = {}
+        if yaml_path.exists():
+            with open(yaml_path, "r") as f:
+                yaml_data = yaml.safe_load(f)
+                class_names = yaml_data.get("names", {})
+
+        img_dir = BASE_PATH / f"data/processed/{category}/images/{split}"
+        images = sorted(list(img_dir.glob("*.jpg")) + list(img_dir.glob("*.png")))
+
+        if not images:
+            st.warning("No images found.")
+            return
+
+        img_names = [p.name for p in images]
+        selected_name = st.selectbox("Select Image", img_names, key="infer_img")
+        selected_path = img_dir / selected_name
+
+        run_inference = st.button("Run Inference", type="primary")
+
+    with col2:
+        if selected_path.exists():
+            img_bgr = cv2.imread(str(selected_path))
+            img_rgb = cv2.cvtColor(img_bgr, cv2.COLOR_BGR2RGB)
+
+            label_path = BASE_PATH / f"data/processed/{category}/labels/{split}/{selected_path.stem}.txt"
+            has_label = label_path.exists() and label_path.stat().st_size > 0
+
+            if run_inference:
+                with st.spinner("Running ONNX inference..."):
+                    session = ort.InferenceSession(str(model_path))
+                    input_name = session.get_inputs()[0].name
+
+                    tensor, scale, orig_shape = preprocess_image(img_rgb)
+                    output = session.run(None, {input_name: tensor})
+
+                    boxes, scores, class_ids = postprocess_output(
+                        output[0], conf_thresh, iou_thresh, orig_shape, scale
+                    )
+
+                    result_img = draw_detections(img_rgb.copy(), boxes, scores, class_ids, class_names)
+
+                col_orig, col_result = st.columns(2)
+                with col_orig:
+                    st.caption("Original")
+                    st.image(img_rgb, use_container_width=True)
+                with col_result:
+                    st.caption(f"ONNX Inference Result ({len(boxes)} detections)")
+                    st.image(result_img, use_container_width=True)
+
+                if boxes:
+                    st.success(f"NG - {len(boxes)} defect(s) detected")
+                    det_data = []
+                    for box, score, cls_id in zip(boxes, scores, class_ids):
+                        det_data.append({
+                            "Class": class_names.get(cls_id, str(cls_id)),
+                            "Confidence": round(score, 4),
+                            "BBox": f"[{box[0]}, {box[1]}, {box[2]}, {box[3]}]"
+                        })
+                    import pandas as pd
+                    st.dataframe(pd.DataFrame(det_data), use_container_width=True)
+                else:
+                    if has_label:
+                        st.warning("OK (model missed defect - possible FN)")
+                    else:
+                        st.success("OK - No defects detected (clean image)")
+            else:
+                st.image(img_rgb, use_container_width=True, caption=selected_name)
+                if has_label:
+                    st.info("This image has defect labels. Click Run Inference to detect.")
+                else:
+                    st.info("Clean image (no defects). Click Run Inference to verify.")
 
 def load_eval_results(run_name: str):
     path = BASE_PATH / f"outputs/{run_name}/eval_results.json"
@@ -246,3 +349,6 @@ def render_eval_tab():
                 st.warning("pr_data.json not found. Download from Colab.")
     else:
         st.error("eval_results.json not found.")
+
+    st.markdown("---")
+    render_sample_inference(selected_run)
