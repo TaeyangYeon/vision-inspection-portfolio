@@ -527,10 +527,10 @@
           "buildTransitive/net8.0/Microsoft.Extensions.Logging.Abstractions.targets": {}
         }
       },
-      "Microsoft.ML.OnnxRuntime/1.24.3": {
+      "Microsoft.ML.OnnxRuntime/1.20.1": {
         "type": "package",
         "dependencies": {
-          "Microsoft.ML.OnnxRuntime.Managed": "1.24.3"
+          "Microsoft.ML.OnnxRuntime.Managed": "1.20.1"
         },
         "build": {
           "build/netstandard2.1/_._": {}
@@ -564,6 +564,10 @@
             "assetType": "native",
             "rid": "osx-arm64"
           },
+          "runtimes/osx-x64/native/libonnxruntime.dylib": {
+            "assetType": "native",
+            "rid": "osx-x64"
+          },
           "runtimes/win-arm64/native/onnxruntime.dll": {
             "assetType": "native",
             "rid": "win-arm64"
@@ -595,14 +599,27 @@
           "runtimes/win-x64/native/onnxruntime_providers_shared.lib": {
             "assetType": "native",
             "rid": "win-x64"
+          },
+          "runtimes/win-x86/native/onnxruntime.dll": {
+            "assetType": "native",
+            "rid": "win-x86"
+          },
+          "runtimes/win-x86/native/onnxruntime.lib": {
+            "assetType": "native",
+            "rid": "win-x86"
+          },
+          "runtimes/win-x86/native/onnxruntime_providers_shared.dll": {
+            "assetType": "native",
+            "rid": "win-x86"
+          },
+          "runtimes/win-x86/native/onnxruntime_providers_shared.lib": {
+            "assetType": "native",
+            "rid": "win-x86"
           }
         }
       },
-      "Microsoft.ML.OnnxRuntime.Managed/1.24.3": {
+      "Microsoft.ML.OnnxRuntime.Managed/1.20.1": {
         "type": "package",
-        "dependencies": {
-          "System.Numerics.Tensors": "9.0.0"
-        },
         "compile": {
           "lib/net8.0/Microsoft.ML.OnnxRuntime.dll": {
             "related": ".pdb"
@@ -630,56 +647,12 @@
           }
         }
       },
-      "OpenCvSharp4.runtime.osx_arm64/4.8.1-rc": {
+      "OpenCvSharp4.runtime.osx.10.15-x64/4.6.0.20230105": {
         "type": "package",
         "runtimeTargets": {
-          "runtimes/osx-arm64/native/libOpenCvSharpExtern.dylib": {
+          "runtimes/osx-x64/native/libOpenCvSharpExtern.dylib": {
             "assetType": "native",
-            "rid": "osx-arm64"
-          },
-          "runtimes/osx-arm64/native/libdc1394.26.dylib": {
-            "assetType": "native",
-            "rid": "osx-arm64"
-          },
-          "runtimes/osx-arm64/native/libfreetype.6.dylib": {
-            "assetType": "native",
-            "rid": "osx-arm64"
-          },
-          "runtimes/osx-arm64/native/libglib-2.0.0.dylib": {
-            "assetType": "native",
-            "rid": "osx-arm64"
-          },
-          "runtimes/osx-arm64/native/libgraphite2.3.2.1.dylib": {
-            "assetType": "native",
-            "rid": "osx-arm64"
-          },
-          "runtimes/osx-arm64/native/libharfbuzz.0.dylib": {
-            "assetType": "native",
-            "rid": "osx-arm64"
-          },
-          "runtimes/osx-arm64/native/libhdf5.310.dylib": {
-            "assetType": "native",
-            "rid": "osx-arm64"
-          },
-          "runtimes/osx-arm64/native/libintl.8.dylib": {
-            "assetType": "native",
-            "rid": "osx-arm64"
-          },
-          "runtimes/osx-arm64/native/libomp.dylib": {
-            "assetType": "native",
-            "rid": "osx-arm64"
-          },
-          "runtimes/osx-arm64/native/libpcre2-8.0.dylib": {
-            "assetType": "native",
-            "rid": "osx-arm64"
-          },
-          "runtimes/osx-arm64/native/libpng16.16.dylib": {
-            "assetType": "native",
-            "rid": "osx-arm64"
-          },
-          "runtimes/osx-arm64/native/libsz.2.0.1.dylib": {
-            "assetType": "native",
-            "rid": "osx-arm64"
+            "rid": "osx-x64"
           }
         }
       },
@@ -781,22 +754,6 @@
           }
         }
       },
-      "System.Numerics.Tensors/9.0.0": {
-        "type": "package",
-        "compile": {
-          "lib/net9.0/System.Numerics.Tensors.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net9.0/System.Numerics.Tensors.dll": {
-            "related": ".xml"
-          }
-        },
-        "build": {
-          "buildTransitive/net8.0/_._": {}
-        }
-      },
       "Tmds.DBus.Protocol/0.21.2": {
         "type": "package",
         "compile": {
@@ -812,9 +769,9 @@
         "dependencies": {
           "Microsoft.Extensions.DependencyInjection": "10.0.3",
           "Microsoft.Extensions.Logging.Abstractions": "10.0.3",
-          "Microsoft.ML.OnnxRuntime": "1.24.3",
+          "Microsoft.ML.OnnxRuntime": "1.20.1",
           "OpenCvSharp4": "4.13.0.20260308",
-          "OpenCvSharp4.runtime.osx_arm64": "4.8.1-rc"
+          "OpenCvSharp4.runtime.osx.10.15-x64": "4.6.0.20230105"
         },
         "compile": {
           "bin/placeholder/InspectionSystem.Core.dll": {}
@@ -1589,10 +1546,10 @@
         "useSharedDesignerContext.txt"
       ]
     },
-    "Microsoft.ML.OnnxRuntime/1.24.3": {
-      "sha512": "ws4qKjGTa7ihH5u3083kehnIBCkQ9hcbHQrp0l+pwlTvRhQZltSs3PFxxS8nKRakIQKVcYyzAupVHUjYH0yvIg==",
+    "Microsoft.ML.OnnxRuntime/1.20.1": {
+      "sha512": "NzUD79BC6R7TKROLyB3XCzXTpbNZ1YfOdVbult7hoFvd/xyRecOMiRO5HTzkPXvaFlcvZ91+WNCiroAPzUE7Dw==",
       "type": "package",
-      "path": "microsoft.ml.onnxruntime/1.24.3",
+      "path": "microsoft.ml.onnxruntime/1.20.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1607,25 +1564,22 @@
         "build/native/include/onnxruntime_c_api.h",
         "build/native/include/onnxruntime_cxx_api.h",
         "build/native/include/onnxruntime_cxx_inline.h",
-        "build/native/include/onnxruntime_env_config_keys.h",
-        "build/native/include/onnxruntime_ep_c_api.h",
-        "build/native/include/onnxruntime_ep_device_ep_metadata_keys.h",
         "build/native/include/onnxruntime_float16.h",
         "build/native/include/onnxruntime_lite_custom_op.h",
         "build/native/include/onnxruntime_run_options_config_keys.h",
         "build/native/include/onnxruntime_session_options_config_keys.h",
         "build/native/include/provider_options.h",
-        "build/net9.0-android35.0/Microsoft.ML.OnnxRuntime.targets",
-        "build/net9.0-ios18.0/Microsoft.ML.OnnxRuntime.targets",
-        "build/net9.0-maccatalyst18.0/_._",
+        "build/net8.0-android31.0/Microsoft.ML.OnnxRuntime.targets",
+        "build/net8.0-ios15.4/Microsoft.ML.OnnxRuntime.targets",
+        "build/net8.0-maccatalyst14.0/_._",
         "build/netstandard2.0/Microsoft.ML.OnnxRuntime.props",
         "build/netstandard2.0/Microsoft.ML.OnnxRuntime.targets",
         "build/netstandard2.1/Microsoft.ML.OnnxRuntime.props",
         "build/netstandard2.1/Microsoft.ML.OnnxRuntime.targets",
-        "buildTransitive/net9.0-android35.0/Microsoft.ML.OnnxRuntime.targets",
-        "buildTransitive/net9.0-ios18.0/Microsoft.ML.OnnxRuntime.targets",
-        "buildTransitive/net9.0-maccatalyst18.0/_._",
-        "microsoft.ml.onnxruntime.1.24.3.nupkg.sha512",
+        "buildTransitive/net8.0-android31.0/Microsoft.ML.OnnxRuntime.targets",
+        "buildTransitive/net8.0-ios15.4/Microsoft.ML.OnnxRuntime.targets",
+        "buildTransitive/net8.0-maccatalyst14.0/_._",
+        "microsoft.ml.onnxruntime.1.20.1.nupkg.sha512",
         "microsoft.ml.onnxruntime.nuspec",
         "runtimes/android/native/onnxruntime.aar",
         "runtimes/ios/native/onnxruntime.xcframework.zip",
@@ -1634,6 +1588,7 @@
         "runtimes/linux-x64/native/libonnxruntime.so",
         "runtimes/linux-x64/native/libonnxruntime_providers_shared.so",
         "runtimes/osx-arm64/native/libonnxruntime.dylib",
+        "runtimes/osx-x64/native/libonnxruntime.dylib",
         "runtimes/win-arm64/native/onnxruntime.dll",
         "runtimes/win-arm64/native/onnxruntime.lib",
         "runtimes/win-arm64/native/onnxruntime_providers_shared.dll",
@@ -1641,13 +1596,17 @@
         "runtimes/win-x64/native/onnxruntime.dll",
         "runtimes/win-x64/native/onnxruntime.lib",
         "runtimes/win-x64/native/onnxruntime_providers_shared.dll",
-        "runtimes/win-x64/native/onnxruntime_providers_shared.lib"
+        "runtimes/win-x64/native/onnxruntime_providers_shared.lib",
+        "runtimes/win-x86/native/onnxruntime.dll",
+        "runtimes/win-x86/native/onnxruntime.lib",
+        "runtimes/win-x86/native/onnxruntime_providers_shared.dll",
+        "runtimes/win-x86/native/onnxruntime_providers_shared.lib"
       ]
     },
-    "Microsoft.ML.OnnxRuntime.Managed/1.24.3": {
-      "sha512": "XWyszzywN+uuMEEPzrTYLSKM2TJKOGHsjcq0ZY+AeaqJpPB7xi0OikxXhXTc7fcOJ8K0oqvD0dk86fROm3TaRA==",
+    "Microsoft.ML.OnnxRuntime.Managed/1.20.1": {
+      "sha512": "+EVcEcKdq3gkw6iu8TYl2coJxfPnMi1YQc6eZ80BGNlw6mbBCxNGe6h4udDCwENYWsXFvYjoBc6412t40tl4ew==",
       "type": "package",
-      "path": "microsoft.ml.onnxruntime.managed/1.24.3",
+      "path": "microsoft.ml.onnxruntime.managed/1.20.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1657,18 +1616,18 @@
         "README.md",
         "ThirdPartyNotices.txt",
         "build/netstandard2.0/Microsoft.ML.OnnxRuntime.Managed.targets",
+        "lib/net8.0-android34.0/Microsoft.ML.OnnxRuntime.dll",
+        "lib/net8.0-android34.0/Microsoft.ML.OnnxRuntime.pdb",
+        "lib/net8.0-android34.0/Microsoft.ML.OnnxRuntime.xml",
+        "lib/net8.0-ios18.0/Microsoft.ML.OnnxRuntime.dll",
+        "lib/net8.0-ios18.0/Microsoft.ML.OnnxRuntime.pdb",
+        "lib/net8.0-maccatalyst18.0/Microsoft.ML.OnnxRuntime.dll",
+        "lib/net8.0-maccatalyst18.0/Microsoft.ML.OnnxRuntime.pdb",
         "lib/net8.0/Microsoft.ML.OnnxRuntime.dll",
         "lib/net8.0/Microsoft.ML.OnnxRuntime.pdb",
-        "lib/net9.0-android35.0/Microsoft.ML.OnnxRuntime.dll",
-        "lib/net9.0-android35.0/Microsoft.ML.OnnxRuntime.pdb",
-        "lib/net9.0-android35.0/Microsoft.ML.OnnxRuntime.xml",
-        "lib/net9.0-ios18.0/Microsoft.ML.OnnxRuntime.dll",
-        "lib/net9.0-ios18.0/Microsoft.ML.OnnxRuntime.pdb",
-        "lib/net9.0-maccatalyst18.0/Microsoft.ML.OnnxRuntime.dll",
-        "lib/net9.0-maccatalyst18.0/Microsoft.ML.OnnxRuntime.pdb",
         "lib/netstandard2.0/Microsoft.ML.OnnxRuntime.dll",
         "lib/netstandard2.0/Microsoft.ML.OnnxRuntime.pdb",
-        "microsoft.ml.onnxruntime.managed.1.24.3.nupkg.sha512",
+        "microsoft.ml.onnxruntime.managed.1.20.1.nupkg.sha512",
         "microsoft.ml.onnxruntime.managed.nuspec"
       ]
     },
@@ -1691,28 +1650,16 @@
         "opencvsharp4.nuspec"
       ]
     },
-    "OpenCvSharp4.runtime.osx_arm64/4.8.1-rc": {
-      "sha512": "4Bew2ZkOSwZlPsy8rqUwWMYxNJXHe0qH+TJVcOZJjG99uaVuYFW1lzwb6Syp0ptx5nGajBaHZmeP31ZSne74MQ==",
+    "OpenCvSharp4.runtime.osx.10.15-x64/4.6.0.20230105": {
+      "sha512": "71vVmug8J/WIy4N1trM3HvdRtOCeNPTykPNZmy+avxOudTQdujLD3Oi6/F8T1W3nQKX63U4wBvMgGYUrsKRvgA==",
       "type": "package",
-      "path": "opencvsharp4.runtime.osx_arm64/4.8.1-rc",
+      "path": "opencvsharp4.runtime.osx.10.15-x64/4.6.0.20230105",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "README.md",
-        "opencvsharp4.runtime.osx_arm64.4.8.1-rc.nupkg.sha512",
-        "opencvsharp4.runtime.osx_arm64.nuspec",
-        "runtimes/osx-arm64/native/libOpenCvSharpExtern.dylib",
-        "runtimes/osx-arm64/native/libdc1394.26.dylib",
-        "runtimes/osx-arm64/native/libfreetype.6.dylib",
-        "runtimes/osx-arm64/native/libglib-2.0.0.dylib",
-        "runtimes/osx-arm64/native/libgraphite2.3.2.1.dylib",
-        "runtimes/osx-arm64/native/libharfbuzz.0.dylib",
-        "runtimes/osx-arm64/native/libhdf5.310.dylib",
-        "runtimes/osx-arm64/native/libintl.8.dylib",
-        "runtimes/osx-arm64/native/libomp.dylib",
-        "runtimes/osx-arm64/native/libpcre2-8.0.dylib",
-        "runtimes/osx-arm64/native/libpng16.16.dylib",
-        "runtimes/osx-arm64/native/libsz.2.0.1.dylib"
+        "opencvsharp4.runtime.osx.10.15-x64.4.6.0.20230105.nupkg.sha512",
+        "opencvsharp4.runtime.osx.10.15-x64.nuspec",
+        "runtimes/osx-x64/native/libOpenCvSharpExtern.dylib"
       ]
     },
     "SkiaSharp/2.88.9": {
@@ -1891,34 +1838,6 @@
         "runtimes/win-x86/native/libSkiaSharp.dll",
         "skiasharp.nativeassets.win32.2.88.9.nupkg.sha512",
         "skiasharp.nativeassets.win32.nuspec"
-      ]
-    },
-    "System.Numerics.Tensors/9.0.0": {
-      "sha512": "hyJB4UlpAi19Xr9AXzu2NuagKC4lPfHObNMEAA0HmqFz2rX7wKgzeYzO/jM/eBHDhnUGFFEjk5cOoJaxqg5J4A==",
-      "type": "package",
-      "path": "system.numerics.tensors/9.0.0",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "Icon.png",
-        "LICENSE.TXT",
-        "PACKAGE.md",
-        "THIRD-PARTY-NOTICES.TXT",
-        "buildTransitive/net461/System.Numerics.Tensors.targets",
-        "buildTransitive/net462/_._",
-        "buildTransitive/net8.0/_._",
-        "buildTransitive/netcoreapp2.0/System.Numerics.Tensors.targets",
-        "lib/net462/System.Numerics.Tensors.dll",
-        "lib/net462/System.Numerics.Tensors.xml",
-        "lib/net8.0/System.Numerics.Tensors.dll",
-        "lib/net8.0/System.Numerics.Tensors.xml",
-        "lib/net9.0/System.Numerics.Tensors.dll",
-        "lib/net9.0/System.Numerics.Tensors.xml",
-        "lib/netstandard2.0/System.Numerics.Tensors.dll",
-        "lib/netstandard2.0/System.Numerics.Tensors.xml",
-        "system.numerics.tensors.9.0.0.nupkg.sha512",
-        "system.numerics.tensors.nuspec",
-        "useSharedDesignerContext.txt"
       ]
     },
     "Tmds.DBus.Protocol/0.21.2": {

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "8Bxml25NUq4=",
+  "dgSpecHash": "Rd9GK6LU1rU=",
   "success": true,
   "projectFilePath": "/Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.UI/InspectionSystem.UI.csproj",
   "expectedPackageFiles": [
@@ -29,16 +29,15 @@
     "/Users/geseuteu/.nuget/packages/microsoft.extensions.dependencyinjection/10.0.3/microsoft.extensions.dependencyinjection.10.0.3.nupkg.sha512",
     "/Users/geseuteu/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/10.0.3/microsoft.extensions.dependencyinjection.abstractions.10.0.3.nupkg.sha512",
     "/Users/geseuteu/.nuget/packages/microsoft.extensions.logging.abstractions/10.0.3/microsoft.extensions.logging.abstractions.10.0.3.nupkg.sha512",
-    "/Users/geseuteu/.nuget/packages/microsoft.ml.onnxruntime/1.24.3/microsoft.ml.onnxruntime.1.24.3.nupkg.sha512",
-    "/Users/geseuteu/.nuget/packages/microsoft.ml.onnxruntime.managed/1.24.3/microsoft.ml.onnxruntime.managed.1.24.3.nupkg.sha512",
+    "/Users/geseuteu/.nuget/packages/microsoft.ml.onnxruntime/1.20.1/microsoft.ml.onnxruntime.1.20.1.nupkg.sha512",
+    "/Users/geseuteu/.nuget/packages/microsoft.ml.onnxruntime.managed/1.20.1/microsoft.ml.onnxruntime.managed.1.20.1.nupkg.sha512",
     "/Users/geseuteu/.nuget/packages/opencvsharp4/4.13.0.20260308/opencvsharp4.4.13.0.20260308.nupkg.sha512",
-    "/Users/geseuteu/.nuget/packages/opencvsharp4.runtime.osx_arm64/4.8.1-rc/opencvsharp4.runtime.osx_arm64.4.8.1-rc.nupkg.sha512",
+    "/Users/geseuteu/.nuget/packages/opencvsharp4.runtime.osx.10.15-x64/4.6.0.20230105/opencvsharp4.runtime.osx.10.15-x64.4.6.0.20230105.nupkg.sha512",
     "/Users/geseuteu/.nuget/packages/skiasharp/2.88.9/skiasharp.2.88.9.nupkg.sha512",
     "/Users/geseuteu/.nuget/packages/skiasharp.nativeassets.linux/2.88.9/skiasharp.nativeassets.linux.2.88.9.nupkg.sha512",
     "/Users/geseuteu/.nuget/packages/skiasharp.nativeassets.macos/2.88.9/skiasharp.nativeassets.macos.2.88.9.nupkg.sha512",
     "/Users/geseuteu/.nuget/packages/skiasharp.nativeassets.webassembly/2.88.9/skiasharp.nativeassets.webassembly.2.88.9.nupkg.sha512",
     "/Users/geseuteu/.nuget/packages/skiasharp.nativeassets.win32/2.88.9/skiasharp.nativeassets.win32.2.88.9.nupkg.sha512",
-    "/Users/geseuteu/.nuget/packages/system.numerics.tensors/9.0.0/system.numerics.tensors.9.0.0.nupkg.sha512",
     "/Users/geseuteu/.nuget/packages/tmds.dbus.protocol/0.21.2/tmds.dbus.protocol.0.21.2.nupkg.sha512"
   ],
   "logs": []

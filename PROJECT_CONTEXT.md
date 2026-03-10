@@ -186,7 +186,7 @@ vision-inspection-portfolio/
 - Day 21 - DONE: Program 2 restructured - Core/UI/Tests projects, all interfaces defined, all models defined, Core builds clean
 
 ### WEEK 4 (Day 22~28) - GradCAM Complete
-- Day 22 - TODO: CAM weight calculation + heatmap generation
+- Day 22 - DONE: OnnxInferenceEngine + ImageProcessor implemented, NUnit 20/20 PASS (0 skip, 0 fail). Fixed: OpenCvSharp4.runtime.osx.10.15-x64, ONNX opset 21 re-export, Mat.FromPixelData + Vec3b GetArray
 - Day 23 - TODO: YOLO layer target + heatmap overlay
 - Day 24 - TODO: Library result vs custom implementation comparison and validation
 - Day 25 - TODO: GradCAM Streamlit viewer added to Program 1
@@ -296,6 +296,6 @@ vision-inspection-portfolio/
 3. Claude will resume from exact current state.
 
 ---
-Last updated: Day 21 complete
-Next: Day 22 - OnnxInferenceEngine implementation + NUnit tests
+Last updated: Day 22 complete
+Next: Day 23 - SessionLogger + SettingsService implementation + NUnit tests
 ---
