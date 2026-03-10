@@ -183,7 +183,7 @@ vision-inspection-portfolio/
   - GradCAM tab added to Streamlit with 3-column view (original/heatmap/overlay)
   - Fixed: st.columns() NameError - use list indexing instead of variable unpacking
 - Day 20 - DONE: GradCAM multi-class comparison, All Classes mode in Streamlit, Program 1 complete
-- Day 21 - TODO: backward hook implementation (gradient extraction)
+- Day 21 - DONE: Program 2 restructured - Core/UI/Tests projects, all interfaces defined, all models defined, Core builds clean
 
 ### WEEK 4 (Day 22~28) - GradCAM Complete
 - Day 22 - TODO: CAM weight calculation + heatmap generation
@@ -296,6 +296,6 @@ vision-inspection-portfolio/
 3. Claude will resume from exact current state.
 
 ---
-Last updated: Day 20 complete - Program 1 fully complete
-Next: Day 21 - Program 2 project restructure (Core / UI / Tests) with SOLID foundation
+Last updated: Day 21 complete
+Next: Day 22 - OnnxInferenceEngine implementation + NUnit tests
 ---

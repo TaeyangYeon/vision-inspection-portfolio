@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="InspectionSystem.Core/InspectionSystem.Core.csproj" />
+  <Project Path="InspectionSystem.Tests/InspectionSystem.Tests.csproj" />
+  <Project Path="InspectionSystem.UI/InspectionSystem.UI.csproj" />
+</Solution>
