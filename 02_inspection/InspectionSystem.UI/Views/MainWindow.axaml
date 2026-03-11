@@ -145,15 +145,8 @@
 
             <!-- Page Content -->
             <Border Grid.Column="1"
-                    Background="#1E1E2E"
-                    Padding="24">
-                <ContentControl>
-                    <ContentControl.Content>
-                        <TextBlock Text="{Binding SelectedPage, StringFormat='Page: {0}'}"
-                                   Foreground="#CDD6F4"
-                                   FontSize="24"/>
-                    </ContentControl.Content>
-                </ContentControl>
+                    Background="#1E1E2E">
+                <ContentControl Content="{Binding CurrentPageView}"/>
             </Border>
 
         </Grid>

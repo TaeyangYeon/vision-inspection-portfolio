@@ -3,6 +3,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using InspectionSystem.Core.Interfaces;
 using InspectionSystem.Core.Models;
+using InspectionSystem.UI.Views;
 
 namespace InspectionSystem.UI.ViewModels
 {
@@ -10,6 +11,10 @@ namespace InspectionSystem.UI.ViewModels
     {
         private readonly ISettingsService _settingsService;
         private readonly ISessionLogger _sessionLogger;
+        private readonly InspectionViewModel _inspectionViewModel;
+
+        [ObservableProperty]
+        private object? _currentPageView;
 
         [ObservableProperty]
         private string _selectedPage = "Inspection";
@@ -35,10 +40,30 @@ namespace InspectionSystem.UI.ViewModels
 
         public MainViewModel(
             ISettingsService settingsService,
-            ISessionLogger sessionLogger)
+            ISessionLogger sessionLogger,
+            InspectionViewModel inspectionViewModel)
         {
             _settingsService = settingsService;
             _sessionLogger = sessionLogger;
+            _inspectionViewModel = inspectionViewModel;
+            RefreshStats();
+            NavigateToPage("Inspection");
+        }
+
+        partial void OnSelectedPageChanged(string value)
+        {
+            NavigateToPage(value);
+        }
+
+        private void NavigateToPage(string page)
+        {
+            CurrentPageView = page switch
+            {
+                "Inspection" => new InspectionView { DataContext = _inspectionViewModel },
+                "GradCAM" => new Avalonia.Controls.TextBlock { Text = "GradCAM - Coming Soon", Foreground = Avalonia.Media.Brushes.White, Margin = new Avalonia.Thickness(24) },
+                "Settings" => new Avalonia.Controls.TextBlock { Text = "Settings - Coming Soon", Foreground = Avalonia.Media.Brushes.White, Margin = new Avalonia.Thickness(24) },
+                _ => null
+            };
             RefreshStats();
         }
 

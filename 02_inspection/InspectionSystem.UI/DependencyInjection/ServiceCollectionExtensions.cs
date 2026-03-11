@@ -44,6 +44,9 @@ namespace InspectionSystem.UI.DependencyInjection
                 return new GradCamService(logger, settings.Current.GradCamApiUrl);
             });
 
+            services.AddTransient<InspectionSystem.UI.ViewModels.InspectionViewModel>();
+            services.AddTransient<InspectionSystem.UI.ViewModels.MainViewModel>();
+
             return services;
         }
     }

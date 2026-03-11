@@ -1,0 +1,257 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:InspectionSystem.UI.ViewModels"
+             x:Class="InspectionSystem.UI.Views.InspectionView"
+             x:DataType="vm:InspectionViewModel">
+
+    <Grid RowDefinitions="Auto,*,Auto">
+
+        <!-- Top Toolbar -->
+        <Border Grid.Row="0"
+                Background="#181825"
+                BorderBrush="#313244"
+                BorderThickness="0,0,0,1"
+                Padding="12,8">
+            <StackPanel Orientation="Horizontal" Spacing="8">
+                <Button Content="Load Model"
+                        Command="{Binding LoadModelCommand}"
+                        Background="#313244"
+                        Foreground="#CDD6F4"
+                        Padding="12,6"/>
+                <Button Content="Open Image"
+                        Command="{Binding OpenImageCommand}"
+                        Background="#313244"
+                        Foreground="#CDD6F4"
+                        Padding="12,6"/>
+                <Button Content="Run Inspection"
+                        Command="{Binding RunInspectionCommand}"
+                        IsEnabled="{Binding IsModelLoaded}"
+                        Background="#0078D4"
+                        Foreground="White"
+                        Padding="12,6"/>
+                <Button Content="Cancel"
+                        Command="{Binding CancelInspectionCommand}"
+                        IsVisible="{Binding IsInspecting}"
+                        Background="#F38BA8"
+                        Foreground="White"
+                        Padding="12,6"/>
+
+                <Separator Width="1"
+                           Background="#313244"
+                           Margin="4,0"/>
+
+                <!-- Confidence Slider -->
+                <StackPanel Orientation="Horizontal"
+                            Spacing="8"
+                            VerticalAlignment="Center">
+                    <TextBlock Text="Conf:"
+                               Foreground="#BAC2DE"
+                               FontSize="12"
+                               VerticalAlignment="Center"/>
+                    <Slider Value="{Binding ConfidenceThreshold}"
+                            Minimum="0.05"
+                            Maximum="0.95"
+                            Width="100"
+                            VerticalAlignment="Center"/>
+                    <TextBlock Text="{Binding ConfidenceThreshold, StringFormat={}{0:F2}}"
+                               Foreground="#CDD6F4"
+                               FontSize="12"
+                               Width="32"
+                               VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <!-- IoU Slider -->
+                <StackPanel Orientation="Horizontal"
+                            Spacing="8"
+                            VerticalAlignment="Center">
+                    <TextBlock Text="IoU:"
+                               Foreground="#BAC2DE"
+                               FontSize="12"
+                               VerticalAlignment="Center"/>
+                    <Slider Value="{Binding IouThreshold}"
+                            Minimum="0.05"
+                            Maximum="0.95"
+                            Width="100"
+                            VerticalAlignment="Center"/>
+                    <TextBlock Text="{Binding IouThreshold, StringFormat={}{0:F2}}"
+                               Foreground="#CDD6F4"
+                               FontSize="12"
+                               Width="32"
+                               VerticalAlignment="Center"/>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+
+        <!-- Main Content -->
+        <Grid Grid.Row="1" ColumnDefinitions="*,320">
+
+            <!-- Image Panel -->
+            <Grid Grid.Column="0" RowDefinitions="*,*">
+
+                <!-- Original Image -->
+                <Border Grid.Row="0"
+                        Background="#11111B"
+                        BorderBrush="#313244"
+                        BorderThickness="0,0,1,1"
+                        Margin="0,0,0,0">
+                    <Grid>
+                        <TextBlock Text="ORIGINAL"
+                                   FontSize="10"
+                                   FontWeight="Bold"
+                                   Foreground="#6C7086"
+                                   LetterSpacing="2"
+                                   Margin="12,8"
+                                   VerticalAlignment="Top"/>
+                        <Image Source="{Binding DisplayImage}"
+                               Stretch="Uniform"
+                               Margin="0,28,0,0"/>
+                        <TextBlock Text="Open an image to begin"
+                                   Foreground="#45475A"
+                                   FontSize="14"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   IsVisible="{Binding DisplayImage,
+                                       Converter={x:Static ObjectConverters.IsNull}}"/>
+                    </Grid>
+                </Border>
+
+                <!-- Result Image -->
+                <Border Grid.Row="1"
+                        Background="#11111B"
+                        BorderBrush="#313244"
+                        BorderThickness="0,0,1,0">
+                    <Grid>
+                        <TextBlock Text="RESULT"
+                                   FontSize="10"
+                                   FontWeight="Bold"
+                                   Foreground="#6C7086"
+                                   LetterSpacing="2"
+                                   Margin="12,8"
+                                   VerticalAlignment="Top"/>
+                        <Image Source="{Binding ResultImage}"
+                               Stretch="Uniform"
+                               Margin="0,28,0,0"/>
+                        <TextBlock Text="Run inspection to see results"
+                                   Foreground="#45475A"
+                                   FontSize="14"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   IsVisible="{Binding ResultImage,
+                                       Converter={x:Static ObjectConverters.IsNull}}"/>
+                    </Grid>
+                </Border>
+            </Grid>
+
+            <!-- Right Result Panel -->
+            <Border Grid.Column="1"
+                    Background="#181825"
+                    Padding="16">
+                <StackPanel Spacing="16">
+
+                    <!-- OK/NG Badge -->
+                    <Border Background="{Binding ResultColor}"
+                            CornerRadius="8"
+                            Padding="0,20">
+                        <TextBlock Text="{Binding ResultLabel}"
+                                   FontSize="48"
+                                   FontWeight="Bold"
+                                   Foreground="White"
+                                   HorizontalAlignment="Center"/>
+                    </Border>
+
+                    <!-- Metrics -->
+                    <Border Background="#1E1E2E"
+                            CornerRadius="6"
+                            Padding="12">
+                        <Grid RowDefinitions="Auto,Auto,Auto"
+                              ColumnDefinitions="*,Auto"
+                              RowSpacing="10">
+                            <TextBlock Grid.Row="0" Grid.Column="0"
+                                       Text="Inference Time"
+                                       Foreground="#6C7086"
+                                       FontSize="12"/>
+                            <TextBlock Grid.Row="0" Grid.Column="1"
+                                       Text="{Binding InferenceTimeMs, StringFormat={}{0:F1} ms}"
+                                       Foreground="#CDD6F4"
+                                       FontSize="12"
+                                       FontWeight="SemiBold"/>
+                            <TextBlock Grid.Row="1" Grid.Column="0"
+                                       Text="Detections"
+                                       Foreground="#6C7086"
+                                       FontSize="12"/>
+                            <TextBlock Grid.Row="1" Grid.Column="1"
+                                       Text="{Binding DetectionCount}"
+                                       Foreground="#CDD6F4"
+                                       FontSize="12"
+                                       FontWeight="SemiBold"/>
+                            <TextBlock Grid.Row="2" Grid.Column="0"
+                                       Text="Confidence"
+                                       Foreground="#6C7086"
+                                       FontSize="12"/>
+                            <TextBlock Grid.Row="2" Grid.Column="1"
+                                       Text="{Binding ConfidenceThreshold, StringFormat={}{0:F2}}"
+                                       Foreground="#CDD6F4"
+                                       FontSize="12"
+                                       FontWeight="SemiBold"/>
+                        </Grid>
+                    </Border>
+
+                    <!-- Detection List -->
+                    <TextBlock Text="DETECTIONS"
+                               FontSize="10"
+                               FontWeight="Bold"
+                               Foreground="#6C7086"
+                               LetterSpacing="2"/>
+
+                    <ListBox ItemsSource="{Binding Detections}"
+                             Background="Transparent"
+                             MaxHeight="300">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate x:DataType="vm:DetectionItemViewModel">
+                                <Border Background="#1E1E2E"
+                                        CornerRadius="4"
+                                        Padding="10,8"
+                                        Margin="0,2">
+                                    <Grid ColumnDefinitions="*,Auto">
+                                        <StackPanel Grid.Column="0">
+                                            <TextBlock Text="{Binding ClassName}"
+                                                       Foreground="#CDD6F4"
+                                                       FontSize="13"
+                                                       FontWeight="SemiBold"/>
+                                            <TextBlock Text="{Binding BBox}"
+                                                       Foreground="#6C7086"
+                                                       FontSize="11"/>
+                                        </StackPanel>
+                                        <Border Grid.Column="1"
+                                                Background="#313244"
+                                                CornerRadius="4"
+                                                Padding="6,3"
+                                                VerticalAlignment="Center">
+                                            <TextBlock Text="{Binding Confidence, StringFormat={}{0:P0}}"
+                                                       Foreground="#A6E3A1"
+                                                       FontSize="12"
+                                                       FontWeight="Bold"/>
+                                        </Border>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+
+                </StackPanel>
+            </Border>
+        </Grid>
+
+        <!-- Status Bar -->
+        <Border Grid.Row="2"
+                Background="#11111B"
+                BorderBrush="#313244"
+                BorderThickness="0,1,0,0"
+                Padding="12,6">
+            <TextBlock Text="{Binding StatusMessage}"
+                       Foreground="#6C7086"
+                       FontSize="11"/>
+        </Border>
+
+    </Grid>
+</UserControl>
