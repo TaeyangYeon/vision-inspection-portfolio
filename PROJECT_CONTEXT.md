@@ -189,7 +189,7 @@ vision-inspection-portfolio/
 - Day 22 - DONE: OnnxInferenceEngine + ImageProcessor implemented, NUnit 20/20 PASS (0 skip, 0 fail). Fixed: OpenCvSharp4.runtime.osx.10.15-x64, ONNX opset 21 re-export, Mat.FromPixelData + Vec3b GetArray
 - Day 23 - DONE: SessionLogger + SettingsService implemented with full NUnit tests. Running total: all tests pass with 0 fail 0 skip
 - Day 24 - DONE: DI container setup, GradCamService implemented, integration tests for DI resolution added. All NUnit tests pass 0 fail 0 skip.
-- Day 25 - TODO: GradCAM Streamlit viewer added to Program 1
+- Day 25 - DONE: Avalonia MainWindow with dark theme, left navigation panel, session stats, status bar. DI fully wired to UI layer.
 - Day 26 - TODO: GradCAM buffer + stabilization + GitHub push
 - Day 27 - TODO: Avalonia project structure redesign + MVVM pattern
 - Day 28 - TODO: ONNX Runtime model load + single image inference test
@@ -296,6 +296,6 @@ vision-inspection-portfolio/
 3. Claude will resume from exact current state.
 
 ---
-Last updated: Day 24 complete
-Next: Day 25 - Avalonia MainWindow layout with FluentAvalonia NavigationView
+Last updated: Day 25 complete
+Next: Day 26 - InspectionView with image canvas and BBox overlay
 ---
