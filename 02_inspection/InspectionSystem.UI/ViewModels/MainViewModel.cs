@@ -12,6 +12,8 @@ namespace InspectionSystem.UI.ViewModels
         private readonly ISettingsService _settingsService;
         private readonly ISessionLogger _sessionLogger;
         private readonly InspectionViewModel _inspectionViewModel;
+        private readonly GradCamViewModel _gradCamViewModel;
+        private readonly SettingsViewModel _settingsViewModel;
 
         [ObservableProperty]
         private object? _currentPageView;
@@ -41,11 +43,15 @@ namespace InspectionSystem.UI.ViewModels
         public MainViewModel(
             ISettingsService settingsService,
             ISessionLogger sessionLogger,
-            InspectionViewModel inspectionViewModel)
+            InspectionViewModel inspectionViewModel,
+            GradCamViewModel gradCamViewModel,
+            SettingsViewModel settingsViewModel)
         {
             _settingsService = settingsService;
             _sessionLogger = sessionLogger;
             _inspectionViewModel = inspectionViewModel;
+            _gradCamViewModel = gradCamViewModel;
+            _settingsViewModel = settingsViewModel;
             RefreshStats();
             NavigateToPage("Inspection");
         }
@@ -60,8 +66,8 @@ namespace InspectionSystem.UI.ViewModels
             CurrentPageView = page switch
             {
                 "Inspection" => new InspectionView { DataContext = _inspectionViewModel },
-                "GradCAM" => new Avalonia.Controls.TextBlock { Text = "GradCAM - Coming Soon", Foreground = Avalonia.Media.Brushes.White, Margin = new Avalonia.Thickness(24) },
-                "Settings" => new Avalonia.Controls.TextBlock { Text = "Settings - Coming Soon", Foreground = Avalonia.Media.Brushes.White, Margin = new Avalonia.Thickness(24) },
+                "GradCAM" => new GradCamView { DataContext = _gradCamViewModel },
+                "Settings" => new SettingsView { DataContext = _settingsViewModel },
                 _ => null
             };
             RefreshStats();

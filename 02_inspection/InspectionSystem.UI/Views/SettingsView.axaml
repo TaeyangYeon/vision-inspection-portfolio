@@ -1,0 +1,164 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:InspectionSystem.UI.ViewModels"
+             x:Class="InspectionSystem.UI.Views.SettingsView"
+             x:DataType="vm:SettingsViewModel">
+
+    <ScrollViewer>
+        <StackPanel Margin="32" Spacing="24" MaxWidth="600">
+
+            <TextBlock Text="Settings"
+                       FontSize="24"
+                       FontWeight="Bold"
+                       Foreground="#CDD6F4"/>
+
+            <!-- Model Settings -->
+            <Border Background="#181825"
+                    CornerRadius="8"
+                    Padding="20">
+                <StackPanel Spacing="16">
+                    <TextBlock Text="MODEL"
+                               FontSize="10"
+                               FontWeight="Bold"
+                               Foreground="#6C7086"
+                               LetterSpacing="2"/>
+
+                    <StackPanel Spacing="6">
+                        <TextBlock Text="Model Path"
+                                   Foreground="#BAC2DE"
+                                   FontSize="13"/>
+                        <TextBox Text="{Binding ModelPath}"
+                                 Background="#1E1E2E"
+                                 Foreground="#CDD6F4"
+                                 BorderBrush="#313244"
+                                 Padding="10,8"/>
+                    </StackPanel>
+
+                    <Grid ColumnDefinitions="*,*" ColumnSpacing="16">
+                        <StackPanel Grid.Column="0" Spacing="6">
+                            <TextBlock Text="Confidence Threshold"
+                                       Foreground="#BAC2DE"
+                                       FontSize="13"/>
+                            <NumericUpDown Value="{Binding ConfidenceThreshold}"
+                                           Minimum="0.05"
+                                           Maximum="0.95"
+                                           Increment="0.05"
+                                           FormatString="F2"
+                                           Background="#1E1E2E"
+                                           Foreground="#CDD6F4"/>
+                        </StackPanel>
+                        <StackPanel Grid.Column="1" Spacing="6">
+                            <TextBlock Text="IoU Threshold"
+                                       Foreground="#BAC2DE"
+                                       FontSize="13"/>
+                            <NumericUpDown Value="{Binding IouThreshold}"
+                                           Minimum="0.05"
+                                           Maximum="0.95"
+                                           Increment="0.05"
+                                           FormatString="F2"
+                                           Background="#1E1E2E"
+                                           Foreground="#CDD6F4"/>
+                        </StackPanel>
+                    </Grid>
+
+                    <StackPanel Spacing="6">
+                        <TextBlock Text="Image Size"
+                                   Foreground="#BAC2DE"
+                                   FontSize="13"/>
+                        <NumericUpDown Value="{Binding ImageSize}"
+                                       Minimum="320"
+                                       Maximum="1280"
+                                       Increment="32"
+                                       FormatString="0"
+                                       Background="#1E1E2E"
+                                       Foreground="#CDD6F4"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
+            <!-- Save Settings -->
+            <Border Background="#181825"
+                    CornerRadius="8"
+                    Padding="20">
+                <StackPanel Spacing="16">
+                    <TextBlock Text="SAVE"
+                               FontSize="10"
+                               FontWeight="Bold"
+                               Foreground="#6C7086"
+                               LetterSpacing="2"/>
+
+                    <StackPanel Spacing="6">
+                        <TextBlock Text="NG Image Save Path"
+                                   Foreground="#BAC2DE"
+                                   FontSize="13"/>
+                        <TextBox Text="{Binding SavePath}"
+                                 Background="#1E1E2E"
+                                 Foreground="#CDD6F4"
+                                 BorderBrush="#313244"
+                                 Padding="10,8"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Spacing="12">
+                        <CheckBox IsChecked="{Binding AutoSaveNg}"
+                                  Foreground="#CDD6F4">
+                            Auto-save NG images
+                        </CheckBox>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
+            <!-- GradCAM Settings -->
+            <Border Background="#181825"
+                    CornerRadius="8"
+                    Padding="20">
+                <StackPanel Spacing="16">
+                    <TextBlock Text="GRADCAM"
+                               FontSize="10"
+                               FontWeight="Bold"
+                               Foreground="#6C7086"
+                               LetterSpacing="2"/>
+
+                    <StackPanel Spacing="6">
+                        <TextBlock Text="GradCAM API URL"
+                                   Foreground="#BAC2DE"
+                                   FontSize="13"/>
+                        <TextBox Text="{Binding GradCamApiUrl}"
+                                 Background="#1E1E2E"
+                                 Foreground="#CDD6F4"
+                                 BorderBrush="#313244"
+                                 Padding="10,8"/>
+                    </StackPanel>
+
+                    <CheckBox IsChecked="{Binding EnableGradCam}"
+                              Foreground="#CDD6F4">
+                        Enable GradCAM visualization
+                    </CheckBox>
+                </StackPanel>
+            </Border>
+
+            <!-- Buttons -->
+            <StackPanel Orientation="Horizontal" Spacing="12">
+                <Button Content="Save Settings"
+                        Command="{Binding SaveSettingsCommand}"
+                        Background="#0078D4"
+                        Foreground="White"
+                        Padding="16,8"
+                        FontSize="14"/>
+                <Button Content="Reset Defaults"
+                        Command="{Binding ResetDefaultsCommand}"
+                        Background="#313244"
+                        Foreground="#CDD6F4"
+                        Padding="16,8"
+                        FontSize="14"/>
+            </StackPanel>
+
+            <!-- Status -->
+            <TextBlock Text="{Binding StatusMessage}"
+                       Foreground="#A6E3A1"
+                       FontSize="13"
+                       IsVisible="{Binding StatusMessage,
+                           Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
+
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

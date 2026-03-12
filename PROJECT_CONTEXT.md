@@ -191,7 +191,7 @@ vision-inspection-portfolio/
 - Day 24 - DONE: DI container setup, GradCamService implemented, integration tests for DI resolution added. All NUnit tests pass 0 fail 0 skip.
 - Day 25 - DONE: Avalonia MainWindow with dark theme, left navigation panel, session stats, status bar. DI fully wired to UI layer.
 - Day 26 - DONE: InspectionViewModel + InspectionView with image panel, BBox overlay, OK/NG badge, detection list, confidence/IoU sliders
-- Day 27 - TODO: GradCAM view + settings view implementation
+- Day 27 - DONE: GradCamView + SettingsView implemented. All 3 pages navigating correctly. Settings save/reset working.
 - Day 28 - TODO: ONNX Runtime model load + single image inference test
 
 ### WEEK 5 (Day 29~35) - Program 2 Foundation (SOLID + NUnit)
@@ -296,6 +296,6 @@ vision-inspection-portfolio/
 3. Claude will resume from exact current state.
 
 ---
-Last updated: Day 26 complete
-Next: Day 27 - GradCAM view + settings view implementation
+Last updated: Day 27 complete
+Next: Day 28 - NUnit tests for ViewModels + NG auto-save + CSV export
 ---
