@@ -1,0 +1,691 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TestRun id="845ca965-bc83-4e71-ade3-0b2e430e9e04" name="@FilmBium-MacBook-Pro 2026-03-12 17:09:42" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <Times creation="2026-03-12T17:09:42.3428810+09:00" queuing="2026-03-12T17:09:42.3428810+09:00" start="2026-03-12T17:09:40.5614370+09:00" finish="2026-03-12T17:09:42.8997070+09:00" />
+  <TestSettings name="default" id="8dc99e6e-35f1-4cf2-901d-f82b08758a54">
+    <Deployment runDeploymentRoot="_FilmBium-MacBook-Pro_2026-03-12_17_09_42" />
+  </TestSettings>
+  <Results>
+    <UnitTestResult executionId="550eb59f-ad71-4c24-b309-8298ff678967" testId="002d5b40-0863-510a-d3cd-6c64747ce256" testName="DrawDetections_NullImageData_ThrowsArgumentNullException" computerName="FilmBium-MacBook-Pro" duration="00:00:00.0033770" startTime="2026-03-12T17:09:42.0551030+09:00" endTime="2026-03-12T17:09:42.0584800+09:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="550eb59f-ad71-4c24-b309-8298ff678967">
+      <Output>
+        <ErrorInfo>
+          <Message>  Assert.That(caughtException, expression)
+  Expected: &lt;System.ArgumentNullException&gt;
+  But was:  &lt;OpenCvSharp.OpenCVException: total() == 0 || data != NULL
+   at OpenCvSharp.Internal.ExceptionHandler.ThrowPossibleException()
+   at OpenCvSharp.Internal.NativeMethods.HandleException(ExceptionStatus status)
+   at OpenCvSharp.Mat..ctor(Int32 rows, Int32 cols, MatType type, Array data, Int64 step)
+   at OpenCvSharp.Mat.FromPixelData(Int32 rows, Int32 cols, MatType type, Array data, Int64 step)
+   at InspectionSystem.Core.Services.ImageProcessor.DrawDetections(Byte[] imageData, Int32 width, Int32 height, DetectionResult result, DrawOptions options) in /Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Core/Services/ImageProcessor.cs:line 74
+   at InspectionSystem.Tests.Core.ImageProcessorTests.&lt;&gt;c__DisplayClass9_0.&lt;DrawDetections_NullImageData_ThrowsArgumentNullException&gt;b__0() in /Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Tests/Core/ImageProcessorTests.cs:line 112
+   at NUnit.Framework.Assert.Throws(IResolveConstraint expression, TestDelegate code, String message, Object[] args)&gt;
+</Message>
+          <StackTrace>   at InspectionSystem.Tests.Core.ImageProcessorTests.DrawDetections_NullImageData_ThrowsArgumentNullException() in /Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Tests/Core/ImageProcessorTests.cs:line 111
+
+1)    at InspectionSystem.Tests.Core.ImageProcessorTests.DrawDetections_NullImageData_ThrowsArgumentNullException() in /Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Tests/Core/ImageProcessorTests.cs:line 111
+
+</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="57d1ae7c-f814-4878-9a42-7333e62bbdb0" testId="93606222-ef74-2a19-bf5a-cbffc9b6ad96" testName="Constructor_InitialState_AutoSaveNgFromSettings" computerName="FilmBium-MacBook-Pro" duration="00:00:00.0003340" startTime="2026-03-12T17:09:42.7772350+09:00" endTime="2026-03-12T17:09:42.7775700+09:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="57d1ae7c-f814-4878-9a42-7333e62bbdb0" />
+    <UnitTestResult executionId="60ff097b-52cd-454c-bfb2-4136a50c0c4b" testId="28bef89c-e083-6a3d-af3b-10ef8dcbbefc" testName="RunInspectionCommand_CalledTwiceConcurrently_SecondIsRejected" computerName="FilmBium-MacBook-Pro" duration="00:00:00.0205790" startTime="2026-03-12T17:09:42.7837580+09:00" endTime="2026-03-12T17:09:42.8043370+09:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="60ff097b-52cd-454c-bfb2-4136a50c0c4b" />
+    <UnitTestResult executionId="59b0a4db-6932-4c3f-a32e-25a6d7768c44" testId="9cf2b712-b852-924b-3898-9616e2126c92" testName="Preprocess_ValidImage_ReturnsTensorWithCorrectSize" computerName="FilmBium-MacBook-Pro" duration="00:00:00.0057260" startTime="2026-03-12T17:09:42.0709550+09:00" endTime="2026-03-12T17:09:42.0766800+09:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="59b0a4db-6932-4c3f-a32e-25a6d7768c44" />
+    <UnitTestResult executionId="5b7cf8b4-e768-47ed-bf00-a79973fddb4f" testId="2e13f878-3221-6fc6-a35a-f5fb31b71805" testName="ConfidenceThreshold_SetValue_PropertyChangedRaised" computerName="FilmBium-MacBook-Pro" duration="00:00:00.0003540" startTime="2026-03-12T17:09:42.7767580+09:00" endTime="2026-03-12T17:09:42.7771120+09:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="5b7cf8b4-e768-47ed-bf00-a79973fddb4f" />
+    <UnitTestResult executionId="d7e335dd-2adf-452c-aece-246218b130a0" testId="67674203-32d9-832d-603e-dda17d2c4b9b" testName="GetHistory_AfterLog_ReturnsCorrectRecord" computerName="FilmBium-MacBook-Pro" duration="00:00:00.0011440" startTime="2026-03-12T17:09:42.5896460+09:00" endTime="2026-03-12T17:09:42.5908260+09:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="d7e335dd-2adf-452c-aece-246218b130a0" />
+    <UnitTestResult executionId="21ba0b18-2619-4c7b-8d1d-4f1359b7777c" testId="d1c6ca28-6976-8d44-e4a0-7d5111e10da4" testName="LoadModelAsync_ValidPath_SetsIsModelLoadedTrue" computerName="FilmBium-MacBook-Pro" duration="00:00:00.1024840" startTime="2026-03-12T17:09:42.1551440+09:00" endTime="2026-03-12T17:09:42.2576270+09:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="21ba0b18-2619-4c7b-8d1d-4f1359b7777c" />
+    <UnitTestResult executionId="8fa841da-cc27-48ec-8011-15b26978265e" testId="d98ac365-12b2-365e-9e87-43805f7f9788" testName="ExportToCsvAsync_NullPath_ThrowsArgumentNullException" computerName="FilmBium-MacBook-Pro" duration="00:00:00.0006320" startTime="2026-03-12T17:09:42.5865550+09:00" endTime="2026-03-12T17:09:42.5871870+09:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="8fa841da-cc27-48ec-8011-15b26978265e" />
+    <UnitTestResult executionId="d7c5d9d0-4b86-4e59-9f35-824f01b93e43" testId="4a8fc462-5620-8b94-9322-417c7afbc716" testName="DrawDetections_NullDetectionResult_ThrowsArgumentNullException" computerName="FilmBium-MacBook-Pro" duration="00:00:00.0242970" startTime="2026-03-12T17:09:42.0306450+09:00" endTime="2026-03-12T17:09:42.0549410+09:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="d7c5d9d0-4b86-4e59-9f35-824f01b93e43">
+      <Output>
+        <ErrorInfo>
+          <Message>  Assert.That(caughtException, expression)
+  Expected: &lt;System.ArgumentNullException&gt;
+  But was:  &lt;System.NullReferenceException: Object reference not set to an instance of an object.
+   at InspectionSystem.Core.Services.ImageProcessor.DrawDetections(Byte[] imageData, Int32 width, Int32 height, DetectionResult result, DrawOptions options) in /Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Core/Services/ImageProcessor.cs:line 77
+   at InspectionSystem.Tests.Core.ImageProcessorTests.&lt;&gt;c__DisplayClass10_0.&lt;DrawDetections_NullDetectionResult_ThrowsArgumentNullException&gt;b__0() in /Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Tests/Core/ImageProcessorTests.cs:line 123
+   at NUnit.Framework.Assert.Throws(IResolveConstraint expression, TestDelegate code, String message, Object[] args)&gt;
+</Message>
+          <StackTrace>   at InspectionSystem.Tests.Core.ImageProcessorTests.DrawDetections_NullDetectionResult_ThrowsArgumentNullException() in /Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Tests/Core/ImageProcessorTests.cs:line 122
+
+1)    at InspectionSystem.Tests.Core.ImageProcessorTests.DrawDetections_NullDetectionResult_ThrowsArgumentNullException() in /Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Tests/Core/ImageProcessorTests.cs:line 122
+
+</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="c2d7a8d9-d05c-4c55-bdab-284bb04b74bf" testId="19e2ac1a-ddae-0209-7891-59c69485f9ac" testName="Constructor_InitialState_ResultLabelIsNoResult" computerName="FilmBium-MacBook-Pro" duration="00:00:00.0002360" startTime="2026-03-12T17:09:42.7799320+09:00" endTime="2026-03-12T17:09:42.7801680+09:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="c2d7a8d9-d05c-4c55-bdab-284bb04b74bf" />
+    <UnitTestResult executionId="4316f36d-e116-4e2c-a138-aa212a5f7439" testId="9673163d-e899-b238-93e4-8f2478f20777" testName="GenerateAsync_EmptyImageData_ThrowsArgumentNullException" computerName="FilmBium-MacBook-Pro" duration="00:00:00.0011300" startTime="2026-03-12T17:09:41.9851650+09:00" endTime="2026-03-12T17:09:41.9862950+09:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="4316f36d-e116-4e2c-a138-aa212a5f7439" />
+    <UnitTestResult executionId="80b451c0-99ee-4daf-9244-d3844067e23d" testId="3d9da90a-07ee-5548-0c1f-fc2964f72141" testName="Preprocess_NullImageData_ThrowsArgumentNullException" computerName="FilmBium-MacBook-Pro" duration="00:00:00.0005980" startTime="2026-03-12T17:09:42.0703440+09:00" endTime="2026-03-12T17:09:42.0709420+09:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="80b451c0-99ee-4daf-9244-d3844067e23d">
+      <Output>
+        <ErrorInfo>
+          <Message>  Assert.That(caughtException, expression)
+  Expected: &lt;System.ArgumentNullException&gt;
+  But was:  &lt;OpenCvSharp.OpenCVException: total() == 0 || data != NULL
+   at OpenCvSharp.Internal.ExceptionHandler.ThrowPossibleException()
+   at OpenCvSharp.Internal.NativeMethods.HandleException(ExceptionStatus status)
+   at OpenCvSharp.Mat..ctor(Int32 rows, Int32 cols, MatType type, Array data, Int64 step)
+   at OpenCvSharp.Mat.FromPixelData(Int32 rows, Int32 cols, MatType type, Array data, Int64 step)
+   at InspectionSystem.Core.Services.ImageProcessor.Preprocess(Byte[] imageData, Int32 width, Int32 height, Int32 targetSize) in /Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Core/Services/ImageProcessor.cs:line 14
+   at InspectionSystem.Tests.Core.ImageProcessorTests.&lt;Preprocess_NullImageData_ThrowsArgumentNullException&gt;b__7_0() in /Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Tests/Core/ImageProcessorTests.cs:line 93
+   at NUnit.Framework.Assert.Throws(IResolveConstraint expression, TestDelegate code, String message, Object[] args)&gt;
+</Message>
+          <StackTrace>   at InspectionSystem.Tests.Core.ImageProcessorTests.Preprocess_NullImageData_ThrowsArgumentNullException() in /Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Tests/Core/ImageProcessorTests.cs:line 92
+
+1)    at InspectionSystem.Tests.Core.ImageProcessorTests.Preprocess_NullImageData_ThrowsArgumentNullException() in /Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Tests/Core/ImageProcessorTests.cs:line 92
+
+</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="e618b9e9-cc27-416a-97d2-bb63c33050fd" testId="de178852-2832-15dc-cd58-67e3a528047f" testName="Constructor_InitialState_ConfidenceThresholdFromSettings" computerName="FilmBium-MacBook-Pro" duration="00:00:00.0002709" startTime="2026-03-12T17:09:42.7776540+09:00" endTime="2026-03-12T17:09:42.7779250+09:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="e618b9e9-cc27-416a-97d2-bb63c33050fd" />
+    <UnitTestResult executionId="20179ecf-9073-4e91-88fb-67c0a8644f1a" testId="e21fcfa8-8715-112d-b120-308de333c143" testName="RunInspectionCommand_ModelNotLoaded_StatusMessageUpdated" computerName="FilmBium-MacBook-Pro" duration="00:00:00.0006770" startTime="2026-03-12T17:09:42.8043630+09:00" endTime="2026-03-12T17:09:42.8050400+09:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="20179ecf-9073-4e91-88fb-67c0a8644f1a" />
+    <UnitTestResult executionId="4109d115-48c1-407f-bdfa-16d966b79a4a" testId="d2e494eb-32b7-7b0f-1a93-0c4849b5e770" testName="SaveSettingsCommand_SavesCorrectValues" computerName="FilmBium-MacBook-Pro" duration="00:00:00.0033030" startTime="2026-03-12T17:09:42.8173990+09:00" endTime="2026-03-12T17:09:42.8207020+09:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="4109d115-48c1-407f-bdfa-16d966b79a4a" />
+    <UnitTestResult executionId="ce58ed5f-e80e-43b0-a6bf-00d32818f1ad" testId="b3033a0e-8850-3e49-b307-4609bd40a7af" testName="Preprocess_EmptyImageData_ThrowsArgumentNullException" computerName="FilmBium-MacBook-Pro" duration="00:00:00.0118340" startTime="2026-03-12T17:09:42.0584920+09:00" endTime="2026-03-12T17:09:42.0703250+09:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="ce58ed5f-e80e-43b0-a6bf-00d32818f1ad">
+      <Output>
+        <ErrorInfo>
+          <Message>  Assert.That(caughtException, expression)
+  Expected: &lt;System.ArgumentNullException&gt;
+  But was:  null
+</Message>
+          <StackTrace>   at InspectionSystem.Tests.Core.ImageProcessorTests.Preprocess_EmptyImageData_ThrowsArgumentNullException() in /Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Tests/Core/ImageProcessorTests.cs:line 100
+
+1)    at InspectionSystem.Tests.Core.ImageProcessorTests.Preprocess_EmptyImageData_ThrowsArgumentNullException() in /Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Tests/Core/ImageProcessorTests.cs:line 100
+
+</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="9ab47d97-62c5-4b08-98ad-7bfa5b1d76ef" testId="79da8a44-121a-c29a-6d61-d7e386dcd053" testName="SaveSettingsCommand_UpdatesStatusMessage" computerName="FilmBium-MacBook-Pro" duration="00:00:00.0002990" startTime="2026-03-12T17:09:42.8207590+09:00" endTime="2026-03-12T17:09:42.8210580+09:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="9ab47d97-62c5-4b08-98ad-7bfa5b1d76ef" />
+    <UnitTestResult executionId="54f6176c-9a5b-49b0-802f-e333e670cb87" testId="75018579-c8db-d7cf-9906-7e952b3ae22d" testName="Log_NullRecord_ThrowsArgumentNullException" computerName="FilmBium-MacBook-Pro" duration="00:00:00.0002630" startTime="2026-03-12T17:09:42.5958500+09:00" endTime="2026-03-12T17:09:42.5961130+09:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="54f6176c-9a5b-49b0-802f-e333e670cb87" />
+    <UnitTestResult executionId="48c607fc-b6b0-4c8f-a057-a9dbe336837e" testId="f4c9d317-1efe-4f4d-c2ec-662d17e724d0" testName="Load_NoFileExists_ReturnsDefaultSettings" computerName="FilmBium-MacBook-Pro" duration="00:00:00.0004290" startTime="2026-03-12T17:09:42.6183500+09:00" endTime="2026-03-12T17:09:42.6187800+09:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="48c607fc-b6b0-4c8f-a057-a9dbe336837e" />
+    <UnitTestResult executionId="abb20d46-47d0-4353-bf34-7ac8acf3384a" testId="2f33f113-b3c4-223a-2bb7-e3db95a197ce" testName="Log_MultipleRecords_AllAddedToHistory" computerName="FilmBium-MacBook-Pro" duration="00:00:00.0001950" startTime="2026-03-12T17:09:42.5955640+09:00" endTime="2026-03-12T17:09:42.5957610+09:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="abb20d46-47d0-4353-bf34-7ac8acf3384a" />
+    <UnitTestResult executionId="c8b0916c-78c8-488f-8ef8-012158daf83f" testId="f2928a6a-e6bd-ef1a-3343-33049b0a6cc5" testName="Preprocess_ValidImage_ScaleIsCorrect" computerName="FilmBium-MacBook-Pro" duration="00:00:00.0102869" startTime="2026-03-12T17:09:42.0767180+09:00" endTime="2026-03-12T17:09:42.0870050+09:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="c8b0916c-78c8-488f-8ef8-012158daf83f" />
+    <UnitTestResult executionId="6030efd8-3fd5-4b22-9a1c-0db7c089efe0" testId="9e734fd1-96a7-d738-4a16-77868b3edc55" testName="RunInspectionCommand_NoImageLoaded_StatusMessageUpdated" computerName="FilmBium-MacBook-Pro" duration="00:00:00.0008630" startTime="2026-03-12T17:09:42.8051020+09:00" endTime="2026-03-12T17:09:42.8059650+09:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="6030efd8-3fd5-4b22-9a1c-0db7c089efe0" />
+    <UnitTestResult executionId="2dd2c92f-7f70-4dd5-96c2-f7067c5feafe" testId="8ea013df-9795-be01-9b78-2b309d8475b4" testName="SaveAsync_NullImageData_ThrowsArgumentNullException" computerName="FilmBium-MacBook-Pro" duration="00:00:00.0006410" startTime="2026-03-12T17:09:42.1494390+09:00" endTime="2026-03-12T17:09:42.1500790+09:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="2dd2c92f-7f70-4dd5-96c2-f7067c5feafe" />
+    <UnitTestResult executionId="8f4ad782-931c-4251-8f3f-d4de7d76a416" testId="74904f4b-443e-edc4-92ed-aeeb4ea9b6db" testName="AutoSaveNg_DefaultValue_IsTrue" computerName="FilmBium-MacBook-Pro" duration="00:00:00.0014690" startTime="2026-03-12T17:09:42.8061860+09:00" endTime="2026-03-12T17:09:42.8076540+09:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="8f4ad782-931c-4251-8f3f-d4de7d76a416" />
+    <UnitTestResult executionId="23aa2e14-a76f-4dcc-ab56-ce1ab24118a5" testId="1b060aa7-fd77-8a53-6b3d-f2ec5eb961da" testName="Constructor_NullLogger_ThrowsArgumentNullException" computerName="FilmBium-MacBook-Pro" duration="00:00:00.0016720" startTime="2026-03-12T17:09:42.5964830+09:00" endTime="2026-03-12T17:09:42.5981550+09:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="23aa2e14-a76f-4dcc-ab56-ce1ab24118a5" />
+    <UnitTestResult executionId="7a129dd2-85d7-4a06-aac0-01fe23ad285f" testId="b4c6eacc-022d-5c14-ae50-61c10f06f530" testName="Constructor_LoadsSettingsFromService" computerName="FilmBium-MacBook-Pro" duration="00:00:00.0004800" startTime="2026-03-12T17:09:42.8082690+09:00" endTime="2026-03-12T17:09:42.8087490+09:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="7a129dd2-85d7-4a06-aac0-01fe23ad285f" />
+    <UnitTestResult executionId="653ebb2a-55b2-4a93-a7df-86be2da1f403" testId="c99c6f05-5422-3ba9-f22c-16630d5c39e7" testName="Save_NullSettings_ThrowsArgumentNullException" computerName="FilmBium-MacBook-Pro" duration="00:00:00.0005050" startTime="2026-03-12T17:09:42.6188390+09:00" endTime="2026-03-12T17:09:42.6193440+09:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="653ebb2a-55b2-4a93-a7df-86be2da1f403" />
+    <UnitTestResult executionId="8fc83ada-8e4c-481e-b846-4112b4dc8bdd" testId="c53572b3-14b9-3656-ba75-9d6de2e25a2b" testName="Constructor_InitialState_IsModelLoadedFalse" computerName="FilmBium-MacBook-Pro" duration="00:00:00.0006110" startTime="2026-03-12T17:09:42.7793100+09:00" endTime="2026-03-12T17:09:42.7799210+09:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="8fc83ada-8e4c-481e-b846-4112b4dc8bdd" />
+    <UnitTestResult executionId="c45f57f6-9dca-4123-85f1-13d576ff01c2" testId="cd60b788-f25f-7b27-e1ed-34255aad4949" testName="Constructor_NullLogger_ThrowsArgumentNullException" computerName="FilmBium-MacBook-Pro" duration="00:00:00.0005280" startTime="2026-03-12T17:09:41.9085030+09:00" endTime="2026-03-12T17:09:41.9090310+09:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="c45f57f6-9dca-4123-85f1-13d576ff01c2" />
+    <UnitTestResult executionId="d46a15b9-c7b2-4efd-9830-7b28b9c83a6f" testId="f68c45e3-d274-7cba-68f3-0e3ab603f39c" testName="GenerateAsync_NullImageData_ThrowsArgumentNullException" computerName="FilmBium-MacBook-Pro" duration="00:00:00.0004970" startTime="2026-03-12T17:09:41.9863720+09:00" endTime="2026-03-12T17:09:41.9868680+09:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="d46a15b9-c7b2-4efd-9830-7b28b9c83a6f" />
+    <UnitTestResult executionId="c5867210-bdef-41de-92d9-0dca1380b753" testId="e52720b0-b752-5d00-d611-41e69acb3daa" testName="Save_UpdatesCurrent" computerName="FilmBium-MacBook-Pro" duration="00:00:00.0006590" startTime="2026-03-12T17:09:42.6268460+09:00" endTime="2026-03-12T17:09:42.6275050+09:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="c5867210-bdef-41de-92d9-0dca1380b753" />
+    <UnitTestResult executionId="d8afbc6b-42c1-42d5-849b-fb00ef06a70b" testId="016e3057-1765-f44c-e852-d6578df75a11" testName="Preprocess_ValidImage_TensorValuesNormalized" computerName="FilmBium-MacBook-Pro" duration="00:00:00.0260890" startTime="2026-03-12T17:09:42.0870830+09:00" endTime="2026-03-12T17:09:42.1131730+09:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="d8afbc6b-42c1-42d5-849b-fb00ef06a70b" />
+    <UnitTestResult executionId="3fc57184-3599-4de8-8fce-4ae991981a71" testId="6a7b135c-af40-594c-7d1e-eea3516a506c" testName="Save_ThenLoad_ReturnsSameSettings" computerName="FilmBium-MacBook-Pro" duration="00:00:00.0073870" startTime="2026-03-12T17:09:42.6193980+09:00" endTime="2026-03-12T17:09:42.6267840+09:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="3fc57184-3599-4de8-8fce-4ae991981a71" />
+    <UnitTestResult executionId="3053ccce-3995-4a5e-9003-fa668ee61ea3" testId="88f4c1f9-a90b-d8b8-7f32-d02aac4588b5" testName="IsAvailable_InitialState_ReturnsFalse" computerName="FilmBium-MacBook-Pro" duration="00:00:00.0002050" startTime="2026-03-12T17:09:41.9869410+09:00" endTime="2026-03-12T17:09:41.9871460+09:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="3053ccce-3995-4a5e-9003-fa668ee61ea3" />
+    <UnitTestResult executionId="1192a25c-e9a1-4cfd-bd8c-5fcdd8dc775c" testId="3caadda6-367c-b6c5-3088-c247892ed7e1" testName="RunInferenceAsync_NullImageData_ThrowsArgumentNullException" computerName="FilmBium-MacBook-Pro" duration="00:00:00.0577190" startTime="2026-03-12T17:09:42.2597660+09:00" endTime="2026-03-12T17:09:42.3174840+09:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="1192a25c-e9a1-4cfd-bd8c-5fcdd8dc775c" />
+    <UnitTestResult executionId="53594389-9d46-4cee-a8c6-44fd1cb1cbab" testId="11c9b67a-8888-e46f-05d8-3e1fcd404e2f" testName="ResetDefaultsCommand_UpdatesStatusMessage" computerName="FilmBium-MacBook-Pro" duration="00:00:00.0003310" startTime="2026-03-12T17:09:42.8099560+09:00" endTime="2026-03-12T17:09:42.8102870+09:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="53594389-9d46-4cee-a8c6-44fd1cb1cbab" />
+    <UnitTestResult executionId="7377d17a-ab7b-46a2-9025-8c8fb8ec8a28" testId="0d1d2d64-f8ed-c336-6fea-8dbc74eadc57" testName="Constructor_NullApiUrl_ThrowsArgumentNullException" computerName="FilmBium-MacBook-Pro" duration="00:00:00.0157490" startTime="2026-03-12T17:09:41.8912130+09:00" endTime="2026-03-12T17:09:41.9068960+09:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="7377d17a-ab7b-46a2-9025-8c8fb8ec8a28" />
+    <UnitTestResult executionId="be2929c2-9291-45dc-a359-0aff43dffb9f" testId="9baac37c-f755-91a6-4ba5-ee7ebbfca14b" testName="ResizeImage_NullImageData_ThrowsArgumentNullException" computerName="FilmBium-MacBook-Pro" duration="00:00:00.0010219" startTime="2026-03-12T17:09:42.1132440+09:00" endTime="2026-03-12T17:09:42.1142650+09:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="be2929c2-9291-45dc-a359-0aff43dffb9f">
+      <Output>
+        <ErrorInfo>
+          <Message>  Assert.That(caughtException, expression)
+  Expected: &lt;System.ArgumentNullException&gt;
+  But was:  &lt;OpenCvSharp.OpenCVException: total() == 0 || data != NULL
+   at OpenCvSharp.Internal.ExceptionHandler.ThrowPossibleException()
+   at OpenCvSharp.Internal.NativeMethods.HandleException(ExceptionStatus status)
+   at OpenCvSharp.Mat..ctor(Int32 rows, Int32 cols, MatType type, Array data, Int64 step)
+   at OpenCvSharp.Mat.FromPixelData(Int32 rows, Int32 cols, MatType type, Array data, Int64 step)
+   at InspectionSystem.Core.Services.ImageProcessor.ResizeImage(Byte[] imageData, Int32 width, Int32 height, Int32 targetWidth, Int32 targetHeight) in /Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Core/Services/ImageProcessor.cs:line 132
+   at InspectionSystem.Tests.Core.ImageProcessorTests.&lt;ResizeImage_NullImageData_ThrowsArgumentNullException&gt;b__13_0() in /Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Tests/Core/ImageProcessorTests.cs:line 159
+   at NUnit.Framework.Assert.Throws(IResolveConstraint expression, TestDelegate code, String message, Object[] args)&gt;
+</Message>
+          <StackTrace>   at InspectionSystem.Tests.Core.ImageProcessorTests.ResizeImage_NullImageData_ThrowsArgumentNullException() in /Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Tests/Core/ImageProcessorTests.cs:line 158
+
+1)    at InspectionSystem.Tests.Core.ImageProcessorTests.ResizeImage_NullImageData_ThrowsArgumentNullException() in /Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Tests/Core/ImageProcessorTests.cs:line 158
+
+</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="36ace91d-ae4b-4dfc-8ee9-a3c4073273c5" testId="55f075bb-cc7d-2eac-e9dc-69d095eba35a" testName="CancelInspectionCommand_WhenNotInspecting_StatusMessageUpdated" computerName="FilmBium-MacBook-Pro" duration="00:00:00.0023050" startTime="2026-03-12T17:09:42.7743950+09:00" endTime="2026-03-12T17:09:42.7767010+09:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="36ace91d-ae4b-4dfc-8ee9-a3c4073273c5" />
+    <UnitTestResult executionId="8242684c-fe86-4b42-80bb-1610c5c125ab" testId="3bef43ff-0955-1d66-7986-02c27f00497d" testName="LoadModelCommand_ModelNotFound_IsModelLoadedRemainingFalse" computerName="FilmBium-MacBook-Pro" duration="00:00:00.0030940" startTime="2026-03-12T17:09:42.7805950+09:00" endTime="2026-03-12T17:09:42.7836880+09:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="8242684c-fe86-4b42-80bb-1610c5c125ab" />
+    <UnitTestResult executionId="cf5f4642-fcf5-4904-bfc5-88853c47ec0d" testId="585e149d-fc4a-4939-e811-616a06a1064b" testName="Constructor_InitialState_IsInspectingFalse" computerName="FilmBium-MacBook-Pro" duration="00:00:00.0002050" startTime="2026-03-12T17:09:42.7790180+09:00" endTime="2026-03-12T17:09:42.7792220+09:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="cf5f4642-fcf5-4904-bfc5-88853c47ec0d" />
+    <UnitTestResult executionId="ea19d2bb-eb13-4823-96f1-a79ee1f46486" testId="87092c49-3e0f-1747-69f8-a009bb1ddc6c" testName="IsModelLoaded_BeforeLoad_ReturnsFalse" computerName="FilmBium-MacBook-Pro" duration="00:00:00.0013140" startTime="2026-03-12T17:09:42.1517570+09:00" endTime="2026-03-12T17:09:42.1530700+09:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="ea19d2bb-eb13-4823-96f1-a79ee1f46486" />
+    <UnitTestResult executionId="bef57b1a-f9a9-40fe-b878-fdae2a5559dc" testId="fd43f1f3-d17d-53c1-55e5-bbe539e1e995" testName="Resolve_IImageProcessor_ReturnsInstance" computerName="FilmBium-MacBook-Pro" duration="00:00:00.0005530" startTime="2026-03-12T17:09:42.6912610+09:00" endTime="2026-03-12T17:09:42.6918140+09:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="bef57b1a-f9a9-40fe-b878-fdae2a5559dc" />
+    <UnitTestResult executionId="7eb618d0-9554-4295-ab2a-7ea7f4388421" testId="ec625002-2b17-dc65-a8d5-cb36d0f6beee" testName="Clear_AfterLogging_EmptiesHistory" computerName="FilmBium-MacBook-Pro" duration="00:00:00.0016900" startTime="2026-03-12T17:09:42.5791990+09:00" endTime="2026-03-12T17:09:42.5808890+09:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="7eb618d0-9554-4295-ab2a-7ea7f4388421" />
+    <UnitTestResult executionId="d566daa9-a0d8-40ea-a33f-101983245c88" testId="a0ecde32-ca29-e39f-685c-eb6504e1ccad" testName="SaveAsync_NgResult_FileNameContainsDefectType" computerName="FilmBium-MacBook-Pro" duration="00:00:00.0086020" startTime="2026-03-12T17:09:42.1390150+09:00" endTime="2026-03-12T17:09:42.1476180+09:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="d566daa9-a0d8-40ea-a33f-101983245c88" />
+    <UnitTestResult executionId="b4aa5d6f-a58a-4ee9-9c3b-5bad251ade1b" testId="bae0fa6c-1d84-8b4f-09c0-450a170649e9" testName="Current_AfterInit_ReturnsDefaultSettings" computerName="FilmBium-MacBook-Pro" duration="00:00:00.0015600" startTime="2026-03-12T17:09:42.5982110+09:00" endTime="2026-03-12T17:09:42.5997710+09:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="b4aa5d6f-a58a-4ee9-9c3b-5bad251ade1b" />
+    <UnitTestResult executionId="47205320-c1e0-4812-af05-9f2274854a32" testId="816ba126-d94e-dbfe-cac6-b4f5fa1cf643" testName="Load_CorruptedFile_ReturnsDefaultSettings" computerName="FilmBium-MacBook-Pro" duration="00:00:00.0184620" startTime="2026-03-12T17:09:42.5998260+09:00" endTime="2026-03-12T17:09:42.6182870+09:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="47205320-c1e0-4812-af05-9f2274854a32" />
+    <UnitTestResult executionId="2e4dc642-c031-4b34-b7ae-4ba215535df1" testId="cb9f06d6-315c-d282-a6ee-e7dffc59c492" testName="GetStats_EstimatedFps_IsCalculatedCorrectly" computerName="FilmBium-MacBook-Pro" duration="00:00:00.0020050" startTime="2026-03-12T17:09:42.5927450+09:00" endTime="2026-03-12T17:09:42.5947500+09:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="2e4dc642-c031-4b34-b7ae-4ba215535df1" />
+    <UnitTestResult executionId="70217ee2-a2d1-4d15-aff8-542ab321addf" testId="c9220602-5a52-5f2a-d77d-641778491cbe" testName="RunInferenceAsync_ValidImage_InferenceTimeLessThan5000Ms" computerName="FilmBium-MacBook-Pro" duration="00:00:00.1346670" startTime="2026-03-12T17:09:42.3185500+09:00" endTime="2026-03-12T17:09:42.4532160+09:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="70217ee2-a2d1-4d15-aff8-542ab321addf" />
+    <UnitTestResult executionId="32c4403a-6b8e-42d6-abe3-a4e693e41623" testId="243036b1-cbda-86f8-aaeb-08987aff4df7" testName="GetStats_EmptyHistory_ReturnsZeroStats" computerName="FilmBium-MacBook-Pro" duration="00:00:00.0016220" startTime="2026-03-12T17:09:42.5910660+09:00" endTime="2026-03-12T17:09:42.5926880+09:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="32c4403a-6b8e-42d6-abe3-a4e693e41623" />
+    <UnitTestResult executionId="985e6203-e446-4f75-a8c7-4bdf36d8f79c" testId="c8289331-fe36-ec92-1641-e7afabd3a78d" testName="GetStats_MixedRecords_ReturnsCorrectCounts" computerName="FilmBium-MacBook-Pro" duration="00:00:00.0003900" startTime="2026-03-12T17:09:42.5948130+09:00" endTime="2026-03-12T17:09:42.5952030+09:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="985e6203-e446-4f75-a8c7-4bdf36d8f79c" />
+    <UnitTestResult executionId="dd277cf0-2db0-477a-866d-2f667b6ea701" testId="d5affb9e-4e33-9e09-c59e-579fb62a7d8e" testName="EnableGradCam_DefaultValue_IsTrue" computerName="FilmBium-MacBook-Pro" duration="00:00:00.0002540" startTime="2026-03-12T17:09:42.8088070+09:00" endTime="2026-03-12T17:09:42.8090610+09:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="dd277cf0-2db0-477a-866d-2f667b6ea701" />
+    <UnitTestResult executionId="dd6f5de0-fc05-4863-8368-7c9ad1c635d2" testId="1ffe3259-427d-4f6c-b6c3-8b0893c78604" testName="GetStats_NgRate_IsCalculatedCorrectly" computerName="FilmBium-MacBook-Pro" duration="00:00:00.0002520" startTime="2026-03-12T17:09:42.5952620+09:00" endTime="2026-03-12T17:09:42.5955150+09:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="dd6f5de0-fc05-4863-8368-7c9ad1c635d2" />
+    <UnitTestResult executionId="5d7e62fa-7798-4847-bea8-a0c6a0ccf1a8" testId="33c35348-7f9a-7d92-fea1-43a9d80ba9d5" testName="Log_ValidRecord_AddsToHistory" computerName="FilmBium-MacBook-Pro" duration="00:00:00.0001360" startTime="2026-03-12T17:09:42.5961240+09:00" endTime="2026-03-12T17:09:42.5962600+09:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="5d7e62fa-7798-4847-bea8-a0c6a0ccf1a8" />
+    <UnitTestResult executionId="ab29cd7f-761d-447c-8229-14cd1c0ac134" testId="d6ed9540-6c7b-31a3-9de2-168b8401d89b" testName="Constructor_NullLogger_ThrowsArgumentNullException" computerName="FilmBium-MacBook-Pro" duration="00:00:00.0008390" startTime="2026-03-12T17:09:42.1157580+09:00" endTime="2026-03-12T17:09:42.1165970+09:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="ab29cd7f-761d-447c-8229-14cd1c0ac134" />
+    <UnitTestResult executionId="c1de23fb-73ca-40af-a081-ebd05d00cf54" testId="2f8bd116-6ec6-6949-08f4-b38712eabb56" testName="ExportToCsvAsync_EmptyHistory_CreatesFileWithHeaderOnly" computerName="FilmBium-MacBook-Pro" duration="00:00:00.0055610" startTime="2026-03-12T17:09:42.5809460+09:00" endTime="2026-03-12T17:09:42.5865070+09:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="c1de23fb-73ca-40af-a081-ebd05d00cf54" />
+    <UnitTestResult executionId="6c8cb128-53a4-4193-9d4f-de5b8e48ae18" testId="72c0d2a2-21af-feb6-625c-0441d1d294db" testName="GetHistory_InitialState_ReturnsEmptyList" computerName="FilmBium-MacBook-Pro" duration="00:00:00.0001670" startTime="2026-03-12T17:09:42.5908880+09:00" endTime="2026-03-12T17:09:42.5910550+09:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="6c8cb128-53a4-4193-9d4f-de5b8e48ae18" />
+    <UnitTestResult executionId="0f115cb6-b84d-4c4b-b221-7f11b0ca76c5" testId="c466c36a-8846-105c-f1d3-b88c8eb006c8" testName="Test1" computerName="FilmBium-MacBook-Pro" duration="00:00:00.0006140" startTime="2026-03-12T17:09:42.7023830+09:00" endTime="2026-03-12T17:09:42.7029970+09:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="0f115cb6-b84d-4c4b-b221-7f11b0ca76c5" />
+    <UnitTestResult executionId="efd7cae7-e48f-4dc8-91ee-e39566d477e9" testId="527defe1-fc8e-5830-d1db-918518b904c4" testName="SaveAsync_OkResult_DoesNotSaveFile" computerName="FilmBium-MacBook-Pro" duration="00:00:00.0006460" startTime="2026-03-12T17:09:42.1508530+09:00" endTime="2026-03-12T17:09:42.1515000+09:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="efd7cae7-e48f-4dc8-91ee-e39566d477e9" />
+    <UnitTestResult executionId="aabbcb9b-c3ee-426c-886e-180ac5de5b22" testId="e7fa4d78-a32d-0a76-f17f-93bff79444e9" testName="ResizeImage_ValidInput_ReturnsCorrectSize" computerName="FilmBium-MacBook-Pro" duration="00:00:00.0011660" startTime="2026-03-12T17:09:42.1143380+09:00" endTime="2026-03-12T17:09:42.1155040+09:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="aabbcb9b-c3ee-426c-886e-180ac5de5b22" />
+    <UnitTestResult executionId="bc475d2d-ddc4-4f8b-87a9-b251ebe3dd9e" testId="86bfb2d6-7f43-4ff7-51a9-ba230785b7ce" testName="Constructor_InitialState_DetectionCountIsZero" computerName="FilmBium-MacBook-Pro" duration="00:00:00.0002820" startTime="2026-03-12T17:09:42.7780110+09:00" endTime="2026-03-12T17:09:42.7782930+09:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="bc475d2d-ddc4-4f8b-87a9-b251ebe3dd9e" />
+    <UnitTestResult executionId="0423d7dd-64cd-4f3b-b02e-5a69b6c607cc" testId="581340a3-5a1c-d13d-04cc-e9b9e5770b3a" testName="SaveSettingsCommand_CallsSaveOnService" computerName="FilmBium-MacBook-Pro" duration="00:00:00.0069830" startTime="2026-03-12T17:09:42.8103490+09:00" endTime="2026-03-12T17:09:42.8173320+09:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="0423d7dd-64cd-4f3b-b02e-5a69b6c607cc" />
+    <UnitTestResult executionId="f4109edc-d68b-46dc-8fc6-55fad70b197d" testId="ef0b2acf-56a8-98b2-c8fa-cd8c030b30b1" testName="IouThreshold_SetValue_PropertyChangedRaised" computerName="FilmBium-MacBook-Pro" duration="00:00:00.0003520" startTime="2026-03-12T17:09:42.7801790+09:00" endTime="2026-03-12T17:09:42.7805310+09:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="f4109edc-d68b-46dc-8fc6-55fad70b197d" />
+    <UnitTestResult executionId="09683a25-1d94-4df7-b516-935a1981f479" testId="56e4fe05-8a6a-3974-0aa8-5f51a929754e" testName="SaveAsync_NgResult_CreatesDirectory" computerName="FilmBium-MacBook-Pro" duration="00:00:00.0015420" startTime="2026-03-12T17:09:42.1359480+09:00" endTime="2026-03-12T17:09:42.1374900+09:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="09683a25-1d94-4df7-b516-935a1981f479" />
+    <UnitTestResult executionId="ce9cbf10-aea7-432d-8da4-7a553a4b4655" testId="e5a5c2ce-7e1d-1a90-649b-5f6a570fd3de" testName="RunInferenceAsync_ValidImage_ReturnsDetectionResult" computerName="FilmBium-MacBook-Pro" duration="00:00:00.1256560" startTime="2026-03-12T17:09:42.4533070+09:00" endTime="2026-03-12T17:09:42.5789620+09:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="ce9cbf10-aea7-432d-8da4-7a553a4b4655" />
+    <UnitTestResult executionId="6d93d8d1-c1d3-465d-90e9-d51f1ec0584a" testId="ae655213-16b6-c0c0-51ee-e4c41249c331" testName="GenerateAsync_ApiNotAvailable_ReturnsFailureResult" computerName="FilmBium-MacBook-Pro" duration="00:00:00.0692150" startTime="2026-03-12T17:09:41.9090460+09:00" endTime="2026-03-12T17:09:41.9782610+09:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="6d93d8d1-c1d3-465d-90e9-d51f1ec0584a" />
+    <UnitTestResult executionId="8c9507b7-ab09-40ed-88cf-81daaccfbafb" testId="4a094d5a-92f6-cf6b-9b5c-10fc9a86763b" testName="RunInferenceAsync_NullOptions_ThrowsArgumentNullException" computerName="FilmBium-MacBook-Pro" duration="00:00:00.0008540" startTime="2026-03-12T17:09:42.3176130+09:00" endTime="2026-03-12T17:09:42.3184670+09:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="8c9507b7-ab09-40ed-88cf-81daaccfbafb" />
+    <UnitTestResult executionId="94460a2e-c355-4f86-bb62-729fb440f7dd" testId="19284a6f-100f-2484-46ce-42f33d45eaa0" testName="Resolve_IGradCamService_ReturnsInstance" computerName="FilmBium-MacBook-Pro" duration="00:00:00.0623980" startTime="2026-03-12T17:09:42.6288010+09:00" endTime="2026-03-12T17:09:42.6912000+09:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="94460a2e-c355-4f86-bb62-729fb440f7dd">
+      <Output>
+        <StdOut>info: InspectionSystem.Core.Services.SettingsService[0]
+      Settings file not found. Using defaults: test_settings.json</StdOut>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="5b3ce988-bafc-4a75-8833-eddda7a46e1b" testId="adfbb0bb-a1e6-7cd5-0700-964f8934f0ce" testName="Constructor_InitialState_DetectionsIsEmpty" computerName="FilmBium-MacBook-Pro" duration="00:00:00.0003880" startTime="2026-03-12T17:09:42.7783840+09:00" endTime="2026-03-12T17:09:42.7787720+09:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="5b3ce988-bafc-4a75-8833-eddda7a46e1b" />
+    <UnitTestResult executionId="8313a370-261e-49ad-aeea-3838b4c3c973" testId="6d5f8f08-0b6d-8074-4ce8-291f2512a326" testName="ResetDefaultsCommand_ResetsToDefaultValues" computerName="FilmBium-MacBook-Pro" duration="00:00:00.0007600" startTime="2026-03-12T17:09:42.8091360+09:00" endTime="2026-03-12T17:09:42.8098960+09:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="8313a370-261e-49ad-aeea-3838b4c3c973" />
+    <UnitTestResult executionId="c61d6ee5-e78b-4ecd-8a06-a4fe5eef3849" testId="094c3e19-a835-507f-18e3-17c97b3c2cc5" testName="SaveAsync_NgResult_FileNameContainsNG" computerName="FilmBium-MacBook-Pro" duration="00:00:00.0016980" startTime="2026-03-12T17:09:42.1476860+09:00" endTime="2026-03-12T17:09:42.1493850+09:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="c61d6ee5-e78b-4ecd-8a06-a4fe5eef3849" />
+    <UnitTestResult executionId="3f62d688-ca04-4de4-95a9-61114e6078e5" testId="a4146716-970e-301c-e54b-0c57fbcd0478" testName="AutoSaveNg_SetValue_PropertyChangedRaised" computerName="FilmBium-MacBook-Pro" duration="00:00:00.0705360" startTime="2026-03-12T17:09:42.7037920+09:00" endTime="2026-03-12T17:09:42.7743290+09:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="3f62d688-ca04-4de4-95a9-61114e6078e5" />
+    <UnitTestResult executionId="85d008a1-cfff-4264-a602-4ffd63bd462c" testId="c2a95348-414b-7053-cc04-74c2a9708f52" testName="Constructor_InitialState_IouThresholdFromSettings" computerName="FilmBium-MacBook-Pro" duration="00:00:00.0002260" startTime="2026-03-12T17:09:42.7787820+09:00" endTime="2026-03-12T17:09:42.7790080+09:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="85d008a1-cfff-4264-a602-4ffd63bd462c" />
+    <UnitTestResult executionId="58335cee-3c29-4719-9f6e-f30247e66103" testId="1506bb79-0877-5207-54be-0212443ccd07" testName="SaveAsync_NgResult_CreatesFile" computerName="FilmBium-MacBook-Pro" duration="00:00:00.0014110" startTime="2026-03-12T17:09:42.1375480+09:00" endTime="2026-03-12T17:09:42.1389600+09:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="58335cee-3c29-4719-9f6e-f30247e66103" />
+    <UnitTestResult executionId="2575346a-ca78-43fa-b3ca-6f3b4148f077" testId="5c4f1dc3-ea66-f4b0-8824-932281ae9261" testName="LoadModelAsync_NullPath_ThrowsArgumentNullException" computerName="FilmBium-MacBook-Pro" duration="00:00:00.0005580" startTime="2026-03-12T17:09:42.1545110+09:00" endTime="2026-03-12T17:09:42.1550690+09:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="2575346a-ca78-43fa-b3ca-6f3b4148f077" />
+    <UnitTestResult executionId="6f45d403-b793-4000-be94-23c994016b24" testId="0f4f355b-3bac-1f3e-5437-79c5479946fa" testName="ConfidenceThreshold_SetValue_PropertyChangedRaised" computerName="FilmBium-MacBook-Pro" duration="00:00:00.0004990" startTime="2026-03-12T17:09:42.8077120+09:00" endTime="2026-03-12T17:09:42.8082110+09:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="6f45d403-b793-4000-be94-23c994016b24" />
+    <UnitTestResult executionId="6394bd98-49e9-42e8-a9f5-f21c01330c28" testId="232a167e-fb91-fcca-455e-25ade970f202" testName="Resolve_ISettingsService_IsSingleton" computerName="FilmBium-MacBook-Pro" duration="00:00:00.0010720" startTime="2026-03-12T17:09:42.6999260+09:00" endTime="2026-03-12T17:09:42.7009980+09:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="6394bd98-49e9-42e8-a9f5-f21c01330c28">
+      <Output>
+        <StdOut>info: InspectionSystem.Core.Services.SettingsService[0]
+      Settings file not found. Using defaults: test_settings.json</StdOut>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="fb0aaefd-c9df-48f5-a7d3-5bdb94c912b5" testId="075a0c48-5857-456d-a380-5dca24491b4f" testName="RunInferenceAsync_ModelNotLoaded_ThrowsInvalidOperationException" computerName="FilmBium-MacBook-Pro" duration="00:00:00.0020180" startTime="2026-03-12T17:09:42.2576970+09:00" endTime="2026-03-12T17:09:42.2597150+09:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="fb0aaefd-c9df-48f5-a7d3-5bdb94c912b5" />
+    <UnitTestResult executionId="feb021b3-f62f-4117-af15-c74dc48f34b0" testId="88fdbb18-4ee6-8c91-63d7-b5114e9feda7" testName="Resolve_ISessionLogger_ReturnsInstance" computerName="FilmBium-MacBook-Pro" duration="00:00:00.0010440" startTime="2026-03-12T17:09:42.6988650+09:00" endTime="2026-03-12T17:09:42.6999090+09:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="feb021b3-f62f-4117-af15-c74dc48f34b0" />
+    <UnitTestResult executionId="e23a9c94-e814-4219-a621-13427bbc840a" testId="ac4f482c-8eeb-260c-f7b5-487b5b33a533" testName="Resolve_ISettingsService_ReturnsInstance" computerName="FilmBium-MacBook-Pro" duration="00:00:00.0011540" startTime="2026-03-12T17:09:42.7010070+09:00" endTime="2026-03-12T17:09:42.7021610+09:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="e23a9c94-e814-4219-a621-13427bbc840a">
+      <Output>
+        <StdOut>info: InspectionSystem.Core.Services.SettingsService[0]
+      Settings file not found. Using defaults: test_settings.json</StdOut>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="6e0b993c-f6fa-4311-b698-5180a4bbe558" testId="12b584e8-ee48-c684-51d5-457ddd2282c8" testName="Resolve_ISessionLogger_IsSingleton" computerName="FilmBium-MacBook-Pro" duration="00:00:00.0009870" startTime="2026-03-12T17:09:42.6978380+09:00" endTime="2026-03-12T17:09:42.6988250+09:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="6e0b993c-f6fa-4311-b698-5180a4bbe558" />
+    <UnitTestResult executionId="cefe96bd-4ec9-4e01-9db1-d97cd8a9b784" testId="7162265c-7f50-4990-9c06-aeb705427f65" testName="SaveAsync_MultipleNgResults_CreatesMultipleFiles" computerName="FilmBium-MacBook-Pro" duration="00:00:00.0167530" startTime="2026-03-12T17:09:42.1191320+09:00" endTime="2026-03-12T17:09:42.1358850+09:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="cefe96bd-4ec9-4e01-9db1-d97cd8a9b784" />
+    <UnitTestResult executionId="68caa072-11a8-473b-8f2a-904ddb1baa39" testId="eff8eefa-757a-d09c-37ec-9751439d9d40" testName="Save_ValidSettings_CreatesFile" computerName="FilmBium-MacBook-Pro" duration="00:00:00.0005340" startTime="2026-03-12T17:09:42.6275400+09:00" endTime="2026-03-12T17:09:42.6280730+09:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="68caa072-11a8-473b-8f2a-904ddb1baa39" />
+    <UnitTestResult executionId="ab70093c-122c-4352-bdc9-5e21180d359f" testId="2c5bdb52-4657-64f2-7e73-66adfbfb4583" testName="ExportToCsvAsync_ValidPath_CreatesFile" computerName="FilmBium-MacBook-Pro" duration="00:00:00.0023050" startTime="2026-03-12T17:09:42.5872970+09:00" endTime="2026-03-12T17:09:42.5896020+09:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="ab70093c-122c-4352-bdc9-5e21180d359f" />
+    <UnitTestResult executionId="25d0517d-2a79-4b3a-827c-e7c525d5e104" testId="73c6c95c-19e8-55ff-4480-d94facf3d43a" testName="SaveAsync_NullSavePath_ThrowsArgumentNullException" computerName="FilmBium-MacBook-Pro" duration="00:00:00.0006460" startTime="2026-03-12T17:09:42.1501340+09:00" endTime="2026-03-12T17:09:42.1507800+09:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="25d0517d-2a79-4b3a-827c-e7c525d5e104" />
+    <UnitTestResult executionId="d81244e0-11b9-4238-9599-ea0e74a8ca03" testId="d545a9fb-c421-e095-c258-82f232fe31e6" testName="SaveAsync_EmptyImageData_ThrowsArgumentNullException" computerName="FilmBium-MacBook-Pro" duration="00:00:00.0025050" startTime="2026-03-12T17:09:42.1166120+09:00" endTime="2026-03-12T17:09:42.1191170+09:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="d81244e0-11b9-4238-9599-ea0e74a8ca03" />
+    <UnitTestResult executionId="2b9528f1-5118-43b6-9fe5-03327f90400e" testId="86db36f8-0f45-eb07-c1fc-c78ed978692b" testName="Resolve_IInferenceEngine_IsTransient" computerName="FilmBium-MacBook-Pro" duration="00:00:00.0048700" startTime="2026-03-12T17:09:42.6919010+09:00" endTime="2026-03-12T17:09:42.6967710+09:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="2b9528f1-5118-43b6-9fe5-03327f90400e" />
+    <UnitTestResult executionId="f9225a33-5fd2-4f67-a75c-eee4e67b2d1c" testId="efbd26bf-5ead-d39a-1dbd-868b92fd49d7" testName="GenerateAsync_ApiNotAvailable_SetsIsAvailableFalse" computerName="FilmBium-MacBook-Pro" duration="00:00:00.0067160" startTime="2026-03-12T17:09:41.9783720+09:00" endTime="2026-03-12T17:09:41.9850880+09:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="f9225a33-5fd2-4f67-a75c-eee4e67b2d1c" />
+    <UnitTestResult executionId="983f02f8-6dcd-4fcd-8f8f-3b1a46eecd51" testId="6c5338cc-2763-19a2-7d95-471c2892373b" testName="Resolve_IInferenceEngine_ReturnsInstance" computerName="FilmBium-MacBook-Pro" duration="00:00:00.0009580" startTime="2026-03-12T17:09:42.6968530+09:00" endTime="2026-03-12T17:09:42.6978110+09:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="983f02f8-6dcd-4fcd-8f8f-3b1a46eecd51" />
+    <UnitTestResult executionId="8e306611-5ec7-450d-b9cc-21ba483b5093" testId="34426dcc-e3f7-f0a2-e653-bb8a897a3dec" testName="DrawDetections_EmptyDetections_ReturnsSameSizeImage" computerName="FilmBium-MacBook-Pro" duration="00:00:00.0409460" startTime="2026-03-12T17:09:41.9895910+09:00" endTime="2026-03-12T17:09:42.0305380+09:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="8e306611-5ec7-450d-b9cc-21ba483b5093" />
+    <UnitTestResult executionId="2057aa25-32fa-4770-8a45-7181cd8422eb" testId="584daed4-8654-85de-d36c-5e6e905cec55" testName="LoadModelAsync_NonExistentPath_ThrowsFileNotFoundException" computerName="FilmBium-MacBook-Pro" duration="00:00:00.0013250" startTime="2026-03-12T17:09:42.1531280+09:00" endTime="2026-03-12T17:09:42.1544520+09:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="2057aa25-32fa-4770-8a45-7181cd8422eb" />
+  </Results>
+  <TestDefinitions>
+    <UnitTest name="Constructor_NullApiUrl_ThrowsArgumentNullException" storage="/users/geseuteu/vision-inspection-portfolio/02_inspection/inspectionsystem.tests/bin/debug/net10.0/inspectionsystem.tests.dll" id="0d1d2d64-f8ed-c336-6fea-8dbc74eadc57">
+      <Execution id="7377d17a-ab7b-46a2-9025-8c8fb8ec8a28" />
+      <TestMethod codeBase="/Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Tests/bin/Debug/net10.0/InspectionSystem.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="InspectionSystem.Tests.Core.GradCamServiceTests" name="Constructor_NullApiUrl_ThrowsArgumentNullException" />
+    </UnitTest>
+    <UnitTest name="GetStats_MixedRecords_ReturnsCorrectCounts" storage="/users/geseuteu/vision-inspection-portfolio/02_inspection/inspectionsystem.tests/bin/debug/net10.0/inspectionsystem.tests.dll" id="c8289331-fe36-ec92-1641-e7afabd3a78d">
+      <Execution id="985e6203-e446-4f75-a8c7-4bdf36d8f79c" />
+      <TestMethod codeBase="/Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Tests/bin/Debug/net10.0/InspectionSystem.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="InspectionSystem.Tests.Core.SessionLoggerTests" name="GetStats_MixedRecords_ReturnsCorrectCounts" />
+    </UnitTest>
+    <UnitTest name="Constructor_InitialState_DetectionsIsEmpty" storage="/users/geseuteu/vision-inspection-portfolio/02_inspection/inspectionsystem.tests/bin/debug/net10.0/inspectionsystem.tests.dll" id="adfbb0bb-a1e6-7cd5-0700-964f8934f0ce">
+      <Execution id="5b3ce988-bafc-4a75-8833-eddda7a46e1b" />
+      <TestMethod codeBase="/Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Tests/bin/Debug/net10.0/InspectionSystem.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="InspectionSystem.Tests.ViewModels.InspectionViewModelTests" name="Constructor_InitialState_DetectionsIsEmpty" />
+    </UnitTest>
+    <UnitTest name="ConfidenceThreshold_SetValue_PropertyChangedRaised" storage="/users/geseuteu/vision-inspection-portfolio/02_inspection/inspectionsystem.tests/bin/debug/net10.0/inspectionsystem.tests.dll" id="2e13f878-3221-6fc6-a35a-f5fb31b71805">
+      <Execution id="5b7cf8b4-e768-47ed-bf00-a79973fddb4f" />
+      <TestMethod codeBase="/Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Tests/bin/Debug/net10.0/InspectionSystem.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="InspectionSystem.Tests.ViewModels.InspectionViewModelTests" name="ConfidenceThreshold_SetValue_PropertyChangedRaised" />
+    </UnitTest>
+    <UnitTest name="Preprocess_NullImageData_ThrowsArgumentNullException" storage="/users/geseuteu/vision-inspection-portfolio/02_inspection/inspectionsystem.tests/bin/debug/net10.0/inspectionsystem.tests.dll" id="3d9da90a-07ee-5548-0c1f-fc2964f72141">
+      <Execution id="80b451c0-99ee-4daf-9244-d3844067e23d" />
+      <TestMethod codeBase="/Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Tests/bin/Debug/net10.0/InspectionSystem.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="InspectionSystem.Tests.Core.ImageProcessorTests" name="Preprocess_NullImageData_ThrowsArgumentNullException" />
+    </UnitTest>
+    <UnitTest name="AutoSaveNg_SetValue_PropertyChangedRaised" storage="/users/geseuteu/vision-inspection-portfolio/02_inspection/inspectionsystem.tests/bin/debug/net10.0/inspectionsystem.tests.dll" id="a4146716-970e-301c-e54b-0c57fbcd0478">
+      <Execution id="3f62d688-ca04-4de4-95a9-61114e6078e5" />
+      <TestMethod codeBase="/Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Tests/bin/Debug/net10.0/InspectionSystem.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="InspectionSystem.Tests.ViewModels.InspectionViewModelTests" name="AutoSaveNg_SetValue_PropertyChangedRaised" />
+    </UnitTest>
+    <UnitTest name="Resolve_IGradCamService_ReturnsInstance" storage="/users/geseuteu/vision-inspection-portfolio/02_inspection/inspectionsystem.tests/bin/debug/net10.0/inspectionsystem.tests.dll" id="19284a6f-100f-2484-46ce-42f33d45eaa0">
+      <Execution id="94460a2e-c355-4f86-bb62-729fb440f7dd" />
+      <TestMethod codeBase="/Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Tests/bin/Debug/net10.0/InspectionSystem.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="InspectionSystem.Tests.Integration.DiContainerTests" name="Resolve_IGradCamService_ReturnsInstance" />
+    </UnitTest>
+    <UnitTest name="Preprocess_ValidImage_ScaleIsCorrect" storage="/users/geseuteu/vision-inspection-portfolio/02_inspection/inspectionsystem.tests/bin/debug/net10.0/inspectionsystem.tests.dll" id="f2928a6a-e6bd-ef1a-3343-33049b0a6cc5">
+      <Execution id="c8b0916c-78c8-488f-8ef8-012158daf83f" />
+      <TestMethod codeBase="/Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Tests/bin/Debug/net10.0/InspectionSystem.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="InspectionSystem.Tests.Core.ImageProcessorTests" name="Preprocess_ValidImage_ScaleIsCorrect" />
+    </UnitTest>
+    <UnitTest name="RunInferenceAsync_ValidImage_ReturnsDetectionResult" storage="/users/geseuteu/vision-inspection-portfolio/02_inspection/inspectionsystem.tests/bin/debug/net10.0/inspectionsystem.tests.dll" id="e5a5c2ce-7e1d-1a90-649b-5f6a570fd3de">
+      <Execution id="ce9cbf10-aea7-432d-8da4-7a553a4b4655" />
+      <TestMethod codeBase="/Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Tests/bin/Debug/net10.0/InspectionSystem.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="InspectionSystem.Tests.Core.OnnxInferenceEngineTests" name="RunInferenceAsync_ValidImage_ReturnsDetectionResult" />
+    </UnitTest>
+    <UnitTest name="Preprocess_ValidImage_ReturnsTensorWithCorrectSize" storage="/users/geseuteu/vision-inspection-portfolio/02_inspection/inspectionsystem.tests/bin/debug/net10.0/inspectionsystem.tests.dll" id="9cf2b712-b852-924b-3898-9616e2126c92">
+      <Execution id="59b0a4db-6932-4c3f-a32e-25a6d7768c44" />
+      <TestMethod codeBase="/Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Tests/bin/Debug/net10.0/InspectionSystem.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="InspectionSystem.Tests.Core.ImageProcessorTests" name="Preprocess_ValidImage_ReturnsTensorWithCorrectSize" />
+    </UnitTest>
+    <UnitTest name="RunInferenceAsync_ValidImage_InferenceTimeLessThan5000Ms" storage="/users/geseuteu/vision-inspection-portfolio/02_inspection/inspectionsystem.tests/bin/debug/net10.0/inspectionsystem.tests.dll" id="c9220602-5a52-5f2a-d77d-641778491cbe">
+      <Execution id="70217ee2-a2d1-4d15-aff8-542ab321addf" />
+      <TestMethod codeBase="/Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Tests/bin/Debug/net10.0/InspectionSystem.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="InspectionSystem.Tests.Core.OnnxInferenceEngineTests" name="RunInferenceAsync_ValidImage_InferenceTimeLessThan5000Ms" />
+    </UnitTest>
+    <UnitTest name="ExportToCsvAsync_EmptyHistory_CreatesFileWithHeaderOnly" storage="/users/geseuteu/vision-inspection-portfolio/02_inspection/inspectionsystem.tests/bin/debug/net10.0/inspectionsystem.tests.dll" id="2f8bd116-6ec6-6949-08f4-b38712eabb56">
+      <Execution id="c1de23fb-73ca-40af-a081-ebd05d00cf54" />
+      <TestMethod codeBase="/Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Tests/bin/Debug/net10.0/InspectionSystem.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="InspectionSystem.Tests.Core.SessionLoggerTests" name="ExportToCsvAsync_EmptyHistory_CreatesFileWithHeaderOnly" />
+    </UnitTest>
+    <UnitTest name="GetHistory_AfterLog_ReturnsCorrectRecord" storage="/users/geseuteu/vision-inspection-portfolio/02_inspection/inspectionsystem.tests/bin/debug/net10.0/inspectionsystem.tests.dll" id="67674203-32d9-832d-603e-dda17d2c4b9b">
+      <Execution id="d7e335dd-2adf-452c-aece-246218b130a0" />
+      <TestMethod codeBase="/Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Tests/bin/Debug/net10.0/InspectionSystem.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="InspectionSystem.Tests.Core.SessionLoggerTests" name="GetHistory_AfterLog_ReturnsCorrectRecord" />
+    </UnitTest>
+    <UnitTest name="Constructor_NullLogger_ThrowsArgumentNullException" storage="/users/geseuteu/vision-inspection-portfolio/02_inspection/inspectionsystem.tests/bin/debug/net10.0/inspectionsystem.tests.dll" id="cd60b788-f25f-7b27-e1ed-34255aad4949">
+      <Execution id="c45f57f6-9dca-4123-85f1-13d576ff01c2" />
+      <TestMethod codeBase="/Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Tests/bin/Debug/net10.0/InspectionSystem.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="InspectionSystem.Tests.Core.GradCamServiceTests" name="Constructor_NullLogger_ThrowsArgumentNullException" />
+    </UnitTest>
+    <UnitTest name="IouThreshold_SetValue_PropertyChangedRaised" storage="/users/geseuteu/vision-inspection-portfolio/02_inspection/inspectionsystem.tests/bin/debug/net10.0/inspectionsystem.tests.dll" id="ef0b2acf-56a8-98b2-c8fa-cd8c030b30b1">
+      <Execution id="f4109edc-d68b-46dc-8fc6-55fad70b197d" />
+      <TestMethod codeBase="/Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Tests/bin/Debug/net10.0/InspectionSystem.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="InspectionSystem.Tests.ViewModels.InspectionViewModelTests" name="IouThreshold_SetValue_PropertyChangedRaised" />
+    </UnitTest>
+    <UnitTest name="RunInspectionCommand_CalledTwiceConcurrently_SecondIsRejected" storage="/users/geseuteu/vision-inspection-portfolio/02_inspection/inspectionsystem.tests/bin/debug/net10.0/inspectionsystem.tests.dll" id="28bef89c-e083-6a3d-af3b-10ef8dcbbefc">
+      <Execution id="60ff097b-52cd-454c-bfb2-4136a50c0c4b" />
+      <TestMethod codeBase="/Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Tests/bin/Debug/net10.0/InspectionSystem.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="InspectionSystem.Tests.ViewModels.InspectionViewModelTests" name="RunInspectionCommand_CalledTwiceConcurrently_SecondIsRejected" />
+    </UnitTest>
+    <UnitTest name="SaveAsync_NullImageData_ThrowsArgumentNullException" storage="/users/geseuteu/vision-inspection-portfolio/02_inspection/inspectionsystem.tests/bin/debug/net10.0/inspectionsystem.tests.dll" id="8ea013df-9795-be01-9b78-2b309d8475b4">
+      <Execution id="2dd2c92f-7f70-4dd5-96c2-f7067c5feafe" />
+      <TestMethod codeBase="/Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Tests/bin/Debug/net10.0/InspectionSystem.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="InspectionSystem.Tests.Core.NgImageSaverTests" name="SaveAsync_NullImageData_ThrowsArgumentNullException" />
+    </UnitTest>
+    <UnitTest name="DrawDetections_EmptyDetections_ReturnsSameSizeImage" storage="/users/geseuteu/vision-inspection-portfolio/02_inspection/inspectionsystem.tests/bin/debug/net10.0/inspectionsystem.tests.dll" id="34426dcc-e3f7-f0a2-e653-bb8a897a3dec">
+      <Execution id="8e306611-5ec7-450d-b9cc-21ba483b5093" />
+      <TestMethod codeBase="/Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Tests/bin/Debug/net10.0/InspectionSystem.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="InspectionSystem.Tests.Core.ImageProcessorTests" name="DrawDetections_EmptyDetections_ReturnsSameSizeImage" />
+    </UnitTest>
+    <UnitTest name="Constructor_InitialState_ResultLabelIsNoResult" storage="/users/geseuteu/vision-inspection-portfolio/02_inspection/inspectionsystem.tests/bin/debug/net10.0/inspectionsystem.tests.dll" id="19e2ac1a-ddae-0209-7891-59c69485f9ac">
+      <Execution id="c2d7a8d9-d05c-4c55-bdab-284bb04b74bf" />
+      <TestMethod codeBase="/Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Tests/bin/Debug/net10.0/InspectionSystem.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="InspectionSystem.Tests.ViewModels.InspectionViewModelTests" name="Constructor_InitialState_ResultLabelIsNoResult" />
+    </UnitTest>
+    <UnitTest name="IsAvailable_InitialState_ReturnsFalse" storage="/users/geseuteu/vision-inspection-portfolio/02_inspection/inspectionsystem.tests/bin/debug/net10.0/inspectionsystem.tests.dll" id="88f4c1f9-a90b-d8b8-7f32-d02aac4588b5">
+      <Execution id="3053ccce-3995-4a5e-9003-fa668ee61ea3" />
+      <TestMethod codeBase="/Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Tests/bin/Debug/net10.0/InspectionSystem.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="InspectionSystem.Tests.Core.GradCamServiceTests" name="IsAvailable_InitialState_ReturnsFalse" />
+    </UnitTest>
+    <UnitTest name="GenerateAsync_ApiNotAvailable_SetsIsAvailableFalse" storage="/users/geseuteu/vision-inspection-portfolio/02_inspection/inspectionsystem.tests/bin/debug/net10.0/inspectionsystem.tests.dll" id="efbd26bf-5ead-d39a-1dbd-868b92fd49d7">
+      <Execution id="f9225a33-5fd2-4f67-a75c-eee4e67b2d1c" />
+      <TestMethod codeBase="/Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Tests/bin/Debug/net10.0/InspectionSystem.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="InspectionSystem.Tests.Core.GradCamServiceTests" name="GenerateAsync_ApiNotAvailable_SetsIsAvailableFalse" />
+    </UnitTest>
+    <UnitTest name="EnableGradCam_DefaultValue_IsTrue" storage="/users/geseuteu/vision-inspection-portfolio/02_inspection/inspectionsystem.tests/bin/debug/net10.0/inspectionsystem.tests.dll" id="d5affb9e-4e33-9e09-c59e-579fb62a7d8e">
+      <Execution id="dd277cf0-2db0-477a-866d-2f667b6ea701" />
+      <TestMethod codeBase="/Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Tests/bin/Debug/net10.0/InspectionSystem.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="InspectionSystem.Tests.ViewModels.SettingsViewModelTests" name="EnableGradCam_DefaultValue_IsTrue" />
+    </UnitTest>
+    <UnitTest name="ResizeImage_NullImageData_ThrowsArgumentNullException" storage="/users/geseuteu/vision-inspection-portfolio/02_inspection/inspectionsystem.tests/bin/debug/net10.0/inspectionsystem.tests.dll" id="9baac37c-f755-91a6-4ba5-ee7ebbfca14b">
+      <Execution id="be2929c2-9291-45dc-a359-0aff43dffb9f" />
+      <TestMethod codeBase="/Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Tests/bin/Debug/net10.0/InspectionSystem.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="InspectionSystem.Tests.Core.ImageProcessorTests" name="ResizeImage_NullImageData_ThrowsArgumentNullException" />
+    </UnitTest>
+    <UnitTest name="Constructor_InitialState_IsInspectingFalse" storage="/users/geseuteu/vision-inspection-portfolio/02_inspection/inspectionsystem.tests/bin/debug/net10.0/inspectionsystem.tests.dll" id="585e149d-fc4a-4939-e811-616a06a1064b">
+      <Execution id="cf5f4642-fcf5-4904-bfc5-88853c47ec0d" />
+      <TestMethod codeBase="/Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Tests/bin/Debug/net10.0/InspectionSystem.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="InspectionSystem.Tests.ViewModels.InspectionViewModelTests" name="Constructor_InitialState_IsInspectingFalse" />
+    </UnitTest>
+    <UnitTest name="RunInferenceAsync_NullOptions_ThrowsArgumentNullException" storage="/users/geseuteu/vision-inspection-portfolio/02_inspection/inspectionsystem.tests/bin/debug/net10.0/inspectionsystem.tests.dll" id="4a094d5a-92f6-cf6b-9b5c-10fc9a86763b">
+      <Execution id="8c9507b7-ab09-40ed-88cf-81daaccfbafb" />
+      <TestMethod codeBase="/Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Tests/bin/Debug/net10.0/InspectionSystem.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="InspectionSystem.Tests.Core.OnnxInferenceEngineTests" name="RunInferenceAsync_NullOptions_ThrowsArgumentNullException" />
+    </UnitTest>
+    <UnitTest name="Log_MultipleRecords_AllAddedToHistory" storage="/users/geseuteu/vision-inspection-portfolio/02_inspection/inspectionsystem.tests/bin/debug/net10.0/inspectionsystem.tests.dll" id="2f33f113-b3c4-223a-2bb7-e3db95a197ce">
+      <Execution id="abb20d46-47d0-4353-bf34-7ac8acf3384a" />
+      <TestMethod codeBase="/Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Tests/bin/Debug/net10.0/InspectionSystem.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="InspectionSystem.Tests.Core.SessionLoggerTests" name="Log_MultipleRecords_AllAddedToHistory" />
+    </UnitTest>
+    <UnitTest name="GetHistory_InitialState_ReturnsEmptyList" storage="/users/geseuteu/vision-inspection-portfolio/02_inspection/inspectionsystem.tests/bin/debug/net10.0/inspectionsystem.tests.dll" id="72c0d2a2-21af-feb6-625c-0441d1d294db">
+      <Execution id="6c8cb128-53a4-4193-9d4f-de5b8e48ae18" />
+      <TestMethod codeBase="/Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Tests/bin/Debug/net10.0/InspectionSystem.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="InspectionSystem.Tests.Core.SessionLoggerTests" name="GetHistory_InitialState_ReturnsEmptyList" />
+    </UnitTest>
+    <UnitTest name="Save_ThenLoad_ReturnsSameSettings" storage="/users/geseuteu/vision-inspection-portfolio/02_inspection/inspectionsystem.tests/bin/debug/net10.0/inspectionsystem.tests.dll" id="6a7b135c-af40-594c-7d1e-eea3516a506c">
+      <Execution id="3fc57184-3599-4de8-8fce-4ae991981a71" />
+      <TestMethod codeBase="/Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Tests/bin/Debug/net10.0/InspectionSystem.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="InspectionSystem.Tests.Core.SettingsServiceTests" name="Save_ThenLoad_ReturnsSameSettings" />
+    </UnitTest>
+    <UnitTest name="Constructor_InitialState_ConfidenceThresholdFromSettings" storage="/users/geseuteu/vision-inspection-portfolio/02_inspection/inspectionsystem.tests/bin/debug/net10.0/inspectionsystem.tests.dll" id="de178852-2832-15dc-cd58-67e3a528047f">
+      <Execution id="e618b9e9-cc27-416a-97d2-bb63c33050fd" />
+      <TestMethod codeBase="/Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Tests/bin/Debug/net10.0/InspectionSystem.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="InspectionSystem.Tests.ViewModels.InspectionViewModelTests" name="Constructor_InitialState_ConfidenceThresholdFromSettings" />
+    </UnitTest>
+    <UnitTest name="RunInspectionCommand_NoImageLoaded_StatusMessageUpdated" storage="/users/geseuteu/vision-inspection-portfolio/02_inspection/inspectionsystem.tests/bin/debug/net10.0/inspectionsystem.tests.dll" id="9e734fd1-96a7-d738-4a16-77868b3edc55">
+      <Execution id="6030efd8-3fd5-4b22-9a1c-0db7c089efe0" />
+      <TestMethod codeBase="/Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Tests/bin/Debug/net10.0/InspectionSystem.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="InspectionSystem.Tests.ViewModels.InspectionViewModelTests" name="RunInspectionCommand_NoImageLoaded_StatusMessageUpdated" />
+    </UnitTest>
+    <UnitTest name="Current_AfterInit_ReturnsDefaultSettings" storage="/users/geseuteu/vision-inspection-portfolio/02_inspection/inspectionsystem.tests/bin/debug/net10.0/inspectionsystem.tests.dll" id="bae0fa6c-1d84-8b4f-09c0-450a170649e9">
+      <Execution id="b4aa5d6f-a58a-4ee9-9c3b-5bad251ade1b" />
+      <TestMethod codeBase="/Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Tests/bin/Debug/net10.0/InspectionSystem.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="InspectionSystem.Tests.Core.SettingsServiceTests" name="Current_AfterInit_ReturnsDefaultSettings" />
+    </UnitTest>
+    <UnitTest name="Preprocess_EmptyImageData_ThrowsArgumentNullException" storage="/users/geseuteu/vision-inspection-portfolio/02_inspection/inspectionsystem.tests/bin/debug/net10.0/inspectionsystem.tests.dll" id="b3033a0e-8850-3e49-b307-4609bd40a7af">
+      <Execution id="ce58ed5f-e80e-43b0-a6bf-00d32818f1ad" />
+      <TestMethod codeBase="/Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Tests/bin/Debug/net10.0/InspectionSystem.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="InspectionSystem.Tests.Core.ImageProcessorTests" name="Preprocess_EmptyImageData_ThrowsArgumentNullException" />
+    </UnitTest>
+    <UnitTest name="Constructor_NullLogger_ThrowsArgumentNullException" storage="/users/geseuteu/vision-inspection-portfolio/02_inspection/inspectionsystem.tests/bin/debug/net10.0/inspectionsystem.tests.dll" id="1b060aa7-fd77-8a53-6b3d-f2ec5eb961da">
+      <Execution id="23aa2e14-a76f-4dcc-ab56-ce1ab24118a5" />
+      <TestMethod codeBase="/Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Tests/bin/Debug/net10.0/InspectionSystem.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="InspectionSystem.Tests.Core.SettingsServiceTests" name="Constructor_NullLogger_ThrowsArgumentNullException" />
+    </UnitTest>
+    <UnitTest name="Resolve_ISettingsService_IsSingleton" storage="/users/geseuteu/vision-inspection-portfolio/02_inspection/inspectionsystem.tests/bin/debug/net10.0/inspectionsystem.tests.dll" id="232a167e-fb91-fcca-455e-25ade970f202">
+      <Execution id="6394bd98-49e9-42e8-a9f5-f21c01330c28" />
+      <TestMethod codeBase="/Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Tests/bin/Debug/net10.0/InspectionSystem.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="InspectionSystem.Tests.Integration.DiContainerTests" name="Resolve_ISettingsService_IsSingleton" />
+    </UnitTest>
+    <UnitTest name="Log_ValidRecord_AddsToHistory" storage="/users/geseuteu/vision-inspection-portfolio/02_inspection/inspectionsystem.tests/bin/debug/net10.0/inspectionsystem.tests.dll" id="33c35348-7f9a-7d92-fea1-43a9d80ba9d5">
+      <Execution id="5d7e62fa-7798-4847-bea8-a0c6a0ccf1a8" />
+      <TestMethod codeBase="/Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Tests/bin/Debug/net10.0/InspectionSystem.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="InspectionSystem.Tests.Core.SessionLoggerTests" name="Log_ValidRecord_AddsToHistory" />
+    </UnitTest>
+    <UnitTest name="GetStats_NgRate_IsCalculatedCorrectly" storage="/users/geseuteu/vision-inspection-portfolio/02_inspection/inspectionsystem.tests/bin/debug/net10.0/inspectionsystem.tests.dll" id="1ffe3259-427d-4f6c-b6c3-8b0893c78604">
+      <Execution id="dd6f5de0-fc05-4863-8368-7c9ad1c635d2" />
+      <TestMethod codeBase="/Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Tests/bin/Debug/net10.0/InspectionSystem.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="InspectionSystem.Tests.Core.SessionLoggerTests" name="GetStats_NgRate_IsCalculatedCorrectly" />
+    </UnitTest>
+    <UnitTest name="DrawDetections_NullImageData_ThrowsArgumentNullException" storage="/users/geseuteu/vision-inspection-portfolio/02_inspection/inspectionsystem.tests/bin/debug/net10.0/inspectionsystem.tests.dll" id="002d5b40-0863-510a-d3cd-6c64747ce256">
+      <Execution id="550eb59f-ad71-4c24-b309-8298ff678967" />
+      <TestMethod codeBase="/Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Tests/bin/Debug/net10.0/InspectionSystem.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="InspectionSystem.Tests.Core.ImageProcessorTests" name="DrawDetections_NullImageData_ThrowsArgumentNullException" />
+    </UnitTest>
+    <UnitTest name="SaveAsync_NullSavePath_ThrowsArgumentNullException" storage="/users/geseuteu/vision-inspection-portfolio/02_inspection/inspectionsystem.tests/bin/debug/net10.0/inspectionsystem.tests.dll" id="73c6c95c-19e8-55ff-4480-d94facf3d43a">
+      <Execution id="25d0517d-2a79-4b3a-827c-e7c525d5e104" />
+      <TestMethod codeBase="/Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Tests/bin/Debug/net10.0/InspectionSystem.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="InspectionSystem.Tests.Core.NgImageSaverTests" name="SaveAsync_NullSavePath_ThrowsArgumentNullException" />
+    </UnitTest>
+    <UnitTest name="Preprocess_ValidImage_TensorValuesNormalized" storage="/users/geseuteu/vision-inspection-portfolio/02_inspection/inspectionsystem.tests/bin/debug/net10.0/inspectionsystem.tests.dll" id="016e3057-1765-f44c-e852-d6578df75a11">
+      <Execution id="d8afbc6b-42c1-42d5-849b-fb00ef06a70b" />
+      <TestMethod codeBase="/Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Tests/bin/Debug/net10.0/InspectionSystem.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="InspectionSystem.Tests.Core.ImageProcessorTests" name="Preprocess_ValidImage_TensorValuesNormalized" />
+    </UnitTest>
+    <UnitTest name="Constructor_NullLogger_ThrowsArgumentNullException" storage="/users/geseuteu/vision-inspection-portfolio/02_inspection/inspectionsystem.tests/bin/debug/net10.0/inspectionsystem.tests.dll" id="d6ed9540-6c7b-31a3-9de2-168b8401d89b">
+      <Execution id="ab29cd7f-761d-447c-8229-14cd1c0ac134" />
+      <TestMethod codeBase="/Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Tests/bin/Debug/net10.0/InspectionSystem.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="InspectionSystem.Tests.Core.NgImageSaverTests" name="Constructor_NullLogger_ThrowsArgumentNullException" />
+    </UnitTest>
+    <UnitTest name="ConfidenceThreshold_SetValue_PropertyChangedRaised" storage="/users/geseuteu/vision-inspection-portfolio/02_inspection/inspectionsystem.tests/bin/debug/net10.0/inspectionsystem.tests.dll" id="0f4f355b-3bac-1f3e-5437-79c5479946fa">
+      <Execution id="6f45d403-b793-4000-be94-23c994016b24" />
+      <TestMethod codeBase="/Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Tests/bin/Debug/net10.0/InspectionSystem.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="InspectionSystem.Tests.ViewModels.SettingsViewModelTests" name="ConfidenceThreshold_SetValue_PropertyChangedRaised" />
+    </UnitTest>
+    <UnitTest name="Resolve_ISessionLogger_ReturnsInstance" storage="/users/geseuteu/vision-inspection-portfolio/02_inspection/inspectionsystem.tests/bin/debug/net10.0/inspectionsystem.tests.dll" id="88fdbb18-4ee6-8c91-63d7-b5114e9feda7">
+      <Execution id="feb021b3-f62f-4117-af15-c74dc48f34b0" />
+      <TestMethod codeBase="/Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Tests/bin/Debug/net10.0/InspectionSystem.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="InspectionSystem.Tests.Integration.DiContainerTests" name="Resolve_ISessionLogger_ReturnsInstance" />
+    </UnitTest>
+    <UnitTest name="SaveAsync_OkResult_DoesNotSaveFile" storage="/users/geseuteu/vision-inspection-portfolio/02_inspection/inspectionsystem.tests/bin/debug/net10.0/inspectionsystem.tests.dll" id="527defe1-fc8e-5830-d1db-918518b904c4">
+      <Execution id="efd7cae7-e48f-4dc8-91ee-e39566d477e9" />
+      <TestMethod codeBase="/Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Tests/bin/Debug/net10.0/InspectionSystem.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="InspectionSystem.Tests.Core.NgImageSaverTests" name="SaveAsync_OkResult_DoesNotSaveFile" />
+    </UnitTest>
+    <UnitTest name="ResetDefaultsCommand_UpdatesStatusMessage" storage="/users/geseuteu/vision-inspection-portfolio/02_inspection/inspectionsystem.tests/bin/debug/net10.0/inspectionsystem.tests.dll" id="11c9b67a-8888-e46f-05d8-3e1fcd404e2f">
+      <Execution id="53594389-9d46-4cee-a8c6-44fd1cb1cbab" />
+      <TestMethod codeBase="/Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Tests/bin/Debug/net10.0/InspectionSystem.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="InspectionSystem.Tests.ViewModels.SettingsViewModelTests" name="ResetDefaultsCommand_UpdatesStatusMessage" />
+    </UnitTest>
+    <UnitTest name="Resolve_IInferenceEngine_IsTransient" storage="/users/geseuteu/vision-inspection-portfolio/02_inspection/inspectionsystem.tests/bin/debug/net10.0/inspectionsystem.tests.dll" id="86db36f8-0f45-eb07-c1fc-c78ed978692b">
+      <Execution id="2b9528f1-5118-43b6-9fe5-03327f90400e" />
+      <TestMethod codeBase="/Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Tests/bin/Debug/net10.0/InspectionSystem.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="InspectionSystem.Tests.Integration.DiContainerTests" name="Resolve_IInferenceEngine_IsTransient" />
+    </UnitTest>
+    <UnitTest name="CancelInspectionCommand_WhenNotInspecting_StatusMessageUpdated" storage="/users/geseuteu/vision-inspection-portfolio/02_inspection/inspectionsystem.tests/bin/debug/net10.0/inspectionsystem.tests.dll" id="55f075bb-cc7d-2eac-e9dc-69d095eba35a">
+      <Execution id="36ace91d-ae4b-4dfc-8ee9-a3c4073273c5" />
+      <TestMethod codeBase="/Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Tests/bin/Debug/net10.0/InspectionSystem.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="InspectionSystem.Tests.ViewModels.InspectionViewModelTests" name="CancelInspectionCommand_WhenNotInspecting_StatusMessageUpdated" />
+    </UnitTest>
+    <UnitTest name="SaveSettingsCommand_UpdatesStatusMessage" storage="/users/geseuteu/vision-inspection-portfolio/02_inspection/inspectionsystem.tests/bin/debug/net10.0/inspectionsystem.tests.dll" id="79da8a44-121a-c29a-6d61-d7e386dcd053">
+      <Execution id="9ab47d97-62c5-4b08-98ad-7bfa5b1d76ef" />
+      <TestMethod codeBase="/Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Tests/bin/Debug/net10.0/InspectionSystem.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="InspectionSystem.Tests.ViewModels.SettingsViewModelTests" name="SaveSettingsCommand_UpdatesStatusMessage" />
+    </UnitTest>
+    <UnitTest name="Constructor_LoadsSettingsFromService" storage="/users/geseuteu/vision-inspection-portfolio/02_inspection/inspectionsystem.tests/bin/debug/net10.0/inspectionsystem.tests.dll" id="b4c6eacc-022d-5c14-ae50-61c10f06f530">
+      <Execution id="7a129dd2-85d7-4a06-aac0-01fe23ad285f" />
+      <TestMethod codeBase="/Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Tests/bin/Debug/net10.0/InspectionSystem.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="InspectionSystem.Tests.ViewModels.SettingsViewModelTests" name="Constructor_LoadsSettingsFromService" />
+    </UnitTest>
+    <UnitTest name="GetStats_EmptyHistory_ReturnsZeroStats" storage="/users/geseuteu/vision-inspection-portfolio/02_inspection/inspectionsystem.tests/bin/debug/net10.0/inspectionsystem.tests.dll" id="243036b1-cbda-86f8-aaeb-08987aff4df7">
+      <Execution id="32c4403a-6b8e-42d6-abe3-a4e693e41623" />
+      <TestMethod codeBase="/Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Tests/bin/Debug/net10.0/InspectionSystem.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="InspectionSystem.Tests.Core.SessionLoggerTests" name="GetStats_EmptyHistory_ReturnsZeroStats" />
+    </UnitTest>
+    <UnitTest name="LoadModelCommand_ModelNotFound_IsModelLoadedRemainingFalse" storage="/users/geseuteu/vision-inspection-portfolio/02_inspection/inspectionsystem.tests/bin/debug/net10.0/inspectionsystem.tests.dll" id="3bef43ff-0955-1d66-7986-02c27f00497d">
+      <Execution id="8242684c-fe86-4b42-80bb-1610c5c125ab" />
+      <TestMethod codeBase="/Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Tests/bin/Debug/net10.0/InspectionSystem.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="InspectionSystem.Tests.ViewModels.InspectionViewModelTests" name="LoadModelCommand_ModelNotFound_IsModelLoadedRemainingFalse" />
+    </UnitTest>
+    <UnitTest name="ExportToCsvAsync_NullPath_ThrowsArgumentNullException" storage="/users/geseuteu/vision-inspection-portfolio/02_inspection/inspectionsystem.tests/bin/debug/net10.0/inspectionsystem.tests.dll" id="d98ac365-12b2-365e-9e87-43805f7f9788">
+      <Execution id="8fa841da-cc27-48ec-8011-15b26978265e" />
+      <TestMethod codeBase="/Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Tests/bin/Debug/net10.0/InspectionSystem.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="InspectionSystem.Tests.Core.SessionLoggerTests" name="ExportToCsvAsync_NullPath_ThrowsArgumentNullException" />
+    </UnitTest>
+    <UnitTest name="AutoSaveNg_DefaultValue_IsTrue" storage="/users/geseuteu/vision-inspection-portfolio/02_inspection/inspectionsystem.tests/bin/debug/net10.0/inspectionsystem.tests.dll" id="74904f4b-443e-edc4-92ed-aeeb4ea9b6db">
+      <Execution id="8f4ad782-931c-4251-8f3f-d4de7d76a416" />
+      <TestMethod codeBase="/Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Tests/bin/Debug/net10.0/InspectionSystem.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="InspectionSystem.Tests.ViewModels.SettingsViewModelTests" name="AutoSaveNg_DefaultValue_IsTrue" />
+    </UnitTest>
+    <UnitTest name="Save_ValidSettings_CreatesFile" storage="/users/geseuteu/vision-inspection-portfolio/02_inspection/inspectionsystem.tests/bin/debug/net10.0/inspectionsystem.tests.dll" id="eff8eefa-757a-d09c-37ec-9751439d9d40">
+      <Execution id="68caa072-11a8-473b-8f2a-904ddb1baa39" />
+      <TestMethod codeBase="/Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Tests/bin/Debug/net10.0/InspectionSystem.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="InspectionSystem.Tests.Core.SettingsServiceTests" name="Save_ValidSettings_CreatesFile" />
+    </UnitTest>
+    <UnitTest name="ResizeImage_ValidInput_ReturnsCorrectSize" storage="/users/geseuteu/vision-inspection-portfolio/02_inspection/inspectionsystem.tests/bin/debug/net10.0/inspectionsystem.tests.dll" id="e7fa4d78-a32d-0a76-f17f-93bff79444e9">
+      <Execution id="aabbcb9b-c3ee-426c-886e-180ac5de5b22" />
+      <TestMethod codeBase="/Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Tests/bin/Debug/net10.0/InspectionSystem.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="InspectionSystem.Tests.Core.ImageProcessorTests" name="ResizeImage_ValidInput_ReturnsCorrectSize" />
+    </UnitTest>
+    <UnitTest name="SaveAsync_NgResult_CreatesFile" storage="/users/geseuteu/vision-inspection-portfolio/02_inspection/inspectionsystem.tests/bin/debug/net10.0/inspectionsystem.tests.dll" id="1506bb79-0877-5207-54be-0212443ccd07">
+      <Execution id="58335cee-3c29-4719-9f6e-f30247e66103" />
+      <TestMethod codeBase="/Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Tests/bin/Debug/net10.0/InspectionSystem.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="InspectionSystem.Tests.Core.NgImageSaverTests" name="SaveAsync_NgResult_CreatesFile" />
+    </UnitTest>
+    <UnitTest name="RunInferenceAsync_ModelNotLoaded_ThrowsInvalidOperationException" storage="/users/geseuteu/vision-inspection-portfolio/02_inspection/inspectionsystem.tests/bin/debug/net10.0/inspectionsystem.tests.dll" id="075a0c48-5857-456d-a380-5dca24491b4f">
+      <Execution id="fb0aaefd-c9df-48f5-a7d3-5bdb94c912b5" />
+      <TestMethod codeBase="/Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Tests/bin/Debug/net10.0/InspectionSystem.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="InspectionSystem.Tests.Core.OnnxInferenceEngineTests" name="RunInferenceAsync_ModelNotLoaded_ThrowsInvalidOperationException" />
+    </UnitTest>
+    <UnitTest name="Load_NoFileExists_ReturnsDefaultSettings" storage="/users/geseuteu/vision-inspection-portfolio/02_inspection/inspectionsystem.tests/bin/debug/net10.0/inspectionsystem.tests.dll" id="f4c9d317-1efe-4f4d-c2ec-662d17e724d0">
+      <Execution id="48c607fc-b6b0-4c8f-a057-a9dbe336837e" />
+      <TestMethod codeBase="/Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Tests/bin/Debug/net10.0/InspectionSystem.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="InspectionSystem.Tests.Core.SettingsServiceTests" name="Load_NoFileExists_ReturnsDefaultSettings" />
+    </UnitTest>
+    <UnitTest name="SaveAsync_NgResult_FileNameContainsDefectType" storage="/users/geseuteu/vision-inspection-portfolio/02_inspection/inspectionsystem.tests/bin/debug/net10.0/inspectionsystem.tests.dll" id="a0ecde32-ca29-e39f-685c-eb6504e1ccad">
+      <Execution id="d566daa9-a0d8-40ea-a33f-101983245c88" />
+      <TestMethod codeBase="/Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Tests/bin/Debug/net10.0/InspectionSystem.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="InspectionSystem.Tests.Core.NgImageSaverTests" name="SaveAsync_NgResult_FileNameContainsDefectType" />
+    </UnitTest>
+    <UnitTest name="Test1" storage="/users/geseuteu/vision-inspection-portfolio/02_inspection/inspectionsystem.tests/bin/debug/net10.0/inspectionsystem.tests.dll" id="c466c36a-8846-105c-f1d3-b88c8eb006c8">
+      <Execution id="0f115cb6-b84d-4c4b-b221-7f11b0ca76c5" />
+      <TestMethod codeBase="/Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Tests/bin/Debug/net10.0/InspectionSystem.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="InspectionSystem.Tests.Tests" name="Test1" />
+    </UnitTest>
+    <UnitTest name="Resolve_IInferenceEngine_ReturnsInstance" storage="/users/geseuteu/vision-inspection-portfolio/02_inspection/inspectionsystem.tests/bin/debug/net10.0/inspectionsystem.tests.dll" id="6c5338cc-2763-19a2-7d95-471c2892373b">
+      <Execution id="983f02f8-6dcd-4fcd-8f8f-3b1a46eecd51" />
+      <TestMethod codeBase="/Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Tests/bin/Debug/net10.0/InspectionSystem.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="InspectionSystem.Tests.Integration.DiContainerTests" name="Resolve_IInferenceEngine_ReturnsInstance" />
+    </UnitTest>
+    <UnitTest name="SaveAsync_MultipleNgResults_CreatesMultipleFiles" storage="/users/geseuteu/vision-inspection-portfolio/02_inspection/inspectionsystem.tests/bin/debug/net10.0/inspectionsystem.tests.dll" id="7162265c-7f50-4990-9c06-aeb705427f65">
+      <Execution id="cefe96bd-4ec9-4e01-9db1-d97cd8a9b784" />
+      <TestMethod codeBase="/Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Tests/bin/Debug/net10.0/InspectionSystem.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="InspectionSystem.Tests.Core.NgImageSaverTests" name="SaveAsync_MultipleNgResults_CreatesMultipleFiles" />
+    </UnitTest>
+    <UnitTest name="Resolve_IImageProcessor_ReturnsInstance" storage="/users/geseuteu/vision-inspection-portfolio/02_inspection/inspectionsystem.tests/bin/debug/net10.0/inspectionsystem.tests.dll" id="fd43f1f3-d17d-53c1-55e5-bbe539e1e995">
+      <Execution id="bef57b1a-f9a9-40fe-b878-fdae2a5559dc" />
+      <TestMethod codeBase="/Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Tests/bin/Debug/net10.0/InspectionSystem.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="InspectionSystem.Tests.Integration.DiContainerTests" name="Resolve_IImageProcessor_ReturnsInstance" />
+    </UnitTest>
+    <UnitTest name="RunInspectionCommand_ModelNotLoaded_StatusMessageUpdated" storage="/users/geseuteu/vision-inspection-portfolio/02_inspection/inspectionsystem.tests/bin/debug/net10.0/inspectionsystem.tests.dll" id="e21fcfa8-8715-112d-b120-308de333c143">
+      <Execution id="20179ecf-9073-4e91-88fb-67c0a8644f1a" />
+      <TestMethod codeBase="/Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Tests/bin/Debug/net10.0/InspectionSystem.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="InspectionSystem.Tests.ViewModels.InspectionViewModelTests" name="RunInspectionCommand_ModelNotLoaded_StatusMessageUpdated" />
+    </UnitTest>
+    <UnitTest name="ResetDefaultsCommand_ResetsToDefaultValues" storage="/users/geseuteu/vision-inspection-portfolio/02_inspection/inspectionsystem.tests/bin/debug/net10.0/inspectionsystem.tests.dll" id="6d5f8f08-0b6d-8074-4ce8-291f2512a326">
+      <Execution id="8313a370-261e-49ad-aeea-3838b4c3c973" />
+      <TestMethod codeBase="/Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Tests/bin/Debug/net10.0/InspectionSystem.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="InspectionSystem.Tests.ViewModels.SettingsViewModelTests" name="ResetDefaultsCommand_ResetsToDefaultValues" />
+    </UnitTest>
+    <UnitTest name="DrawDetections_NullDetectionResult_ThrowsArgumentNullException" storage="/users/geseuteu/vision-inspection-portfolio/02_inspection/inspectionsystem.tests/bin/debug/net10.0/inspectionsystem.tests.dll" id="4a8fc462-5620-8b94-9322-417c7afbc716">
+      <Execution id="d7c5d9d0-4b86-4e59-9f35-824f01b93e43" />
+      <TestMethod codeBase="/Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Tests/bin/Debug/net10.0/InspectionSystem.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="InspectionSystem.Tests.Core.ImageProcessorTests" name="DrawDetections_NullDetectionResult_ThrowsArgumentNullException" />
+    </UnitTest>
+    <UnitTest name="GenerateAsync_NullImageData_ThrowsArgumentNullException" storage="/users/geseuteu/vision-inspection-portfolio/02_inspection/inspectionsystem.tests/bin/debug/net10.0/inspectionsystem.tests.dll" id="f68c45e3-d274-7cba-68f3-0e3ab603f39c">
+      <Execution id="d46a15b9-c7b2-4efd-9830-7b28b9c83a6f" />
+      <TestMethod codeBase="/Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Tests/bin/Debug/net10.0/InspectionSystem.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="InspectionSystem.Tests.Core.GradCamServiceTests" name="GenerateAsync_NullImageData_ThrowsArgumentNullException" />
+    </UnitTest>
+    <UnitTest name="SaveSettingsCommand_SavesCorrectValues" storage="/users/geseuteu/vision-inspection-portfolio/02_inspection/inspectionsystem.tests/bin/debug/net10.0/inspectionsystem.tests.dll" id="d2e494eb-32b7-7b0f-1a93-0c4849b5e770">
+      <Execution id="4109d115-48c1-407f-bdfa-16d966b79a4a" />
+      <TestMethod codeBase="/Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Tests/bin/Debug/net10.0/InspectionSystem.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="InspectionSystem.Tests.ViewModels.SettingsViewModelTests" name="SaveSettingsCommand_SavesCorrectValues" />
+    </UnitTest>
+    <UnitTest name="Resolve_ISettingsService_ReturnsInstance" storage="/users/geseuteu/vision-inspection-portfolio/02_inspection/inspectionsystem.tests/bin/debug/net10.0/inspectionsystem.tests.dll" id="ac4f482c-8eeb-260c-f7b5-487b5b33a533">
+      <Execution id="e23a9c94-e814-4219-a621-13427bbc840a" />
+      <TestMethod codeBase="/Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Tests/bin/Debug/net10.0/InspectionSystem.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="InspectionSystem.Tests.Integration.DiContainerTests" name="Resolve_ISettingsService_ReturnsInstance" />
+    </UnitTest>
+    <UnitTest name="GetStats_EstimatedFps_IsCalculatedCorrectly" storage="/users/geseuteu/vision-inspection-portfolio/02_inspection/inspectionsystem.tests/bin/debug/net10.0/inspectionsystem.tests.dll" id="cb9f06d6-315c-d282-a6ee-e7dffc59c492">
+      <Execution id="2e4dc642-c031-4b34-b7ae-4ba215535df1" />
+      <TestMethod codeBase="/Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Tests/bin/Debug/net10.0/InspectionSystem.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="InspectionSystem.Tests.Core.SessionLoggerTests" name="GetStats_EstimatedFps_IsCalculatedCorrectly" />
+    </UnitTest>
+    <UnitTest name="SaveSettingsCommand_CallsSaveOnService" storage="/users/geseuteu/vision-inspection-portfolio/02_inspection/inspectionsystem.tests/bin/debug/net10.0/inspectionsystem.tests.dll" id="581340a3-5a1c-d13d-04cc-e9b9e5770b3a">
+      <Execution id="0423d7dd-64cd-4f3b-b02e-5a69b6c607cc" />
+      <TestMethod codeBase="/Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Tests/bin/Debug/net10.0/InspectionSystem.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="InspectionSystem.Tests.ViewModels.SettingsViewModelTests" name="SaveSettingsCommand_CallsSaveOnService" />
+    </UnitTest>
+    <UnitTest name="Log_NullRecord_ThrowsArgumentNullException" storage="/users/geseuteu/vision-inspection-portfolio/02_inspection/inspectionsystem.tests/bin/debug/net10.0/inspectionsystem.tests.dll" id="75018579-c8db-d7cf-9906-7e952b3ae22d">
+      <Execution id="54f6176c-9a5b-49b0-802f-e333e670cb87" />
+      <TestMethod codeBase="/Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Tests/bin/Debug/net10.0/InspectionSystem.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="InspectionSystem.Tests.Core.SessionLoggerTests" name="Log_NullRecord_ThrowsArgumentNullException" />
+    </UnitTest>
+    <UnitTest name="SaveAsync_NgResult_CreatesDirectory" storage="/users/geseuteu/vision-inspection-portfolio/02_inspection/inspectionsystem.tests/bin/debug/net10.0/inspectionsystem.tests.dll" id="56e4fe05-8a6a-3974-0aa8-5f51a929754e">
+      <Execution id="09683a25-1d94-4df7-b516-935a1981f479" />
+      <TestMethod codeBase="/Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Tests/bin/Debug/net10.0/InspectionSystem.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="InspectionSystem.Tests.Core.NgImageSaverTests" name="SaveAsync_NgResult_CreatesDirectory" />
+    </UnitTest>
+    <UnitTest name="LoadModelAsync_NullPath_ThrowsArgumentNullException" storage="/users/geseuteu/vision-inspection-portfolio/02_inspection/inspectionsystem.tests/bin/debug/net10.0/inspectionsystem.tests.dll" id="5c4f1dc3-ea66-f4b0-8824-932281ae9261">
+      <Execution id="2575346a-ca78-43fa-b3ca-6f3b4148f077" />
+      <TestMethod codeBase="/Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Tests/bin/Debug/net10.0/InspectionSystem.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="InspectionSystem.Tests.Core.OnnxInferenceEngineTests" name="LoadModelAsync_NullPath_ThrowsArgumentNullException" />
+    </UnitTest>
+    <UnitTest name="RunInferenceAsync_NullImageData_ThrowsArgumentNullException" storage="/users/geseuteu/vision-inspection-portfolio/02_inspection/inspectionsystem.tests/bin/debug/net10.0/inspectionsystem.tests.dll" id="3caadda6-367c-b6c5-3088-c247892ed7e1">
+      <Execution id="1192a25c-e9a1-4cfd-bd8c-5fcdd8dc775c" />
+      <TestMethod codeBase="/Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Tests/bin/Debug/net10.0/InspectionSystem.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="InspectionSystem.Tests.Core.OnnxInferenceEngineTests" name="RunInferenceAsync_NullImageData_ThrowsArgumentNullException" />
+    </UnitTest>
+    <UnitTest name="ExportToCsvAsync_ValidPath_CreatesFile" storage="/users/geseuteu/vision-inspection-portfolio/02_inspection/inspectionsystem.tests/bin/debug/net10.0/inspectionsystem.tests.dll" id="2c5bdb52-4657-64f2-7e73-66adfbfb4583">
+      <Execution id="ab70093c-122c-4352-bdc9-5e21180d359f" />
+      <TestMethod codeBase="/Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Tests/bin/Debug/net10.0/InspectionSystem.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="InspectionSystem.Tests.Core.SessionLoggerTests" name="ExportToCsvAsync_ValidPath_CreatesFile" />
+    </UnitTest>
+    <UnitTest name="Resolve_ISessionLogger_IsSingleton" storage="/users/geseuteu/vision-inspection-portfolio/02_inspection/inspectionsystem.tests/bin/debug/net10.0/inspectionsystem.tests.dll" id="12b584e8-ee48-c684-51d5-457ddd2282c8">
+      <Execution id="6e0b993c-f6fa-4311-b698-5180a4bbe558" />
+      <TestMethod codeBase="/Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Tests/bin/Debug/net10.0/InspectionSystem.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="InspectionSystem.Tests.Integration.DiContainerTests" name="Resolve_ISessionLogger_IsSingleton" />
+    </UnitTest>
+    <UnitTest name="LoadModelAsync_ValidPath_SetsIsModelLoadedTrue" storage="/users/geseuteu/vision-inspection-portfolio/02_inspection/inspectionsystem.tests/bin/debug/net10.0/inspectionsystem.tests.dll" id="d1c6ca28-6976-8d44-e4a0-7d5111e10da4">
+      <Execution id="21ba0b18-2619-4c7b-8d1d-4f1359b7777c" />
+      <TestMethod codeBase="/Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Tests/bin/Debug/net10.0/InspectionSystem.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="InspectionSystem.Tests.Core.OnnxInferenceEngineTests" name="LoadModelAsync_ValidPath_SetsIsModelLoadedTrue" />
+    </UnitTest>
+    <UnitTest name="Constructor_InitialState_DetectionCountIsZero" storage="/users/geseuteu/vision-inspection-portfolio/02_inspection/inspectionsystem.tests/bin/debug/net10.0/inspectionsystem.tests.dll" id="86bfb2d6-7f43-4ff7-51a9-ba230785b7ce">
+      <Execution id="bc475d2d-ddc4-4f8b-87a9-b251ebe3dd9e" />
+      <TestMethod codeBase="/Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Tests/bin/Debug/net10.0/InspectionSystem.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="InspectionSystem.Tests.ViewModels.InspectionViewModelTests" name="Constructor_InitialState_DetectionCountIsZero" />
+    </UnitTest>
+    <UnitTest name="Load_CorruptedFile_ReturnsDefaultSettings" storage="/users/geseuteu/vision-inspection-portfolio/02_inspection/inspectionsystem.tests/bin/debug/net10.0/inspectionsystem.tests.dll" id="816ba126-d94e-dbfe-cac6-b4f5fa1cf643">
+      <Execution id="47205320-c1e0-4812-af05-9f2274854a32" />
+      <TestMethod codeBase="/Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Tests/bin/Debug/net10.0/InspectionSystem.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="InspectionSystem.Tests.Core.SettingsServiceTests" name="Load_CorruptedFile_ReturnsDefaultSettings" />
+    </UnitTest>
+    <UnitTest name="IsModelLoaded_BeforeLoad_ReturnsFalse" storage="/users/geseuteu/vision-inspection-portfolio/02_inspection/inspectionsystem.tests/bin/debug/net10.0/inspectionsystem.tests.dll" id="87092c49-3e0f-1747-69f8-a009bb1ddc6c">
+      <Execution id="ea19d2bb-eb13-4823-96f1-a79ee1f46486" />
+      <TestMethod codeBase="/Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Tests/bin/Debug/net10.0/InspectionSystem.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="InspectionSystem.Tests.Core.OnnxInferenceEngineTests" name="IsModelLoaded_BeforeLoad_ReturnsFalse" />
+    </UnitTest>
+    <UnitTest name="Constructor_InitialState_AutoSaveNgFromSettings" storage="/users/geseuteu/vision-inspection-portfolio/02_inspection/inspectionsystem.tests/bin/debug/net10.0/inspectionsystem.tests.dll" id="93606222-ef74-2a19-bf5a-cbffc9b6ad96">
+      <Execution id="57d1ae7c-f814-4878-9a42-7333e62bbdb0" />
+      <TestMethod codeBase="/Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Tests/bin/Debug/net10.0/InspectionSystem.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="InspectionSystem.Tests.ViewModels.InspectionViewModelTests" name="Constructor_InitialState_AutoSaveNgFromSettings" />
+    </UnitTest>
+    <UnitTest name="Constructor_InitialState_IouThresholdFromSettings" storage="/users/geseuteu/vision-inspection-portfolio/02_inspection/inspectionsystem.tests/bin/debug/net10.0/inspectionsystem.tests.dll" id="c2a95348-414b-7053-cc04-74c2a9708f52">
+      <Execution id="85d008a1-cfff-4264-a602-4ffd63bd462c" />
+      <TestMethod codeBase="/Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Tests/bin/Debug/net10.0/InspectionSystem.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="InspectionSystem.Tests.ViewModels.InspectionViewModelTests" name="Constructor_InitialState_IouThresholdFromSettings" />
+    </UnitTest>
+    <UnitTest name="Save_NullSettings_ThrowsArgumentNullException" storage="/users/geseuteu/vision-inspection-portfolio/02_inspection/inspectionsystem.tests/bin/debug/net10.0/inspectionsystem.tests.dll" id="c99c6f05-5422-3ba9-f22c-16630d5c39e7">
+      <Execution id="653ebb2a-55b2-4a93-a7df-86be2da1f403" />
+      <TestMethod codeBase="/Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Tests/bin/Debug/net10.0/InspectionSystem.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="InspectionSystem.Tests.Core.SettingsServiceTests" name="Save_NullSettings_ThrowsArgumentNullException" />
+    </UnitTest>
+    <UnitTest name="GenerateAsync_ApiNotAvailable_ReturnsFailureResult" storage="/users/geseuteu/vision-inspection-portfolio/02_inspection/inspectionsystem.tests/bin/debug/net10.0/inspectionsystem.tests.dll" id="ae655213-16b6-c0c0-51ee-e4c41249c331">
+      <Execution id="6d93d8d1-c1d3-465d-90e9-d51f1ec0584a" />
+      <TestMethod codeBase="/Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Tests/bin/Debug/net10.0/InspectionSystem.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="InspectionSystem.Tests.Core.GradCamServiceTests" name="GenerateAsync_ApiNotAvailable_ReturnsFailureResult" />
+    </UnitTest>
+    <UnitTest name="LoadModelAsync_NonExistentPath_ThrowsFileNotFoundException" storage="/users/geseuteu/vision-inspection-portfolio/02_inspection/inspectionsystem.tests/bin/debug/net10.0/inspectionsystem.tests.dll" id="584daed4-8654-85de-d36c-5e6e905cec55">
+      <Execution id="2057aa25-32fa-4770-8a45-7181cd8422eb" />
+      <TestMethod codeBase="/Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Tests/bin/Debug/net10.0/InspectionSystem.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="InspectionSystem.Tests.Core.OnnxInferenceEngineTests" name="LoadModelAsync_NonExistentPath_ThrowsFileNotFoundException" />
+    </UnitTest>
+    <UnitTest name="SaveAsync_NgResult_FileNameContainsNG" storage="/users/geseuteu/vision-inspection-portfolio/02_inspection/inspectionsystem.tests/bin/debug/net10.0/inspectionsystem.tests.dll" id="094c3e19-a835-507f-18e3-17c97b3c2cc5">
+      <Execution id="c61d6ee5-e78b-4ecd-8a06-a4fe5eef3849" />
+      <TestMethod codeBase="/Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Tests/bin/Debug/net10.0/InspectionSystem.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="InspectionSystem.Tests.Core.NgImageSaverTests" name="SaveAsync_NgResult_FileNameContainsNG" />
+    </UnitTest>
+    <UnitTest name="SaveAsync_EmptyImageData_ThrowsArgumentNullException" storage="/users/geseuteu/vision-inspection-portfolio/02_inspection/inspectionsystem.tests/bin/debug/net10.0/inspectionsystem.tests.dll" id="d545a9fb-c421-e095-c258-82f232fe31e6">
+      <Execution id="d81244e0-11b9-4238-9599-ea0e74a8ca03" />
+      <TestMethod codeBase="/Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Tests/bin/Debug/net10.0/InspectionSystem.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="InspectionSystem.Tests.Core.NgImageSaverTests" name="SaveAsync_EmptyImageData_ThrowsArgumentNullException" />
+    </UnitTest>
+    <UnitTest name="Clear_AfterLogging_EmptiesHistory" storage="/users/geseuteu/vision-inspection-portfolio/02_inspection/inspectionsystem.tests/bin/debug/net10.0/inspectionsystem.tests.dll" id="ec625002-2b17-dc65-a8d5-cb36d0f6beee">
+      <Execution id="7eb618d0-9554-4295-ab2a-7ea7f4388421" />
+      <TestMethod codeBase="/Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Tests/bin/Debug/net10.0/InspectionSystem.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="InspectionSystem.Tests.Core.SessionLoggerTests" name="Clear_AfterLogging_EmptiesHistory" />
+    </UnitTest>
+    <UnitTest name="Constructor_InitialState_IsModelLoadedFalse" storage="/users/geseuteu/vision-inspection-portfolio/02_inspection/inspectionsystem.tests/bin/debug/net10.0/inspectionsystem.tests.dll" id="c53572b3-14b9-3656-ba75-9d6de2e25a2b">
+      <Execution id="8fc83ada-8e4c-481e-b846-4112b4dc8bdd" />
+      <TestMethod codeBase="/Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Tests/bin/Debug/net10.0/InspectionSystem.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="InspectionSystem.Tests.ViewModels.InspectionViewModelTests" name="Constructor_InitialState_IsModelLoadedFalse" />
+    </UnitTest>
+    <UnitTest name="Save_UpdatesCurrent" storage="/users/geseuteu/vision-inspection-portfolio/02_inspection/inspectionsystem.tests/bin/debug/net10.0/inspectionsystem.tests.dll" id="e52720b0-b752-5d00-d611-41e69acb3daa">
+      <Execution id="c5867210-bdef-41de-92d9-0dca1380b753" />
+      <TestMethod codeBase="/Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Tests/bin/Debug/net10.0/InspectionSystem.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="InspectionSystem.Tests.Core.SettingsServiceTests" name="Save_UpdatesCurrent" />
+    </UnitTest>
+    <UnitTest name="GenerateAsync_EmptyImageData_ThrowsArgumentNullException" storage="/users/geseuteu/vision-inspection-portfolio/02_inspection/inspectionsystem.tests/bin/debug/net10.0/inspectionsystem.tests.dll" id="9673163d-e899-b238-93e4-8f2478f20777">
+      <Execution id="4316f36d-e116-4e2c-a138-aa212a5f7439" />
+      <TestMethod codeBase="/Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Tests/bin/Debug/net10.0/InspectionSystem.Tests.dll" adapterTypeName="executor://nunit3testexecutor/" className="InspectionSystem.Tests.Core.GradCamServiceTests" name="GenerateAsync_EmptyImageData_ThrowsArgumentNullException" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestEntries>
+    <TestEntry testId="002d5b40-0863-510a-d3cd-6c64747ce256" executionId="550eb59f-ad71-4c24-b309-8298ff678967" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="93606222-ef74-2a19-bf5a-cbffc9b6ad96" executionId="57d1ae7c-f814-4878-9a42-7333e62bbdb0" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="28bef89c-e083-6a3d-af3b-10ef8dcbbefc" executionId="60ff097b-52cd-454c-bfb2-4136a50c0c4b" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="9cf2b712-b852-924b-3898-9616e2126c92" executionId="59b0a4db-6932-4c3f-a32e-25a6d7768c44" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="2e13f878-3221-6fc6-a35a-f5fb31b71805" executionId="5b7cf8b4-e768-47ed-bf00-a79973fddb4f" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="67674203-32d9-832d-603e-dda17d2c4b9b" executionId="d7e335dd-2adf-452c-aece-246218b130a0" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="d1c6ca28-6976-8d44-e4a0-7d5111e10da4" executionId="21ba0b18-2619-4c7b-8d1d-4f1359b7777c" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="d98ac365-12b2-365e-9e87-43805f7f9788" executionId="8fa841da-cc27-48ec-8011-15b26978265e" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="4a8fc462-5620-8b94-9322-417c7afbc716" executionId="d7c5d9d0-4b86-4e59-9f35-824f01b93e43" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="19e2ac1a-ddae-0209-7891-59c69485f9ac" executionId="c2d7a8d9-d05c-4c55-bdab-284bb04b74bf" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="9673163d-e899-b238-93e4-8f2478f20777" executionId="4316f36d-e116-4e2c-a138-aa212a5f7439" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="3d9da90a-07ee-5548-0c1f-fc2964f72141" executionId="80b451c0-99ee-4daf-9244-d3844067e23d" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="de178852-2832-15dc-cd58-67e3a528047f" executionId="e618b9e9-cc27-416a-97d2-bb63c33050fd" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="e21fcfa8-8715-112d-b120-308de333c143" executionId="20179ecf-9073-4e91-88fb-67c0a8644f1a" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="d2e494eb-32b7-7b0f-1a93-0c4849b5e770" executionId="4109d115-48c1-407f-bdfa-16d966b79a4a" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="b3033a0e-8850-3e49-b307-4609bd40a7af" executionId="ce58ed5f-e80e-43b0-a6bf-00d32818f1ad" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="79da8a44-121a-c29a-6d61-d7e386dcd053" executionId="9ab47d97-62c5-4b08-98ad-7bfa5b1d76ef" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="75018579-c8db-d7cf-9906-7e952b3ae22d" executionId="54f6176c-9a5b-49b0-802f-e333e670cb87" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="f4c9d317-1efe-4f4d-c2ec-662d17e724d0" executionId="48c607fc-b6b0-4c8f-a057-a9dbe336837e" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="2f33f113-b3c4-223a-2bb7-e3db95a197ce" executionId="abb20d46-47d0-4353-bf34-7ac8acf3384a" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="f2928a6a-e6bd-ef1a-3343-33049b0a6cc5" executionId="c8b0916c-78c8-488f-8ef8-012158daf83f" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="9e734fd1-96a7-d738-4a16-77868b3edc55" executionId="6030efd8-3fd5-4b22-9a1c-0db7c089efe0" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="8ea013df-9795-be01-9b78-2b309d8475b4" executionId="2dd2c92f-7f70-4dd5-96c2-f7067c5feafe" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="74904f4b-443e-edc4-92ed-aeeb4ea9b6db" executionId="8f4ad782-931c-4251-8f3f-d4de7d76a416" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="1b060aa7-fd77-8a53-6b3d-f2ec5eb961da" executionId="23aa2e14-a76f-4dcc-ab56-ce1ab24118a5" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="b4c6eacc-022d-5c14-ae50-61c10f06f530" executionId="7a129dd2-85d7-4a06-aac0-01fe23ad285f" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="c99c6f05-5422-3ba9-f22c-16630d5c39e7" executionId="653ebb2a-55b2-4a93-a7df-86be2da1f403" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="c53572b3-14b9-3656-ba75-9d6de2e25a2b" executionId="8fc83ada-8e4c-481e-b846-4112b4dc8bdd" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="cd60b788-f25f-7b27-e1ed-34255aad4949" executionId="c45f57f6-9dca-4123-85f1-13d576ff01c2" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="f68c45e3-d274-7cba-68f3-0e3ab603f39c" executionId="d46a15b9-c7b2-4efd-9830-7b28b9c83a6f" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="e52720b0-b752-5d00-d611-41e69acb3daa" executionId="c5867210-bdef-41de-92d9-0dca1380b753" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="016e3057-1765-f44c-e852-d6578df75a11" executionId="d8afbc6b-42c1-42d5-849b-fb00ef06a70b" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="6a7b135c-af40-594c-7d1e-eea3516a506c" executionId="3fc57184-3599-4de8-8fce-4ae991981a71" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="88f4c1f9-a90b-d8b8-7f32-d02aac4588b5" executionId="3053ccce-3995-4a5e-9003-fa668ee61ea3" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="3caadda6-367c-b6c5-3088-c247892ed7e1" executionId="1192a25c-e9a1-4cfd-bd8c-5fcdd8dc775c" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="11c9b67a-8888-e46f-05d8-3e1fcd404e2f" executionId="53594389-9d46-4cee-a8c6-44fd1cb1cbab" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="0d1d2d64-f8ed-c336-6fea-8dbc74eadc57" executionId="7377d17a-ab7b-46a2-9025-8c8fb8ec8a28" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="9baac37c-f755-91a6-4ba5-ee7ebbfca14b" executionId="be2929c2-9291-45dc-a359-0aff43dffb9f" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="55f075bb-cc7d-2eac-e9dc-69d095eba35a" executionId="36ace91d-ae4b-4dfc-8ee9-a3c4073273c5" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="3bef43ff-0955-1d66-7986-02c27f00497d" executionId="8242684c-fe86-4b42-80bb-1610c5c125ab" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="585e149d-fc4a-4939-e811-616a06a1064b" executionId="cf5f4642-fcf5-4904-bfc5-88853c47ec0d" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="87092c49-3e0f-1747-69f8-a009bb1ddc6c" executionId="ea19d2bb-eb13-4823-96f1-a79ee1f46486" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="fd43f1f3-d17d-53c1-55e5-bbe539e1e995" executionId="bef57b1a-f9a9-40fe-b878-fdae2a5559dc" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="ec625002-2b17-dc65-a8d5-cb36d0f6beee" executionId="7eb618d0-9554-4295-ab2a-7ea7f4388421" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="a0ecde32-ca29-e39f-685c-eb6504e1ccad" executionId="d566daa9-a0d8-40ea-a33f-101983245c88" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="bae0fa6c-1d84-8b4f-09c0-450a170649e9" executionId="b4aa5d6f-a58a-4ee9-9c3b-5bad251ade1b" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="816ba126-d94e-dbfe-cac6-b4f5fa1cf643" executionId="47205320-c1e0-4812-af05-9f2274854a32" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="cb9f06d6-315c-d282-a6ee-e7dffc59c492" executionId="2e4dc642-c031-4b34-b7ae-4ba215535df1" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="c9220602-5a52-5f2a-d77d-641778491cbe" executionId="70217ee2-a2d1-4d15-aff8-542ab321addf" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="243036b1-cbda-86f8-aaeb-08987aff4df7" executionId="32c4403a-6b8e-42d6-abe3-a4e693e41623" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="c8289331-fe36-ec92-1641-e7afabd3a78d" executionId="985e6203-e446-4f75-a8c7-4bdf36d8f79c" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="d5affb9e-4e33-9e09-c59e-579fb62a7d8e" executionId="dd277cf0-2db0-477a-866d-2f667b6ea701" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="1ffe3259-427d-4f6c-b6c3-8b0893c78604" executionId="dd6f5de0-fc05-4863-8368-7c9ad1c635d2" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="33c35348-7f9a-7d92-fea1-43a9d80ba9d5" executionId="5d7e62fa-7798-4847-bea8-a0c6a0ccf1a8" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="d6ed9540-6c7b-31a3-9de2-168b8401d89b" executionId="ab29cd7f-761d-447c-8229-14cd1c0ac134" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="2f8bd116-6ec6-6949-08f4-b38712eabb56" executionId="c1de23fb-73ca-40af-a081-ebd05d00cf54" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="72c0d2a2-21af-feb6-625c-0441d1d294db" executionId="6c8cb128-53a4-4193-9d4f-de5b8e48ae18" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="c466c36a-8846-105c-f1d3-b88c8eb006c8" executionId="0f115cb6-b84d-4c4b-b221-7f11b0ca76c5" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="527defe1-fc8e-5830-d1db-918518b904c4" executionId="efd7cae7-e48f-4dc8-91ee-e39566d477e9" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="e7fa4d78-a32d-0a76-f17f-93bff79444e9" executionId="aabbcb9b-c3ee-426c-886e-180ac5de5b22" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="86bfb2d6-7f43-4ff7-51a9-ba230785b7ce" executionId="bc475d2d-ddc4-4f8b-87a9-b251ebe3dd9e" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="581340a3-5a1c-d13d-04cc-e9b9e5770b3a" executionId="0423d7dd-64cd-4f3b-b02e-5a69b6c607cc" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="ef0b2acf-56a8-98b2-c8fa-cd8c030b30b1" executionId="f4109edc-d68b-46dc-8fc6-55fad70b197d" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="56e4fe05-8a6a-3974-0aa8-5f51a929754e" executionId="09683a25-1d94-4df7-b516-935a1981f479" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="e5a5c2ce-7e1d-1a90-649b-5f6a570fd3de" executionId="ce9cbf10-aea7-432d-8da4-7a553a4b4655" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="ae655213-16b6-c0c0-51ee-e4c41249c331" executionId="6d93d8d1-c1d3-465d-90e9-d51f1ec0584a" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="4a094d5a-92f6-cf6b-9b5c-10fc9a86763b" executionId="8c9507b7-ab09-40ed-88cf-81daaccfbafb" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="19284a6f-100f-2484-46ce-42f33d45eaa0" executionId="94460a2e-c355-4f86-bb62-729fb440f7dd" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="adfbb0bb-a1e6-7cd5-0700-964f8934f0ce" executionId="5b3ce988-bafc-4a75-8833-eddda7a46e1b" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="6d5f8f08-0b6d-8074-4ce8-291f2512a326" executionId="8313a370-261e-49ad-aeea-3838b4c3c973" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="094c3e19-a835-507f-18e3-17c97b3c2cc5" executionId="c61d6ee5-e78b-4ecd-8a06-a4fe5eef3849" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="a4146716-970e-301c-e54b-0c57fbcd0478" executionId="3f62d688-ca04-4de4-95a9-61114e6078e5" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="c2a95348-414b-7053-cc04-74c2a9708f52" executionId="85d008a1-cfff-4264-a602-4ffd63bd462c" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="1506bb79-0877-5207-54be-0212443ccd07" executionId="58335cee-3c29-4719-9f6e-f30247e66103" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="5c4f1dc3-ea66-f4b0-8824-932281ae9261" executionId="2575346a-ca78-43fa-b3ca-6f3b4148f077" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="0f4f355b-3bac-1f3e-5437-79c5479946fa" executionId="6f45d403-b793-4000-be94-23c994016b24" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="232a167e-fb91-fcca-455e-25ade970f202" executionId="6394bd98-49e9-42e8-a9f5-f21c01330c28" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="075a0c48-5857-456d-a380-5dca24491b4f" executionId="fb0aaefd-c9df-48f5-a7d3-5bdb94c912b5" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="88fdbb18-4ee6-8c91-63d7-b5114e9feda7" executionId="feb021b3-f62f-4117-af15-c74dc48f34b0" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="ac4f482c-8eeb-260c-f7b5-487b5b33a533" executionId="e23a9c94-e814-4219-a621-13427bbc840a" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="12b584e8-ee48-c684-51d5-457ddd2282c8" executionId="6e0b993c-f6fa-4311-b698-5180a4bbe558" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="7162265c-7f50-4990-9c06-aeb705427f65" executionId="cefe96bd-4ec9-4e01-9db1-d97cd8a9b784" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="eff8eefa-757a-d09c-37ec-9751439d9d40" executionId="68caa072-11a8-473b-8f2a-904ddb1baa39" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="2c5bdb52-4657-64f2-7e73-66adfbfb4583" executionId="ab70093c-122c-4352-bdc9-5e21180d359f" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="73c6c95c-19e8-55ff-4480-d94facf3d43a" executionId="25d0517d-2a79-4b3a-827c-e7c525d5e104" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="d545a9fb-c421-e095-c258-82f232fe31e6" executionId="d81244e0-11b9-4238-9599-ea0e74a8ca03" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="86db36f8-0f45-eb07-c1fc-c78ed978692b" executionId="2b9528f1-5118-43b6-9fe5-03327f90400e" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="efbd26bf-5ead-d39a-1dbd-868b92fd49d7" executionId="f9225a33-5fd2-4f67-a75c-eee4e67b2d1c" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="6c5338cc-2763-19a2-7d95-471c2892373b" executionId="983f02f8-6dcd-4fcd-8f8f-3b1a46eecd51" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="34426dcc-e3f7-f0a2-e653-bb8a897a3dec" executionId="8e306611-5ec7-450d-b9cc-21ba483b5093" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="584daed4-8654-85de-d36c-5e6e905cec55" executionId="2057aa25-32fa-4770-8a45-7181cd8422eb" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <TestLists>
+    <TestList name="목록에 없는 결과" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="로드된 모든 결과" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <ResultSummary outcome="Failed">
+    <Counters total="91" executed="91" passed="86" failed="5" error="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+    <Output>
+      <StdOut>NUnit Adapter 6.1.0.0: Test execution started
+Running all tests in /Users/geseuteu/vision-inspection-portfolio/02_inspection/InspectionSystem.Tests/bin/Debug/net10.0/InspectionSystem.Tests.dll
+   NUnit3TestExecutor discovered 91 of 91 NUnit test cases using Current Discovery mode, Non-Explicit run
+info: InspectionSystem.Core.Services.SettingsService[0]
+      Settings file not found. Using defaults: test_settings.json
+
+info: InspectionSystem.Core.Services.SettingsService[0]
+      Settings file not found. Using defaults: test_settings.json
+
+info: InspectionSystem.Core.Services.SettingsService[0]
+      Settings file not found. Using defaults: test_settings.json
+
+NUnit Adapter 6.1.0.0: Test execution complete
+</StdOut>
+    </Output>
+  </ResultSummary>
+</TestRun>

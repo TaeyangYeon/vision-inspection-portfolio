@@ -32,7 +32,8 @@ namespace InspectionSystem.UI.DependencyInjection
             services.AddTransient<IInferenceEngine>(provider =>
             {
                 var logger = provider.GetRequiredService<ILogger<OnnxInferenceEngine>>();
-                return new OnnxInferenceEngine(logger);
+                var imageProcessor = provider.GetRequiredService<IImageProcessor>();
+                return new OnnxInferenceEngine(logger, imageProcessor);
             });
 
             services.AddTransient<IImageProcessor>(_ => new ImageProcessor());

@@ -17,7 +17,8 @@ namespace InspectionSystem.Tests.Core
         [SetUp]
         public void SetUp()
         {
-            _engine = new OnnxInferenceEngine(NullLogger<OnnxInferenceEngine>.Instance);
+            var imageProcessor = new ImageProcessor();
+            _engine = new OnnxInferenceEngine(NullLogger<OnnxInferenceEngine>.Instance, imageProcessor);
             _modelPath = Path.GetFullPath(
                 Path.Combine(
                     AppContext.BaseDirectory,

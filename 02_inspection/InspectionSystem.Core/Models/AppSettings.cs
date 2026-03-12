@@ -2,7 +2,24 @@ namespace InspectionSystem.Core.Models
 {
     public class AppSettings
     {
-        public string ModelPath { get; set; } = "models/best.onnx";
+        public string ModelPath { get; set; } = GetDefaultModelPath();
+
+        private static string GetDefaultModelPath()
+        {
+            var baseDir = AppContext.BaseDirectory;
+            var candidates = new[]
+            {
+                System.IO.Path.Combine(baseDir, "models", "best.onnx"),
+                System.IO.Path.Combine(baseDir, "..", "..", "..", "..", "..", "02_inspection", "models", "best.onnx"),
+                System.IO.Path.GetFullPath(System.IO.Path.Combine(baseDir, "..", "..", "..", "..", "models", "best.onnx")),
+            };
+            foreach (var path in candidates)
+            {
+                if (System.IO.File.Exists(path))
+                    return System.IO.Path.GetFullPath(path);
+            }
+            return "models/best.onnx";
+        }
         public float ConfidenceThreshold { get; set; } = 0.25f;
         public float IouThreshold { get; set; } = 0.45f;
         public int ImageSize { get; set; } = 640;

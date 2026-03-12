@@ -15,14 +15,16 @@ namespace InspectionSystem.Core.Services
     public class OnnxInferenceEngine : IInferenceEngine, IDisposable
     {
         private readonly ILogger<OnnxInferenceEngine> _logger;
+        private readonly IImageProcessor _imageProcessor;
         private InferenceSession? _session;
         private bool _disposed = false;
 
         public bool IsModelLoaded => _session != null;
 
-        public OnnxInferenceEngine(ILogger<OnnxInferenceEngine> logger)
+        public OnnxInferenceEngine(ILogger<OnnxInferenceEngine> logger, IImageProcessor imageProcessor)
         {
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+            _imageProcessor = imageProcessor ?? throw new ArgumentNullException(nameof(imageProcessor));
         }
 
         public Task LoadModelAsync(string modelPath, CancellationToken cancellationToken = default)
@@ -63,11 +65,10 @@ namespace InspectionSystem.Core.Services
             var stopwatch = Stopwatch.StartNew();
 
             int imgSize = options.ImageSize;
-            float scale = (float)imgSize / Math.Max(width, height);
-            int newW = (int)(width * scale);
-            int newH = (int)(height * scale);
 
-            float[] tensor = PrepareTensor(imageData, width, height, imgSize, newW, newH);
+            var processedImage = _imageProcessor.Preprocess(imageData, width, height, imgSize);
+            float[] tensor = processedImage.Tensor;
+            float scale = processedImage.Scale;
 
             var inputName = _session.InputMetadata.Keys.First();
             var dimensions = new int[] { 1, 3, imgSize, imgSize };
@@ -104,43 +105,6 @@ namespace InspectionSystem.Core.Services
             return Task.FromResult(result);
         }
 
-        private float[] PrepareTensor(
-            byte[] imageData, int width, int height,
-            int imgSize, int newW, int newH)
-        {
-            float[] tensor = new float[3 * imgSize * imgSize];
-            float fillVal = 114f / 255f;
-            for (int i = 0; i < tensor.Length; i++)
-                tensor[i] = fillVal;
-
-            int channels = imageData.Length / (width * height);
-            float scaleX = (float)newW / width;
-            float scaleY = (float)newH / height;
-
-            for (int y = 0; y < newH; y++)
-            {
-                int srcY = (int)(y / scaleY);
-                srcY = Math.Clamp(srcY, 0, height - 1);
-
-                for (int x = 0; x < newW; x++)
-                {
-                    int srcX = (int)(x / scaleX);
-                    srcX = Math.Clamp(srcX, 0, width - 1);
-
-                    int srcIdx = (srcY * width + srcX) * channels;
-
-                    float r = imageData[srcIdx] / 255f;
-                    float g = channels > 1 ? imageData[srcIdx + 1] / 255f : r;
-                    float b = channels > 2 ? imageData[srcIdx + 2] / 255f : r;
-
-                    tensor[0 * imgSize * imgSize + y * imgSize + x] = r;
-                    tensor[1 * imgSize * imgSize + y * imgSize + x] = g;
-                    tensor[2 * imgSize * imgSize + y * imgSize + x] = b;
-                }
-            }
-
-            return tensor;
-        }
 
         private List<Detection> ParseDetections(
             float[] output, int[] shape,
@@ -149,6 +113,11 @@ namespace InspectionSystem.Core.Services
         {
             int numClasses = shape[shape.Length - 2] - 4;
             int numPredictions = shape[shape.Length - 1];
+
+            _logger.LogDebug($"Shape: [{string.Join(", ", shape)}], Classes: {numClasses}, Predictions: {numPredictions}");
+            
+            float maxConfFound = 0f;
+            int totalAboveThreshold = 0;
 
             var rawDetections = new List<(BoundingBox box, float conf, int cls)>();
 
@@ -171,6 +140,12 @@ namespace InspectionSystem.Core.Services
                     }
                 }
 
+                if (maxConf > maxConfFound)
+                    maxConfFound = maxConf;
+
+                if (maxConf >= options.ConfidenceThreshold)
+                    totalAboveThreshold++;
+
                 if (maxConf < options.ConfidenceThreshold)
                     continue;
 
@@ -184,6 +159,8 @@ namespace InspectionSystem.Core.Services
                     maxConf, maxCls
                 ));
             }
+
+            _logger.LogDebug($"Max confidence found: {maxConfFound:F6}, Above threshold ({options.ConfidenceThreshold}): {totalAboveThreshold}, Raw detections: {rawDetections.Count}");
 
             return ApplyNms(rawDetections, options.IouThreshold);
         }

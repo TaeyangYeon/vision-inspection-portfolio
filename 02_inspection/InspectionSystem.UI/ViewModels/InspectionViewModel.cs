@@ -11,6 +11,7 @@ using InspectionSystem.Core.Interfaces;
 using InspectionSystem.Core.Models;
 using InspectionSystem.Core.Services;
 using Microsoft.Extensions.Logging;
+using OpenCvSharp;
 
 namespace InspectionSystem.UI.ViewModels
 {
@@ -342,12 +343,41 @@ namespace InspectionSystem.UI.ViewModels
         {
             using var ms = new MemoryStream();
             bitmap.Save(ms);
-            return ms.ToArray();
+            var imageBytes = ms.ToArray();
+            
+            using var mat = OpenCvSharp.Cv2.ImDecode(imageBytes, OpenCvSharp.ImreadModes.Color);
+            using var rgb = new OpenCvSharp.Mat();
+            OpenCvSharp.Cv2.CvtColor(mat, rgb, OpenCvSharp.ColorConversionCodes.BGR2RGB);
+            
+            rgb.GetArray(out OpenCvSharp.Vec3b[] pixels);
+            var result = new byte[pixels.Length * 3];
+            
+            for (int i = 0; i < pixels.Length; i++)
+            {
+                result[i * 3 + 0] = pixels[i].Item0;     // R
+                result[i * 3 + 1] = pixels[i].Item1;     // G
+                result[i * 3 + 2] = pixels[i].Item2;     // B
+            }
+            
+            return result;
         }
 
         private Bitmap ConvertRgbBytesToBitmap(byte[] data, int width, int height)
         {
-            using var ms = new MemoryStream(data);
+            var pixels = new OpenCvSharp.Vec3b[width * height];
+            for (int i = 0; i < width * height; i++)
+            {
+                var srcIndex = i * 3;
+                pixels[i] = new OpenCvSharp.Vec3b(
+                    data[srcIndex + 2],     // B
+                    data[srcIndex + 1],     // G 
+                    data[srcIndex + 0]);    // R
+            }
+            
+            using var mat = OpenCvSharp.Mat.FromPixelData(height, width, OpenCvSharp.MatType.CV_8UC3, pixels);
+            OpenCvSharp.Cv2.ImEncode(".png", mat, out var encodedBytes);
+            
+            using var ms = new MemoryStream(encodedBytes);
             return new Bitmap(ms);
         }
     }
