@@ -195,7 +195,7 @@ vision-inspection-portfolio/
 - Day 28 - DONE: ViewModel NUnit tests (InspectionViewModel + SettingsViewModel), NgImageSaver implemented and tested. All tests pass 0 fail 0 skip.
 
 ### WEEK 5 (Day 29~35) - Program 2 Foundation (SOLID + NUnit)
-- Day 29 - TODO: Project restructure - Core / UI / Tests separation + DI setup
+- Day 29 - DONE: Multithreaded inference (Task + SemaphoreSlim), NG auto-save integrated, concurrent inspection guard, all NUnit tests pass 0 fail 0 skip
 - Day 30 - TODO: Define all interfaces (IInferenceEngine, IImageProcessor, IGradCamService)
 - Day 31 - TODO: OnnxInferenceEngine implementation + NUnit tests
 - Day 32 - TODO: ImageProcessor implementation + NUnit tests
@@ -296,6 +296,6 @@ vision-inspection-portfolio/
 3. Claude will resume from exact current state.
 
 ---
-Last updated: Day 28 complete
-Next: Day 29 - Multithreaded inference + NG auto-save integration into InspectionViewModel
+Last updated: Day 29 complete
+Next: Day 30 - CSV export UI + inference speed benchmark view
 ---
