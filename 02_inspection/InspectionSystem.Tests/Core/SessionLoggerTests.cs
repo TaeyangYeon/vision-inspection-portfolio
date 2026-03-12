@@ -138,8 +138,8 @@ namespace InspectionSystem.Tests.Core
                 Assert.That(File.Exists(path), Is.True);
                 string content = await File.ReadAllTextAsync(path);
                 Assert.That(content, Does.Contain("Timestamp"));
-                Assert.That(content, Does.Contain("NG"));
-                Assert.That(content, Does.Contain("OK"));
+                Assert.That(content, Does.Contain("True"));
+                Assert.That(content, Does.Contain("False"));
             }
             finally
             {
@@ -164,6 +164,34 @@ namespace InspectionSystem.Tests.Core
             {
                 if (File.Exists(path)) File.Delete(path);
             }
+        }
+
+        [Test]
+        public async Task ExportToCsvAsync_WithRecords_CreatesFile()
+        {
+            _logger.Log(new InspectionRecord
+            {
+                Timestamp = DateTime.Now,
+                ImagePath = "test.jpg",
+                IsNG = true,
+                DefectCount = 1,
+                InferenceTimeMs = 35.0,
+                Confidence = 0.85f,
+            });
+
+            var csvPath = System.IO.Path.Combine(
+                System.IO.Path.GetTempPath(),
+                $"test_{System.Guid.NewGuid()}.csv"
+            );
+
+            await _logger.ExportToCsvAsync(csvPath);
+
+            Assert.That(System.IO.File.Exists(csvPath), Is.True);
+            var content = await System.IO.File.ReadAllTextAsync(csvPath);
+            Assert.That(content, Does.Contain("Timestamp"));
+            Assert.That(content, Does.Contain("test.jpg"));
+
+            System.IO.File.Delete(csvPath);
         }
 
         [Test]

@@ -1,0 +1,278 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:InspectionSystem.UI.ViewModels"
+             x:Class="InspectionSystem.UI.Views.BenchmarkView"
+             x:DataType="vm:BenchmarkViewModel">
+
+    <Grid RowDefinitions="Auto,*,Auto">
+
+        <!-- Toolbar -->
+        <Border Grid.Row="0"
+                Background="#181825"
+                BorderBrush="#313244"
+                BorderThickness="0,0,0,1"
+                Padding="12,8">
+            <StackPanel Orientation="Horizontal" Spacing="8">
+                <Button Content="Run Benchmark"
+                        Command="{Binding RunBenchmarkCommand}"
+                        IsEnabled="{Binding IsRunning,
+                            Converter={x:Static BoolConverters.Not}}"
+                        Background="#0078D4"
+                        Foreground="White"
+                        Padding="12,6"/>
+                <Button Content="Refresh Session"
+                        Command="{Binding RefreshSessionRecordsCommand}"
+                        Background="#313244"
+                        Foreground="#CDD6F4"
+                        Padding="12,6"/>
+
+                <Separator Width="1" Background="#313244" Margin="4,0"/>
+
+                <StackPanel Orientation="Horizontal" Spacing="8" VerticalAlignment="Center">
+                    <TextBlock Text="Warmup:"
+                               Foreground="#BAC2DE"
+                               FontSize="12"
+                               VerticalAlignment="Center"/>
+                    <NumericUpDown Value="{Binding WarmupRuns}"
+                                   Minimum="1"
+                                   Maximum="20"
+                                   Width="70"
+                                   FormatString="0"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Spacing="8" VerticalAlignment="Center">
+                    <TextBlock Text="Runs:"
+                               Foreground="#BAC2DE"
+                               FontSize="12"
+                               VerticalAlignment="Center"/>
+                    <NumericUpDown Value="{Binding BenchmarkRuns}"
+                                   Minimum="5"
+                                   Maximum="100"
+                                   Width="70"
+                                   FormatString="0"/>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+
+        <!-- Main Content-->
+        <Grid Grid.Row="1" ColumnDefinitions="300,*">
+
+            <!-- Left: Benchmark Stats + CSV Export -->
+            <StackPanel Grid.Column="0"
+                        Spacing="12"
+                        Margin="16">
+
+                <!-- Speed Stats -->
+                <Border Background="#181825"
+                        CornerRadius="8"
+                        Padding="16">
+                    <StackPanel Spacing="12">
+                        <TextBlock Text="INFERENCE SPEED"
+                                   FontSize="10"
+                                   FontWeight="Bold"
+                                   Foreground="#6C7086"
+                                   LetterSpacing="2"/>
+
+                        <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto,Auto,Auto,Auto"
+                              RowSpacing="8">
+                            <TextBlock Grid.Row="0" Grid.Column="0"
+                                       Text="Avg Time"
+                                       Foreground="#BAC2DE" FontSize="13"/>
+                            <TextBlock Grid.Row="0" Grid.Column="1"
+                                       Text="{Binding AvgTimeMs, StringFormat={}{0:F1} ms}"
+                                       Foreground="#CDD6F4" FontSize="13" FontWeight="SemiBold"/>
+
+                            <TextBlock Grid.Row="1" Grid.Column="0"
+                                       Text="Min Time"
+                                       Foreground="#BAC2DE" FontSize="13"/>
+                            <TextBlock Grid.Row="1" Grid.Column="1"
+                                       Text="{Binding MinTimeMs, StringFormat={}{0:F1} ms}"
+                                       Foreground="#A6E3A1" FontSize="13"/>
+
+                            <TextBlock Grid.Row="2" Grid.Column="0"
+                                       Text="Max Time"
+                                       Foreground="#BAC2DE" FontSize="13"/>
+                            <TextBlock Grid.Row="2" Grid.Column="1"
+                                       Text="{Binding MaxTimeMs, StringFormat={}{0:F1} ms}"
+                                       Foreground="#F38BA8" FontSize="13"/>
+
+                            <TextBlock Grid.Row="3" Grid.Column="0"
+                                       Text="FPS"
+                                       Foreground="#BAC2DE" FontSize="13"/>
+                            <TextBlock Grid.Row="3" Grid.Column="1"
+                                       Text="{Binding Fps, StringFormat={}{0:F1}}"
+                                       Foreground="#89B4FA" FontSize="16" FontWeight="Bold"/>
+
+                            <TextBlock Grid.Row="4" Grid.Column="0"
+                                       Text="Total Runs"
+                                       Foreground="#BAC2DE" FontSize="13"/>
+                            <TextBlock Grid.Row="4" Grid.Column="1"
+                                       Text="{Binding TotalRuns}"
+                                       Foreground="#CDD6F4" FontSize="13"/>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+
+                <!-- CSV Export -->
+                <Border Background="#181825"
+                        CornerRadius="8"
+                        Padding="16">
+                    <StackPanel Spacing="12">
+                        <TextBlock Text="CSV EXPORT"
+                                   FontSize="10"
+                                   FontWeight="Bold"
+                                   Foreground="#6C7086"
+                                   LetterSpacing="2"/>
+
+                        <StackPanel Spacing="6">
+                            <TextBlock Text="Export Path"
+                                       Foreground="#BAC2DE"
+                                       FontSize="12"/>
+                            <TextBox Text="{Binding CsvExportPath}"
+                                     Background="#1E1E2E"
+                                     Foreground="#CDD6F4"
+                                     BorderBrush="#313244"
+                                     FontSize="11"
+                                     Padding="8,6"/>
+                        </StackPanel>
+
+                        <Button Content="Export Session CSV"
+                                Command="{Binding ExportCsvCommand}"
+                                Background="#313244"
+                                Foreground="#CDD6F4"
+                                HorizontalAlignment="Stretch"
+                                HorizontalContentAlignment="Center"
+                                Padding="12,8"/>
+
+                        <TextBlock Text="{Binding CsvStatusMessage}"
+                                   Foreground="#A6E3A1"
+                                   FontSize="11"
+                                   TextWrapping="Wrap"
+                                   IsVisible="{Binding CsvStatusMessage,
+                                       Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+
+            <!-- Right: Run Results + Session Records -->
+            <Grid Grid.Column="1" RowDefinitions="*,*">
+
+                <!-- Benchmark Run Results -->
+                <Border Grid.Row="0"
+                        Background="#11111B"
+                        BorderBrush="#313244"
+                        BorderThickness="1,0,0,1"
+                        Margin="0,8,8,0">
+                    <Grid RowDefinitions="Auto,*">
+                        <TextBlock Grid.Row="0"
+                                   Text="BENCHMARK RUNS"
+                                   FontSize="10"
+                                   FontWeight="Bold"
+                                   Foreground="#6C7086"
+                                   LetterSpacing="2"
+                                   Margin="12,8"/>
+                        <ListBox Grid.Row="1"
+                                 ItemsSource="{Binding RunResults}"
+                                 Background="Transparent"
+                                 BorderThickness="0">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid ColumnDefinitions="60,*,100">
+                                        <TextBlock Grid.Column="0"
+                                                   Text="{Binding RunNumber, StringFormat=Run {0}}"
+                                                   Foreground="#6C7086"
+                                                   FontSize="12"/>
+                                        <ProgressBar Grid.Column="1"
+                                                     Value="{Binding TimeMs}"
+                                                     Minimum="0"
+                                                     Maximum="200"
+                                                     Height="6"
+                                                     VerticalAlignment="Center"
+                                                     Margin="8,0"
+                                                     Foreground="#89B4FA"/>
+                                        <TextBlock Grid.Column="2"
+                                                   Text="{Binding TimeMs, StringFormat={}{0:F1} ms}"
+                                                   Foreground="#CDD6F4"
+                                                   FontSize="12"
+                                                   HorizontalAlignment="Right"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </Grid>
+                </Border>
+
+                <!-- Session Records -->
+                <Border Grid.Row="1"
+                        Background="#11111B"
+                        BorderBrush="#313244"
+                        BorderThickness="1,0,0,0"
+                        Margin="0,4,8,8">
+                    <Grid RowDefinitions="Auto,*">
+                        <TextBlock Grid.Row="0"
+                                   Text="SESSION RECORDS"
+                                   FontSize="10"
+                                   FontWeight="Bold"
+                                   Foreground="#6C7086"
+                                   LetterSpacing="2"
+                                   Margin="12,8"/>
+                        <ListBox Grid.Row="1"
+                                 ItemsSource="{Binding SessionRecords}"
+                                 Background="Transparent"
+                                 BorderThickness="0">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid ColumnDefinitions="70,*,50,60,80,60">
+                                        <TextBlock Grid.Column="0"
+                                                   Text="{Binding Timestamp}"
+                                                   Foreground="#6C7086"
+                                                   FontSize="11"/>
+                                        <TextBlock Grid.Column="1"
+                                                   Text="{Binding ImageName}"
+                                                   Foreground="#BAC2DE"
+                                                   FontSize="11"
+                                                   TextTrimming="CharacterEllipsis"/>
+                                        <Border Grid.Column="2"
+                                                Background="{Binding ResultColor}"
+                                                CornerRadius="3"
+                                                Padding="4,2"
+                                                HorizontalAlignment="Center">
+                                            <TextBlock Text="{Binding Result}"
+                                                       Foreground="White"
+                                                       FontSize="10"
+                                                       FontWeight="Bold"/>
+                                        </Border>
+                                        <TextBlock Grid.Column="3"
+                                                   Text="{Binding DefectCount, StringFormat={}{0} defect(s)}"
+                                                   Foreground="#6C7086"
+                                                   FontSize="11"/>
+                                        <TextBlock Grid.Column="4"
+                                                   Text="{Binding InferenceTimeMs, StringFormat={}{0:F1} ms}"
+                                                   Foreground="#CDD6F4"
+                                                   FontSize="11"/>
+                                        <TextBlock Grid.Column="5"
+                                                   Text="{Binding Confidence, StringFormat={}{0:F3}}"
+                                                   Foreground="#89B4FA"
+                                                   FontSize="11"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </Grid>
+                </Border>
+            </Grid>
+        </Grid>
+
+        <!-- Status Bar -->
+        <Border Grid.Row="2"
+                Background="#11111B"
+                BorderBrush="#313244"
+                BorderThickness="0,1,0,0"
+                Padding="12,6">
+            <TextBlock Text="{Binding StatusMessage}"
+                       Foreground="#6C7086"
+                       FontSize="11"/>
+        </Border>
+
+    </Grid>
+</UserControl>

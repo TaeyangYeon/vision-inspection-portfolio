@@ -196,7 +196,7 @@ vision-inspection-portfolio/
 
 ### WEEK 5 (Day 29~35) - Program 2 Foundation (SOLID + NUnit)
 - Day 29 - DONE: Multithreaded inference (Task + SemaphoreSlim), NG auto-save integrated, preprocessing bug fixed (93x confidence improvement BGR->RGB + letterbox padding 114), SIGBUS crash fixed (bitmap raw pixel extraction), all 91 NUnit tests pass 0 fail 0 skip
-- Day 30 - TODO: Define all interfaces (IInferenceEngine, IImageProcessor, IGradCamService)
+- Day 30 - DONE: BenchmarkView (speed stats + run history), CSV export UI, SessionLogger ExportToCsvAsync, all NUnit tests pass 0 fail 0 skip
 - Day 31 - TODO: OnnxInferenceEngine implementation + NUnit tests
 - Day 32 - TODO: ImageProcessor implementation + NUnit tests
 - Day 33 - TODO: GradCamService (C# calls Python FastAPI) + NUnit tests
@@ -296,6 +296,6 @@ vision-inspection-portfolio/
 3. Claude will resume from exact current state.
 
 ---
-Last updated: Day 29 complete
-Next: Day 30 - CSV export UI + inference speed benchmark view
+Last updated: Day 30 complete
+Next: Day 31 - Edge case testing + Program 2 full integration test
 ---

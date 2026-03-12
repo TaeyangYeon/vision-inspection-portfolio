@@ -48,6 +48,7 @@ namespace InspectionSystem.UI.DependencyInjection
             services.AddTransient<InspectionSystem.Core.Services.NgImageSaver>();
             services.AddTransient<InspectionSystem.UI.ViewModels.InspectionViewModel>();
             services.AddTransient<InspectionSystem.UI.ViewModels.GradCamViewModel>();
+            services.AddTransient<InspectionSystem.UI.ViewModels.BenchmarkViewModel>();
             services.AddTransient<InspectionSystem.UI.ViewModels.SettingsViewModel>();
             services.AddTransient<InspectionSystem.UI.ViewModels.MainViewModel>();
 

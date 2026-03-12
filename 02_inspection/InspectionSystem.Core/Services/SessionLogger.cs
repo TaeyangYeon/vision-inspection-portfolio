@@ -52,7 +52,6 @@ namespace InspectionSystem.Core.Services
             {
                 _history.Clear();
             }
-            _logger.LogInformation("Session history cleared.");
         }
 
         public async Task ExportToCsvAsync(string filePath)
@@ -66,28 +65,34 @@ namespace InspectionSystem.Core.Services
                 snapshot = new List<InspectionRecord>(_history);
             }
 
-            var dir = Path.GetDirectoryName(filePath);
-            if (!string.IsNullOrEmpty(dir) && !Directory.Exists(dir))
-                Directory.CreateDirectory(dir);
+            var sb = new System.Text.StringBuilder();
+            sb.AppendLine("Timestamp,ImagePath,IsNG,DefectCount,InferenceTimeMs,Confidence");
 
-            var sb = new StringBuilder();
-            sb.AppendLine("Timestamp,ImagePath,IsNG,DefectCount,DefectTypes,InferenceTimeMs,Confidence");
-
-            foreach (var record in snapshot)
+            foreach (var r in snapshot)
             {
-                sb.AppendLine(string.Join(",",
-                    record.Timestamp.ToString("yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture),
-                    EscapeCsv(record.ImagePath),
-                    record.IsNG ? "NG" : "OK",
-                    record.DefectCount,
-                    EscapeCsv(record.DefectTypes),
-                    record.InferenceTimeMs.ToString("F2", CultureInfo.InvariantCulture),
-                    record.Confidence.ToString("F4", CultureInfo.InvariantCulture)
-                ));
+                sb.AppendLine(
+                    $"{r.Timestamp:yyyy-MM-dd HH:mm:ss.fff}," +
+                    $"{EscapeCsv(r.ImagePath)}," +
+                    $"{r.IsNG}," +
+                    $"{r.DefectCount}," +
+                    $"{r.InferenceTimeMs:F2}," +
+                    $"{r.Confidence:F4}"
+                );
             }
 
-            await File.WriteAllTextAsync(filePath, sb.ToString(), Encoding.UTF8);
-            _logger.LogInformation("Exported {Count} records to {Path}", snapshot.Count, filePath);
+            var dir = System.IO.Path.GetDirectoryName(filePath);
+            if (!string.IsNullOrEmpty(dir))
+                System.IO.Directory.CreateDirectory(dir);
+
+            await System.IO.File.WriteAllTextAsync(filePath, sb.ToString());
+        }
+
+        private static string EscapeCsv(string value)
+        {
+            if (string.IsNullOrEmpty(value)) return string.Empty;
+            if (value.Contains(',') || value.Contains('"') || value.Contains('\n'))
+                return $"\"{value.Replace("\"", "\"\"")}\"";
+            return value;
         }
 
         public SessionStats GetStats()
@@ -109,14 +114,6 @@ namespace InspectionSystem.Core.Services
                     AverageInferenceMs = avgMs,
                 };
             }
-        }
-
-        private static string EscapeCsv(string value)
-        {
-            if (string.IsNullOrEmpty(value)) return string.Empty;
-            if (value.Contains(',') || value.Contains('"') || value.Contains('\n'))
-                return $"\"{value.Replace("\"", "\"\"")}\"";
-            return value;
         }
     }
 }

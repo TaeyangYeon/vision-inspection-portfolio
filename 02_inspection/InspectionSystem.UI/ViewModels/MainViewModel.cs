@@ -14,6 +14,7 @@ namespace InspectionSystem.UI.ViewModels
         private readonly InspectionViewModel _inspectionViewModel;
         private readonly GradCamViewModel _gradCamViewModel;
         private readonly SettingsViewModel _settingsViewModel;
+        private readonly BenchmarkViewModel _benchmarkViewModel;
 
         [ObservableProperty]
         private object? _currentPageView;
@@ -37,6 +38,7 @@ namespace InspectionSystem.UI.ViewModels
         {
             "Inspection",
             "GradCAM",
+            "Benchmark",
             "Settings",
         };
 
@@ -45,13 +47,15 @@ namespace InspectionSystem.UI.ViewModels
             ISessionLogger sessionLogger,
             InspectionViewModel inspectionViewModel,
             GradCamViewModel gradCamViewModel,
-            SettingsViewModel settingsViewModel)
+            SettingsViewModel settingsViewModel,
+            BenchmarkViewModel benchmarkViewModel)
         {
             _settingsService = settingsService;
             _sessionLogger = sessionLogger;
             _inspectionViewModel = inspectionViewModel;
             _gradCamViewModel = gradCamViewModel;
             _settingsViewModel = settingsViewModel;
+            _benchmarkViewModel = benchmarkViewModel;
             RefreshStats();
             NavigateToPage("Inspection");
         }
@@ -67,6 +71,7 @@ namespace InspectionSystem.UI.ViewModels
             {
                 "Inspection" => new InspectionView { DataContext = _inspectionViewModel },
                 "GradCAM" => new GradCamView { DataContext = _gradCamViewModel },
+                "Benchmark" => new BenchmarkView { DataContext = _benchmarkViewModel },
                 "Settings" => new SettingsView { DataContext = _settingsViewModel },
                 _ => null
             };
