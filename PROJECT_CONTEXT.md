@@ -6,296 +6,389 @@ Target companies: Semiconductor equipment (SFA, Hanwha), Machine vision (Cognex,
 
 ## Tech Stack
 - Python 3.11 / PyTorch / YOLOv8 / ONNX Runtime
-- C# .NET 10 / Avalonia UI
+- C# .NET 10 / Avalonia UI / FluentAvalonia / CommunityToolkit.Mvvm
 - GradCAM (custom PyTorch hook implementation - no library)
 - MVTec AD Dataset (15 categories, 5,354 images)
+- NUnit for all C# unit tests
 
 ## System Architecture
-Program 1: Model Trainer (Python + Streamlit UI)
-- YOLOv8 fine-tuning
-- Custom GradCAM implementation with PyTorch hooks
-- Confusion Matrix / PR Curve / FP/FN analysis
-- ONNX export and verification
 
-Program 2: Inspection System (C# + Avalonia UI)
-- Real-time inference with ONNX Runtime (no Python needed)
-- BBox overlay rendering
-- GradCAM heatmap visualization (Split view)
-- ROI drag selection
+### Program 1: Model Trainer (Python + Streamlit UI) - COMPLETE
+- YOLOv8 fine-tuning on MVTec AD bottle category
+- Custom GradCAM implementation with PyTorch hooks (register_forward_hook + register_full_backward_hook)
+- Confusion Matrix / PR Curve / F1 Curve / FP/FN case analysis
+- ONNX export and speed benchmark
+- 5 tabs: Data / Train / Eval / Export / GradCAM
+
+### Program 2: Inspection System (C# + Avalonia UI) - IN PROGRESS (Day 30)
+- Real-time ONNX Runtime inference (no Python needed)
+- BBox overlay rendering with OpenCvSharp4
+- GradCAM heatmap visualization (calls Python FastAPI)
 - Session statistics + CSV export
-- SOLID principles strictly applied throughout
+- NG image auto-save
+- Multithreaded inference (Task + SemaphoreSlim)
+- SOLID principles strictly applied
 - MVVM pattern with full separation of concerns
-- Avalonia UI with FluentAvalonia for modern Material-like design
-- NUnit unit tests for every implemented feature
+- NUnit unit tests for every feature
 
 ## Repository
 URL: https://github.com/TaeyangYeon/vision-inspection-portfolio
 Local: ~/vision-inspection-portfolio/
+Git: TaeyangYeon / acrobatyeon@gmail.com
 
 ## Folder Structure
+```
 vision-inspection-portfolio/
 ├── 01_training/
 │   ├── data/
-│   │   ├── raw/          # MVTec AD dataset (15 categories)
-│   │   └── processed/    # YOLO format converted data
-│   ├── models/           # Trained model files (best.onnx)
-│   ├── outputs/          # Training results (results.csv per run)
+│   │   ├── raw/                    # MVTec AD dataset (15 categories)
+│   │   └── processed/bottle/       # YOLO format (images/train, images/val, labels/train, labels/val)
+│   ├── models/best.onnx            # Trained model opset 21 (12.3MB)
+│   ├── outputs/bottle_full/        # results.csv, eval_results.json, pr_data.json
 │   ├── scripts/
-│   │   ├── explore_data.py       # Dataset structure analysis
-│   │   ├── convert_to_yolo.py    # MVTec to YOLO format converter
-│   │   └── visualize_labels.py   # Label verification visualizer
+│   │   ├── explore_data.py
+│   │   ├── convert_to_yolo.py
+│   │   └── visualize_labels.py
 │   ├── app/
-│   │   ├── main.py               # Streamlit entry point
+│   │   ├── main.py
 │   │   ├── pages/
-│   │   │   ├── data_tab.py       # Data management tab
-│   │   │   ├── train_tab.py      # Training monitor tab
-│   │   │   ├── eval_tab.py       # Evaluation results tab
-│   │   │   └── export_tab.py     # ONNX export tab
+│   │   │   ├── data_tab.py
+│   │   │   ├── train_tab.py
+│   │   │   ├── eval_tab.py
+│   │   │   ├── export_tab.py
+│   │   │   └── gradcam_tab.py
 │   │   ├── components/
-│   │   │   ├── augmentation.py   # Augmentation preview
-│   │   │   └── charts.py         # Reusable chart components
+│   │   │   └── augmentation.py
 │   │   └── utils/
-│   │       ├── data_loader.py    # Dataset loading utilities
-│   │       └── model_utils.py    # Model related utilities
-│   └── .venv/            # Python virtual environment
+│   │       ├── model_utils.py
+│   │       ├── fpfn_utils.py
+│   │       ├── data_loader.py
+│   │       ├── health_check.py
+│   │       └── integration_test.py
+│   ├── gradcam/
+│   │   ├── gradcam_core.py
+│   │   ├── gradcam_yolo.py
+│   │   ├── gradcam_visualize.py
+│   │   ├── gradcam_multiclass.py
+│   │   ├── gradcam_test.py
+│   │   └── README.md
+│   └── .venv/
 ├── 02_inspection/
-│   └── InspectionSystem/ # C# Avalonia project
+│   ├── models/best.onnx            # opset 21 (copied from 01_training)
+│   ├── InspectionSystem.sln
+│   ├── InspectionSystem.Core/
+│   │   ├── Interfaces/
+│   │   │   ├── IInferenceEngine.cs
+│   │   │   ├── IImageProcessor.cs
+│   │   │   ├── IGradCamService.cs
+│   │   │   ├── ISessionLogger.cs
+│   │   │   └── ISettingsService.cs
+│   │   ├── Models/
+│   │   │   ├── DetectionResult.cs
+│   │   │   ├── InspectionRecord.cs
+│   │   │   ├── SessionStats.cs
+│   │   │   ├── AppSettings.cs
+│   │   │   ├── ProcessedImage.cs
+│   │   │   ├── GradCamResult.cs
+│   │   │   ├── InferenceOptions.cs
+│   │   │   └── DrawOptions.cs
+│   │   └── Services/
+│   │       ├── OnnxInferenceEngine.cs
+│   │       ├── ImageProcessor.cs
+│   │       ├── SessionLogger.cs
+│   │       ├── SettingsService.cs
+│   │       ├── GradCamService.cs
+│   │       └── NgImageSaver.cs
+│   ├── InspectionSystem.UI/
+│   │   ├── App.axaml / App.axaml.cs
+│   │   ├── DependencyInjection/
+│   │   │   └── ServiceCollectionExtensions.cs
+│   │   ├── ViewModels/
+│   │   │   ├── MainViewModel.cs
+│   │   │   ├── InspectionViewModel.cs
+│   │   │   ├── GradCamViewModel.cs
+│   │   │   ├── SettingsViewModel.cs
+│   │   │   └── BenchmarkViewModel.cs
+│   │   └── Views/
+│   │       ├── MainWindow.axaml / MainWindow.axaml.cs
+│   │       ├── InspectionView.axaml / InspectionView.axaml.cs
+│   │       ├── GradCamView.axaml / GradCamView.axaml.cs
+│   │       ├── SettingsView.axaml / SettingsView.axaml.cs
+│   │       └── BenchmarkView.axaml / BenchmarkView.axaml.cs
+│   └── InspectionSystem.Tests/
+│       ├── Core/
+│       │   ├── OnnxInferenceEngineTests.cs
+│       │   ├── ImageProcessorTests.cs
+│       │   ├── SessionLoggerTests.cs
+│       │   ├── SettingsServiceTests.cs
+│       │   ├── GradCamServiceTests.cs
+│       │   └── NgImageSaverTests.cs
+│       ├── ViewModels/
+│       │   ├── InspectionViewModelTests.cs
+│       │   └── SettingsViewModelTests.cs
+│       └── Integration/
+│           └── DiContainerTests.cs
 └── PROJECT_CONTEXT.md
+```
 
-## nvironment
-- Mac (Intel)
-- Python 3.11 (pyenv)
-- .NET 10 SDK
-- Avalonia Templates installed
-- Git configured: TaeyangYeon / acrobatyeon@gmail.com
-
-## Streamlit App
-- Run command: cd ~/vision-inspection-portfolio/01_training && source .venv/bin/activate && streamlit run app/main.py
+## Environment
+- Mac (Intel), Python 3.11 (pyenv), .NET 10 SDK
+- Streamlit run: `cd ~/vision-inspection-portfolio/01_training && source .venv/bin/activate && streamlit run app/main.py`
 - Local URL: http://localhost:8501
+- Training: Google Colab T4 GPU
+- DNS: 8.8.8.8 (Google DNS) - required for NuGet connectivity on this machine
+
+## NuGet Packages
+
+### InspectionSystem.Core
+- Microsoft.Extensions.DependencyInjection 10.0.3
+- Microsoft.Extensions.Logging.Abstractions 10.0.3
+- Microsoft.ML.OnnxRuntime 1.20.1
+- OpenCvSharp4 4.13.0.20260308
+- OpenCvSharp4.runtime.osx.10.15-x64 4.6.0.20230105 (Intel Mac specific)
+
+### InspectionSystem.UI
+- Avalonia / Avalonia.Themes.Fluent
+- FluentAvalonia
+- CommunityToolkit.Mvvm
+- Microsoft.Extensions.DependencyInjection 10.0.3
+
+### InspectionSystem.Tests
+- NUnit 4.5.1
+- NUnit3TestAdapter 6.1.0
+- Microsoft.NET.Test.Sdk 18.3.0
+- Moq 4.20.72
+- coverlet.collector 6.0.4
+
+## Training Results (Bottle Category)
+- Model: YOLOv8n, 100 epochs, Colab T4 GPU
+- mAP50: 0.8692 / mAP50-95: 0.677 / Precision: 0.807 / Recall: 0.800
+- Class results: broken_large 0.912 / broken_small 0.898 / contamination 0.798
+- ONNX export: best.onnx 12.3MB opset 21
+- Inference speed: ~36ms / ~27 FPS (CPU, Intel Mac)
+- Note: Model was re-trained in full 100 epochs after initial export had opset 22 issue.
+  Re-exported with opset=21 for OnnxRuntime 1.20.1 compatibility.
+
+## Test Status (as of Day 30)
+- Total NUnit tests: 93 (all PASS, 0 fail, 0 skip)
+- OnnxInferenceEngineTests: 8 tests
+- ImageProcessorTests: 8 tests
+- SessionLoggerTests: 13 tests (includes 2 CSV export tests)
+- SettingsServiceTests: 8 tests
+- GradCamServiceTests: 6 tests
+- NgImageSaverTests: 10 tests
+- InspectionViewModelTests: 13 tests
+- SettingsViewModelTests: 9 tests
+- DiContainerTests: 9 tests (includes BenchmarkViewModel)
+
+## Program 2 Architecture
+
+### Navigation Pages (5 pages)
+- Inspection: Main defect detection view (Load Model / Open Image / Run Inspection)
+- GradCAM: Heatmap visualization (3-column: original / heatmap / overlay)
+- Benchmark: Inference speed benchmark + session records + CSV export
+- Settings: Model path / threshold / save path / GradCAM config
+
+### UI Design (Dark Theme - Catppuccin Mocha palette)
+- Background: #1E1E2E / Surface: #181825 / Overlay: #313244
+- Text: #CDD6F4 / Subtext: #BAC2DE / Muted: #6C7086
+- OK color: #A6E3A1 (green) / NG color: #F38BA8 (red) / Accent: #0078D4
+
+### SOLID Design Principles Applied
+- S: Each class has one reason to change (NgImageSaver only saves, SessionLogger only logs)
+- O: New model formats via IInferenceEngine without modifying existing code
+- I: Small focused interfaces per feature (5 interfaces total)
+- D: ViewModels receive interfaces via DI constructor injection
+- MVVM: Model / ViewModel / View fully separated, no code-behind logic
+
+### NUnit Naming Convention
+- MethodName_StateUnderTest_ExpectedBehavior
+
+## Known Issues and Solutions
+
+### Issue 1: Python file encoding error (UnicodeDecodeError)
+- Cause: Claude Code generates files with non-UTF-8 encoding when emojis are included
+- Solution: Never use emojis in Python source files
+- Prevention: Always add to Claude Code prompts:
+  "Use plain text only, no emojis anywhere in the file content. Save with UTF-8 encoding."
+
+### Issue 2: dataset.yaml uses local Mac absolute path
+- Cause: convert_to_yolo.py saves absolute local path
+- Solution: After uploading to Colab, overwrite yaml path with Colab path
+
+### Issue 3: YOLO training mAP was 0.02 on first run
+- Cause: All defect images went to val/ with none in train/
+- Solution: Fixed split logic - defect images now 80% train / 20% val
+
+### Issue 4: Streamlit use_column_width deprecated
+- Solution: Replace with use_container_width=True
+
+### Issue 5: GradCAM CAM Statistics NameError (sc2 not defined)
+- Cause: st.columns() variable unpacking goes out of scope in nested with blocks
+- Solution: Use list indexing - cam_stats = st.columns(3) / with cam_stats[0]:
+
+### Issue 6: ONNX opset 22 not supported by OnnxRuntime 1.20.1
+- Symptom: Model loads but produces zero detections silently
+- Cause: Default Ultralytics export uses opset 22, OnnxRuntime only guarantees up to opset 21
+- Solution: Re-export with opset=21
+  model.export(format='onnx', opset=21, simplify=True, imgsz=640)
+- Note: This issue caused 93x lower confidence (0.006 vs 0.63) before fix
+
+### Issue 7: OpenCvSharp4 runtime package for Intel Mac
+- Wrong: OpenCvSharp4.runtime.osx_arm64 (ARM only)
+- Correct: OpenCvSharp4.runtime.osx.10.15-x64 (Intel Mac)
+
+### Issue 8: Mat constructor not accessible in OpenCvSharp4
+- Solution: Use Mat.FromPixelData(height, width, MatType.CV_8UC3, imageData)
+
+### Issue 9: GetArray<byte> fails for 3-channel Mat
+- Solution: Use GetArray<Vec3b> then manually convert to byte[]
+
+### Issue 10: NuGet DNS resolution failure
+- Cause: Default DNS 208.67.220.123 could not resolve api.nuget.org
+- Solution: Change macOS DNS to 8.8.8.8 in System Settings > Wi-Fi > Details > DNS
+
+### Issue 11: C# preprocessing confidence 93x lower than Python
+- Cause: ConvertBitmapToRgbBytes() was saving bitmap as encoded PNG bytes instead of raw pixels
+- Symptom: Mat.FromPixelData received encoded image data causing memory corruption (SIGBUS exit code 138)
+- Fix: Extract raw RGB pixels using OpenCV ImDecode + BGR2RGB + pixel array
+- Also fixed: letterbox padding fill value must be 114 (not 0), top-left placement
+
+### Issue 12: AppSettings model path uses relative path
+- Symptom: Load Model fails silently with "Model not found"
+- Fix: AppSettings.GetDefaultModelPath() scans multiple candidate paths at runtime
+  and returns the first existing absolute path
+
+## Key Technical Decisions
+- GradCAM: custom PyTorch hook (no library) - stronger interview talking point
+- ONNX Runtime in C#: Python-free inference - unique selling point vs typical Python apps
+- Avalonia UI: cross-platform WPF alternative, works on Intel Mac
+- MVTec AD: industry standard anomaly detection benchmark dataset
+- .NET 10: latest SDK with full Avalonia support
+- Intel Mac: training on Google Colab T4 GPU, inference locally via ONNX CPU
+- SemaphoreSlim(1,1): prevents concurrent inference calls, guards against UI double-click
+- CancellationToken: passed through all async inference paths for clean cancellation
 
 ## Daily Progress
 
 ### Day 1 - DONE
-- pyenv + Python 3.11 installed
-- Project folder structure created
-- venv created and activated
-- requirements.txt created and all packages installed
-- Environment verification script: scripts/check_env.py
-- Git initialized and configured
-- First commit pushed to GitHub
+Python environment setup, pyenv + Python 3.11, venv, requirements.txt, GitHub init
 
 ### Day 2 - DONE
-- .NET 10 SDK confirmed (9 and 10 both installed)
-- Avalonia templates installed
-- InspectionSystem project created (avalonia.mvvm template)
-- NuGet packages added: Avalonia, ONNX Runtime, OpenCvSharp4
-- Hello World build and run successful
-- Project folder structure organized (Models, Services, ViewModels, Views, Assets, Helpers)
+.NET 10 SDK, Avalonia templates, InspectionSystem project created, Hello World run
 
 ### Day 3 - DONE
-- MVTec AD dataset downloaded (Kaggle) and extracted
-- 15 categories / 5,354 total images confirmed
-- explore_data.py: dataset structure analysis script
-- convert_to_yolo.py: MVTec mask to YOLO bbox conversion
-  - cv2.findContours used for mask to bbox conversion
-  - good images go to train/ with empty labels
-  - defect images split 80% train / 20% val with bbox labels
-  - dataset.yaml generated per category
-- visualize_labels.py: bbox visualization verification
-- Bottle category conversion verified successfully
+MVTec AD dataset downloaded, explore_data.py + convert_to_yolo.py + visualize_labels.py
 
 ### Day 4 - DONE
-- Google Colab notebook created: 01_training/train_colab.ipynb
-- Bottle dataset compressed and uploaded to Google Drive
-- YOLOv8n 10 epoch test run completed
-- mAP50: 0.4755 / Precision: 0.769 / Recall: 0.403
+Colab notebook, 10 epoch test run, mAP50: 0.4755
 
 ### Day 5 - DONE
-- Augmentation experiments (Mosaic, Flip, HSV)
-- Full training 100 epochs completed on Colab T4 GPU
-- mAP50: 0.8692 / mAP50-95: 0.677 / Precision: 0.807 / Recall: 0.800
-- Class results: broken_large 0.912 / broken_small 0.898 / contamination 0.798
+100 epoch full training, mAP50: 0.8692, augmentation experiments
 
 ### Day 6 - DONE
-- ONNX export complete: best.onnx (12.3MB)
-- Saved to: 01_training/models/best.onnx
-- Saved to: 02_inspection/models/best.onnx
+ONNX export best.onnx 12.3MB, saved to both 01_training/models and 02_inspection/models
 
 ### Day 7 - DONE
-- Code cleanup completed
-- Streamlit environment verified
-- check_env.py passed all checks
+Code cleanup, Streamlit environment verified
 
 ### Day 8 - DONE
-- Streamlit app structure created (app/ folder with pages/, components/, utils/)
-- Main navigation with 4 tabs: Data / Train / Eval / Export
-- Sidebar project status panel
-- IMPORTANT: Never use emojis in Python source files (causes UnicodeDecodeError)
+Streamlit app structure, 4-tab navigation: Data / Train / Eval / Export
 
 ### Day 9 - DONE
-- Data tab: image viewer with BBox overlay
-- Data tab: class distribution bar chart (Plotly)
-- Category / split selector
-- Show/hide labels toggle
-- Random image button
+Data tab: image viewer with BBox overlay, class distribution chart
 
 ### Day 10 - DONE
-- Augmentation preview section added to Data tab
-- 8 augmentation types: Horizontal Flip, Vertical Flip, Rotation, Brightness, HSV Shift, Gaussian Noise, Blur, Mosaic
-- Interactive sliders for each augmentation parameter
-- Fixed deprecated use_column_width to use_container_width
+Augmentation preview (8 types) with interactive sliders
 
 ### Day 11 - DONE
-- Train tab: parameter form (model size, epochs, batch, lr, augmentation settings)
-- Train tab: training command builder (generates YOLO CLI command)
-- Train tab: results viewer with Loss curves and mAP chart (Plotly)
-- results.csv downloaded from Colab and placed in outputs/bottle_full/
+Train tab: parameter form, training command builder, results viewer (Loss + mAP charts)
 
-## 60-Day Plan
+### Day 12 - DONE
+Eval tab: Confusion Matrix, PR Curve, F1 Curve, per-class metrics (all Plotly interactive)
 
-### WEEK 1 (Day 1~7) - Environment + Data
-- Day 1 - DONE: Python environment setup + GitHub init
-- Day 2 - DONE: .NET + Avalonia setup
-- Day 3 - DONE: MVTec dataset + YOLO conversion scripts
-- Day 4 - DONE: YOLOv8 first training run - 10 epoch test mAP50 0.4755
-- Day 5 - DONE: Augmentation experiments + Full training 100 epochs mAP50 0.8692
-- Day 6 - DONE: ONNX export complete best.onnx 12.3MB saved to both projects
-- Day 7 - DONE: Code cleanup Streamlit environment verified
+### Day 13 - DONE
+Eval tab: sample image inference viewer with real ONNX model, confidence/IoU sliders
 
-### WEEK 2 (Day 8~14) - Program 1 Core UI
-- Day 8 - DONE: Streamlit app structure and navigation layout
-- Day 9 - DONE: Data tab image viewer with BBox overlay and class distribution chart
-- Day 10 - DONE: Augmentation preview with 8 types and interactive controls
-- Day 11 - DONE: Train tab parameter form training command builder results viewer
-- Day 12 - DONE: Eval tab complete - Confusion Matrix, PR Curve, F1 Curve, per-class metrics (all Plotly interactive)
-- Day 13 - DONE: Eval tab - sample image inference viewer with real ONNX model, confidence/IoU sliders, FP/FN detection
-- Day 14 - DONE: Eval tab FP/FN case analysis viewer - TP/FP/FN classification with color coding, filter by case type, batch analysis on val set
+### Day 14 - DONE
+Eval tab: FP/FN case analysis viewer - TP(green)/FP(red)/FN(blue), filter, batch analysis
 
-### WEEK 3 (Day 15~21) - Program 1 Vision Depth
-- Day 15 - DONE: Export tab complete - model info, ONNX speed benchmark, PT vs ONNX output comparison
-- Day 16 - TODO: Export tab - ONNX conversion + PT vs ONNX result comparison
-- Day 17 - DONE: Program 1 integration test all passed, GradCAM structure designed, data_loader utility created
-- Day 18 - DONE: GradCAM core implemented with PyTorch hooks, YOLO wrapper created, test script passed
-- Day 19 - DONE: GradCAM activation map visualizer + Streamlit GradCAM tab added (5 tabs total)
-  - gradcam_visualize.py: 9 target layers analyzed (C2f + SPPF)
-  - Layer progression: 160x160 (early) to 20x20 (deep) feature maps
-  - SPPF layer showed highest activation (0.4316) for defect features
-  - GradCAM tab added to Streamlit with 3-column view (original/heatmap/overlay)
-  - Fixed: st.columns() NameError - use list indexing instead of variable unpacking
-- Day 20 - DONE: GradCAM multi-class comparison, All Classes mode in Streamlit, Program 1 complete
-- Day 21 - DONE: Program 2 restructured - Core/UI/Tests projects, all interfaces defined, all models defined, Core builds clean
+### Day 15 - DONE
+Export tab: model info, ONNX speed benchmark (36.2ms/27.6FPS), PT vs ONNX comparison
 
-### WEEK 4 (Day 22~28) - GradCAM Complete
-- Day 22 - DONE: OnnxInferenceEngine + ImageProcessor implemented, NUnit 20/20 PASS (0 skip, 0 fail). Fixed: OpenCvSharp4.runtime.osx.10.15-x64, ONNX opset 21 re-export, Mat.FromPixelData + Vec3b GetArray
-- Day 23 - DONE: SessionLogger + SettingsService implemented with full NUnit tests. Running total: all tests pass with 0 fail 0 skip
-- Day 24 - DONE: DI container setup, GradCamService implemented, integration tests for DI resolution added. All NUnit tests pass 0 fail 0 skip.
-- Day 25 - DONE: Avalonia MainWindow with dark theme, left navigation panel, session stats, status bar. DI fully wired to UI layer.
-- Day 26 - DONE: InspectionViewModel + InspectionView with image panel, BBox overlay, OK/NG badge, detection list, confidence/IoU sliders
-- Day 27 - DONE: GradCamView + SettingsView implemented. All 3 pages navigating correctly. Settings save/reset working.
-- Day 28 - DONE: ViewModel NUnit tests (InspectionViewModel + SettingsViewModel), NgImageSaver implemented and tested. All tests pass 0 fail 0 skip.
+### Day 16 - DONE
+Program 1 UI polish: health check system, sidebar improvements, tab descriptions
 
-### WEEK 5 (Day 29~35) - Program 2 Foundation (SOLID + NUnit)
-- Day 29 - DONE: Multithreaded inference (Task + SemaphoreSlim), NG auto-save integrated, preprocessing bug fixed (93x confidence improvement BGR->RGB + letterbox padding 114), SIGBUS crash fixed (bitmap raw pixel extraction), all 91 NUnit tests pass 0 fail 0 skip
-- Day 30 - DONE: BenchmarkView (speed stats + run history), CSV export UI, SessionLogger ExportToCsvAsync, all NUnit tests pass 0 fail 0 skip
-- Day 31 - TODO: OnnxInferenceEngine implementation + NUnit tests
-- Day 32 - TODO: ImageProcessor implementation + NUnit tests
-- Day 33 - TODO: GradCamService (C# calls Python FastAPI) + NUnit tests
-- Day 34 - TODO: SessionLogger + SettingsService + NUnit tests
-- Day 35 - TODO: DI container setup + integration test + GitHub push
+### Day 17 - DONE
+Program 1 integration test all passed (20/20), GradCAM structure designed
 
-### WEEK 6 (Day 36~42) - Program 2 Avalonia UI
-- Day 36 - TODO: Main window layout XAML
-- Day 37 - TODO: Left panel - inspection image view (BBox overlay)
-- Day 38 - TODO: Right panel - Result panel (OK/NG / type / confidence / speed)
-- Day 39 - TODO: Right panel - Params panel (Confidence / IoU sliders)
-- Day 40 - TODO: GradCAM tab - Split view (original / heatmap)
-- Day 41 - TODO: Bottom - session statistics bar + button connections
-- Day 42 - TODO: ROI drag selection feature
+### Day 18 - DONE
+GradCAM core with PyTorch hooks, YOLO wrapper, test 2/2 passed
 
-### WEEK 7 (Day 43~49) - Advanced Features + Optimization
-- Day 43 - TODO: Inference speed measurement + bottleneck analysis (target 30fps)
-- Day 44 - TODO: Multithread processing (prevent UI freezing)
-- Day 45 - TODO: NG image auto-save + CSV export
-- Day 46 - TODO: Settings screen (model swap / save path)
-- Day 47 - TODO: Edge case testing (empty image / multiple defects)
-- Day 48 - TODO: Program 2 full integration test
-- Day 49 - TODO: Buffer + GitHub push
+### Day 19 - DONE
+GradCAM visualizer (9 layers), Streamlit GradCAM tab (5 tabs total)
 
-### WEEK 8 (Day 50~56) - Vision Expertise Depth
-- Day 50 - TODO: Multi-category support (add tile/carpet training)
-- Day 51 - TODO: Model ensemble experiment (YOLOv8n vs YOLOv8s comparison)
-- Day 52 - TODO: Inference speed benchmark (FPS comparison table by model size)
-- Day 53 - TODO: Small defect detection improvement (tile size experiment)
-- Day 54 - TODO: Full performance metrics summary (mAP / FPS / accuracy)
-- Day 55 - TODO: Buffer + GitHub push
-- Day 56 - TODO: README writing (architecture diagram + performance metrics)
+### Day 20 - DONE
+GradCAM multi-class comparison, All Classes mode, Program 1 complete
 
-### WEEK 9 (Day 57~60) - Portfolio Complete
-- Day 57 - TODO: Demo video recording (Program 1 to Program 2)
-- Day 58 - TODO: GitHub Wiki - GradCAM custom implementation docs
-- Day 59 - TODO: Resume one-liner + interview prep (key talking points)
-- Day 60 - TODO: Final GitHub push + portfolio submission ready
+### Day 21 - DONE
+Program 2 restructured to Core/UI/Tests, 5 interfaces + 8 models defined, Core builds clean
+Fixed DNS issue (8.8.8.8), all NuGet packages installed
 
-## Known Issues and Solutions
+### Day 22 - DONE
+OnnxInferenceEngine + ImageProcessor implemented, NUnit 20/20 PASS
+Fixed: opset 21 re-export, OpenCvSharp4.runtime.osx.10.15-x64, Mat.FromPixelData, Vec3b GetArray
 
-### Issue 5: GradCAM CAM Statistics NameError (sc2 not defined)
-- Symptom: NameError: name 'sc2' is not defined in gradcam_tab.py
-- Cause: st.columns() unpacking variables go out of scope inside nested with blocks
-- Solution: Use list indexing instead of variable unpacking
-  Wrong:   sc1, sc2, sc3 = st.columns(3)
-  Correct: cam_stats = st.columns(3)
-           with cam_stats[0]: ...
-           with cam_stats[1]: ...
-           with cam_stats[2]: ...
-- Prevention: Always use list indexing for st.columns() inside nested blocks
+### Day 23 - DONE
+SessionLogger + SettingsService implemented, all NUnit tests pass
 
-### Issue 1: Python file encoding error (UnicodeDecodeError)
-- Symptom: UnicodeDecodeError utf-8 codec can't decode byte in Python files
-- Cause: Claude Code generates files with non-UTF-8 encoding when emojis are included
-- Solution: Never use emojis in Python source files
-- Prevention: Always add this to Claude Code prompts when creating Python files:
-  "Use plain text only, no emojis anywhere in the file content. Save with UTF-8 encoding."
+### Day 24 - DONE
+DI container, GradCamService (FastAPI HTTP client), integration tests for DI, all pass
 
-### Issue 2: dataset.yaml path uses local Mac path
-- Symptom: FileNotFoundError when running YOLO training on Colab
-- Cause: convert_to_yolo.py saves absolute local path in dataset.yaml
-- Solution: After uploading to Colab, overwrite dataset.yaml path with Colab path using Python
-- Prevention: convert_to_yolo.py should use relative paths in dataset.yaml
+### Day 25 - DONE
+Avalonia MainWindow with dark theme, left navigation, session stats panel, status bar
 
-### Issue 3: YOLO training mAP was 0.02 on first run
-- Symptom: mAP50 = 0.0243 after 10 epochs
-- Cause: convert_to_yolo.py was sending ALL defect images to val/ with no defects in train/
-- Solution: Fixed split logic - defect images now split 80% train / 20% val
+### Day 26 - DONE
+InspectionViewModel + InspectionView: image panel, OK/NG badge, detection list, sliders
 
-### Issue 4: Streamlit use_column_width deprecated warning
-- Symptom: Yellow warning box above images in Streamlit
-- Solution: Replace use_column_width=True with use_container_width=True
+### Day 27 - DONE
+GradCamView + SettingsView implemented. All 4 pages navigating correctly.
 
-## Key Technical Decisions
-- GradCAM: custom PyTorch hook implementation (no library) - stronger interview answer
-- ONNX Runtime in C#: Python-free inference - unique selling point
-- Avalonia UI: cross-platform WPF alternative for Mac development
-- MVTec AD: industry standard anomaly detection benchmark dataset
-- .NET 10: latest SDK with full Avalonia support
-- Intel Mac: training on Google Colab T4 GPU, inference locally via ONNX CPU
-- Program 2 C# Design Principles:
-  - SOLID strictly applied:
-    S - Single Responsibility: each class has one reason to change
-    O - Open/Closed: open for extension closed for modification (interfaces + abstractions)
-    I - Interface Segregation: small focused interfaces per feature
-    D - Dependency Inversion: depend on abstractions not concrete classes (DI container)
-  - MVVM pattern: Model / ViewModel / View fully separated
-  - NUnit + test project for every feature (target 80%+ coverage)
-  - FluentAvalonia for modern UI design (Material-like components)
-  - Dependency Injection via Microsoft.Extensions.DependencyInjection
+### Day 28 - DONE
+ViewModel NUnit tests (InspectionViewModel + SettingsViewModel), NgImageSaver with tests, 91 pass
 
-## How To Continue In New Chat
-1. Upload this PROJECT_CONTEXT.md file
-2. Say: "This is my vision inspection portfolio project context.
-   I completed up to Day X. Please continue from Day X+1."
-3. Claude will resume from exact current state.
+### Day 29 - DONE
+Multithreaded inference (Task + SemaphoreSlim), NG auto-save integrated into InspectionViewModel
+Fixed critical bugs:
+- Preprocessing BGR->RGB + letterbox padding 114 (93x confidence improvement)
+- SIGBUS crash from encoded bytes passed to Mat.FromPixelData (raw pixel extraction fix)
+- Model re-trained 100 epochs + re-exported opset 21 (original export was opset 22)
+All 91 NUnit tests pass 0 fail 0 skip
+
+### Day 30 - DONE
+BenchmarkView (speed stats + run history bar chart), CSV export UI
+SessionLogger ExportToCsvAsync added, ISessionLogger interface updated
+BenchmarkViewModel + DI registration + MainWindow navigation added
+All NUnit tests pass 0 fail 0 skip
+
+## Remaining Plan
+
+### Day 31 - TODO: Edge case testing (empty image / corrupted file / model error handling)
+### Day 32 - TODO: Program 2 full integration test + NUnit coverage report
+### Day 33 - TODO: Buffer + GitHub push + code review
+### Day 34 - TODO: Multi-category support (tile/carpet training on Colab)
+### Day 35 - TODO: Model ensemble experiment (YOLOv8n vs YOLOv8s comparison)
+### Day 36 - TODO: Inference speed benchmark by model size (FPS table)
+### Day 37 - TODO: Small defect detection improvement experiments
+### Day 38 - TODO: Full performance metrics summary (mAP / FPS / accuracy by category)
+### Day 39 - TODO: Buffer + GitHub push
+### Day 40 - TODO: README writing (architecture diagram + performance metrics table)
+### Day 41 - TODO: Demo video recording (Program 1 flow + Program 2 NG detection)
+### Day 42 - TODO: GitHub Wiki - GradCAM custom implementation explanation
+### Day 43 - TODO: Resume one-liner + interview prep key talking points
+### Day 44 - TODO: Final GitHub push + portfolio submission ready
 
 ---
 Last updated: Day 30 complete
-Next: Day 31 - Edge case testing + Program 2 full integration test
+Next: Day 31 - Edge case testing + error handling
 ---
