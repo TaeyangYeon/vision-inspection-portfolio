@@ -1,0 +1,58 @@
+Summary
+  Generated on: 2026. 3. 14. - 오후 2:43:13
+  Coverage date: 2026. 3. 14. - 오후 2:36:00 - 2026. 3. 14. - 오후 2:43:08
+  Parser: MultiReport (2x Cobertura)
+  Assemblies: 2
+  Classes: 34
+  Files: 35
+  Line coverage: 38.6%
+  Covered lines: 754
+  Uncovered lines: 1195
+  Coverable lines: 1949
+  Total lines: 3275
+  Branch coverage: 42.4% (112 of 264)
+  Covered branches: 112
+  Total branches: 264
+  Method coverage: 60.1% (98 of 163)
+  Full method coverage: 53.3% (87 of 163)
+  Covered methods: 98
+  Fully covered methods: 87
+  Total methods: 163
+
+InspectionSystem.Core                                                   64.8%
+  InspectionSystem.Core.Models.AppSettings                              95.8%
+  InspectionSystem.Core.Models.BoundingBox                              66.6%
+  InspectionSystem.Core.Models.Detection                                 100%
+  InspectionSystem.Core.Models.DetectionResult                           100%
+  InspectionSystem.Core.Models.DrawOptions                               100%
+  InspectionSystem.Core.Models.GradCamResult                              50%
+  InspectionSystem.Core.Models.InferenceOptions                          100%
+  InspectionSystem.Core.Models.InspectionRecord                          100%
+  InspectionSystem.Core.Models.ProcessedImage                            100%
+  InspectionSystem.Core.Models.SessionStats                              100%
+  InspectionSystem.Core.Services.GradCamService                         51.1%
+  InspectionSystem.Core.Services.ImageProcessor                         77.3%
+  InspectionSystem.Core.Services.NgImageSaver                            100%
+  InspectionSystem.Core.Services.OnnxInferenceEngine                    19.3%
+  InspectionSystem.Core.Services.SessionLogger                          98.7%
+  InspectionSystem.Core.Services.SettingsService                        97.5%
+
+InspectionSystem.UI                                                     26.7%
+  InspectionSystem.UI.App                                                  0%
+  InspectionSystem.UI.DependencyInjection.ServiceCollectionExtensions    100%
+  InspectionSystem.UI.Program                                              0%
+  InspectionSystem.UI.ViewLocator                                          0%
+  InspectionSystem.UI.ViewModels.BenchmarkRunItem                          0%
+  InspectionSystem.UI.ViewModels.BenchmarkViewModel                     21.8%
+  InspectionSystem.UI.ViewModels.DetectionItemViewModel                    0%
+  InspectionSystem.UI.ViewModels.GradCamViewModel                       12.2%
+  InspectionSystem.UI.ViewModels.InspectionViewModel                      22%
+  InspectionSystem.UI.ViewModels.MainViewModel                          76.4%
+  InspectionSystem.UI.ViewModels.MainWindowViewModel                       0%
+  InspectionSystem.UI.ViewModels.SessionRecordItem                         0%
+  InspectionSystem.UI.ViewModels.SettingsViewModel                       100%
+  InspectionSystem.UI.Views.BenchmarkView                                  0%
+  InspectionSystem.UI.Views.GradCamView                                    0%
+  InspectionSystem.UI.Views.InspectionView                              90.2%
+  InspectionSystem.UI.Views.MainWindow                                     0%
+  InspectionSystem.UI.Views.SettingsView                                   0%
