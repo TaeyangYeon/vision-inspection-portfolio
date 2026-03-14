@@ -1,39 +1,39 @@
 Summary
-  Generated on: 2026. 3. 14. - 오후 2:43:13
-  Coverage date: 2026. 3. 14. - 오후 2:36:00 - 2026. 3. 14. - 오후 2:43:08
-  Parser: MultiReport (2x Cobertura)
+  Generated on: 2026. 3. 14. - 오후 3:00:54
+  Coverage date: 2026. 3. 14. - 오후 2:36:00 - 2026. 3. 14. - 오후 3:00:49
+  Parser: MultiReport (3x Cobertura)
   Assemblies: 2
   Classes: 34
   Files: 35
-  Line coverage: 38.6%
-  Covered lines: 754
-  Uncovered lines: 1195
-  Coverable lines: 1949
-  Total lines: 3275
-  Branch coverage: 42.4% (112 of 264)
-  Covered branches: 112
-  Total branches: 264
-  Method coverage: 60.1% (98 of 163)
-  Full method coverage: 53.3% (87 of 163)
-  Covered methods: 98
-  Fully covered methods: 87
-  Total methods: 163
+  Line coverage: 40.5%
+  Covered lines: 825
+  Uncovered lines: 1212
+  Coverable lines: 2037
+  Total lines: 3301
+  Branch coverage: 43.9% (144 of 328)
+  Covered branches: 144
+  Total branches: 328
+  Method coverage: 65.5% (116 of 177)
+  Full method coverage: 57.6% (102 of 177)
+  Covered methods: 116
+  Fully covered methods: 102
+  Total methods: 177
 
-InspectionSystem.Core                                                   64.8%
+InspectionSystem.Core                                                   66.8%
   InspectionSystem.Core.Models.AppSettings                              95.8%
-  InspectionSystem.Core.Models.BoundingBox                              66.6%
+  InspectionSystem.Core.Models.BoundingBox                               100%
   InspectionSystem.Core.Models.Detection                                 100%
   InspectionSystem.Core.Models.DetectionResult                           100%
   InspectionSystem.Core.Models.DrawOptions                               100%
-  InspectionSystem.Core.Models.GradCamResult                              50%
+  InspectionSystem.Core.Models.GradCamResult                             100%
   InspectionSystem.Core.Models.InferenceOptions                          100%
   InspectionSystem.Core.Models.InspectionRecord                          100%
   InspectionSystem.Core.Models.ProcessedImage                            100%
   InspectionSystem.Core.Models.SessionStats                              100%
-  InspectionSystem.Core.Services.GradCamService                         51.1%
+  InspectionSystem.Core.Services.GradCamService                         67.5%
   InspectionSystem.Core.Services.ImageProcessor                         77.3%
   InspectionSystem.Core.Services.NgImageSaver                            100%
-  InspectionSystem.Core.Services.OnnxInferenceEngine                    19.3%
+  InspectionSystem.Core.Services.OnnxInferenceEngine                    28.6%
   InspectionSystem.Core.Services.SessionLogger                          98.7%
   InspectionSystem.Core.Services.SettingsService                        97.5%
 

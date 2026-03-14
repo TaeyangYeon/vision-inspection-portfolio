@@ -29,17 +29,32 @@ namespace InspectionSystem.Core.Services
 
         public Task LoadModelAsync(string modelPath, CancellationToken cancellationToken = default)
         {
-            if (string.IsNullOrWhiteSpace(modelPath))
-                throw new ArgumentNullException(nameof(modelPath));
+            try
+            {
+                if (string.IsNullOrWhiteSpace(modelPath))
+                {
+                    _logger.LogWarning("Model path is null or empty");
+                    return Task.CompletedTask;
+                }
 
-            if (!System.IO.File.Exists(modelPath))
-                throw new System.IO.FileNotFoundException($"Model not found: {modelPath}");
+                if (!System.IO.File.Exists(modelPath))
+                {
+                    _logger.LogWarning("Model file not found: {ModelPath}", modelPath);
+                    return Task.CompletedTask;
+                }
 
-            _session?.Dispose();
-            var options = new SessionOptions();
-            options.GraphOptimizationLevel = GraphOptimizationLevel.ORT_ENABLE_ALL;
-            _session = new InferenceSession(modelPath, options);
-            _logger.LogInformation("Model loaded: {ModelPath}", modelPath);
+                _session?.Dispose();
+                var options = new SessionOptions();
+                options.GraphOptimizationLevel = GraphOptimizationLevel.ORT_ENABLE_ALL;
+                _session = new InferenceSession(modelPath, options);
+                _logger.LogInformation("Model loaded: {ModelPath}", modelPath);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Failed to load model: {ModelPath}", modelPath);
+                _session?.Dispose();
+                _session = null;
+            }
 
             return Task.CompletedTask;
         }

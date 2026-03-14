@@ -27,5 +27,6 @@ namespace InspectionSystem.Core.Models
         public int Y2 { get; set; }
         public int Width => X2 - X1;
         public int Height => Y2 - Y1;
+        public int Area => Width * Height;
     }
 }

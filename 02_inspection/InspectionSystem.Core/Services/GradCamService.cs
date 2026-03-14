@@ -21,7 +21,11 @@ namespace InspectionSystem.Core.Services
         public GradCamService(ILogger<GradCamService> logger, string apiUrl = "http://localhost:8000")
         {
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
-            _apiUrl = apiUrl ?? throw new ArgumentNullException(nameof(apiUrl));
+            
+            if (string.IsNullOrEmpty(apiUrl))
+                throw new ArgumentNullException(nameof(apiUrl));
+                
+            _apiUrl = apiUrl;
             _httpClient = new HttpClient
             {
                 Timeout = TimeSpan.FromSeconds(30)
@@ -38,6 +42,12 @@ namespace InspectionSystem.Core.Services
         {
             if (imageData == null || imageData.Length == 0)
                 throw new ArgumentNullException(nameof(imageData));
+            
+            if (width <= 0)
+                throw new ArgumentOutOfRangeException(nameof(width), "Width must be greater than zero.");
+            
+            if (height <= 0)
+                throw new ArgumentOutOfRangeException(nameof(height), "Height must be greater than zero.");
 
             try
             {
