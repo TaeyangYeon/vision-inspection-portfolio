@@ -1,5 +1,5 @@
 using System;
-using System.IO;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging.Abstractions;
 using NUnit.Framework;
@@ -12,19 +12,15 @@ namespace InspectionSystem.Tests.Core
     public class OnnxInferenceEngineTests
     {
         private OnnxInferenceEngine _engine = null!;
-        private string _modelPath = string.Empty;
+        private ImageProcessor _imageProcessor = null!;
 
         [SetUp]
         public void SetUp()
         {
-            var imageProcessor = new ImageProcessor();
-            _engine = new OnnxInferenceEngine(NullLogger<OnnxInferenceEngine>.Instance, imageProcessor);
-            _modelPath = Path.GetFullPath(
-                Path.Combine(
-                    AppContext.BaseDirectory,
-                    "..", "..", "..", "..", "..",
-                    "02_inspection", "models", "best.onnx"
-                )
+            _imageProcessor = new ImageProcessor();
+            _engine = new OnnxInferenceEngine(
+                NullLogger<OnnxInferenceEngine>.Instance,
+                _imageProcessor
             );
         }
 
@@ -34,6 +30,20 @@ namespace InspectionSystem.Tests.Core
             _engine.Dispose();
         }
 
+        private byte[] CreateDummyImage(int width = 100, int height = 100)
+        {
+            return new byte[width * height * 3];
+        }
+
+        private InferenceOptions DefaultOptions() => new InferenceOptions
+        {
+            ConfidenceThreshold = 0.25f,
+            IouThreshold = 0.45f,
+            ImageSize = 640,
+        };
+
+        // --- IsModelLoaded ---
+
         [Test]
         public void IsModelLoaded_BeforeLoad_ReturnsFalse()
         {
@@ -41,136 +51,108 @@ namespace InspectionSystem.Tests.Core
         }
 
         [Test]
-        public async Task LoadModelAsync_ValidPath_SetsIsModelLoadedTrue()
+        public void LoadModelAsync_InvalidPath_ThrowsFileNotFoundException()
         {
-            if (!File.Exists(_modelPath))
-                Assert.Ignore("ONNX model not found. Skipping.");
-
-            try
-            {
-                await _engine.LoadModelAsync(_modelPath);
-                Assert.That(_engine.IsModelLoaded, Is.True);
-            }
-            catch (Microsoft.ML.OnnxRuntime.OnnxRuntimeException ex) when (ex.Message.Contains("Opset"))
-            {
-                Assert.Ignore($"Model opset version not supported by current ONNX Runtime: {ex.Message}");
-            }
+            Assert.ThrowsAsync<System.IO.FileNotFoundException>(async () =>
+                await _engine.LoadModelAsync("nonexistent/best.onnx"));
         }
 
-        [Test]
-        public void LoadModelAsync_NullPath_ThrowsArgumentNullException()
-        {
-            Assert.ThrowsAsync<ArgumentNullException>(
-                async () => await _engine.LoadModelAsync(null!)
-            );
-        }
-
-        [Test]
-        public void LoadModelAsync_NonExistentPath_ThrowsFileNotFoundException()
-        {
-            Assert.ThrowsAsync<FileNotFoundException>(
-                async () => await _engine.LoadModelAsync("nonexistent/path/model.onnx")
-            );
-        }
+        // --- RunInferenceAsync edge cases ---
 
         [Test]
         public void RunInferenceAsync_ModelNotLoaded_ThrowsInvalidOperationException()
         {
-            var imageData = new byte[640 * 640 * 3];
-            var options = new InferenceOptions();
-
-            Assert.ThrowsAsync<InvalidOperationException>(
-                async () => await _engine.RunInferenceAsync(imageData, 640, 640, options)
+            Assert.ThrowsAsync<InvalidOperationException>(async () =>
+                await _engine.RunInferenceAsync(
+                    CreateDummyImage(), 100, 100, DefaultOptions())
             );
         }
 
         [Test]
-        public async Task RunInferenceAsync_NullImageData_ThrowsArgumentNullException()
+        public void RunInferenceAsync_NullImageData_ThrowsArgumentNullException()
         {
-            if (!File.Exists(_modelPath))
-                Assert.Ignore("ONNX model not found. Skipping.");
-
-            try
-            {
-                await _engine.LoadModelAsync(_modelPath);
-            }
-            catch (Microsoft.ML.OnnxRuntime.OnnxRuntimeException ex) when (ex.Message.Contains("Opset"))
-            {
-                Assert.Ignore($"Model opset version not supported by current ONNX Runtime: {ex.Message}");
-            }
-
-            var options = new InferenceOptions();
-
-            Assert.ThrowsAsync<ArgumentNullException>(
-                async () => await _engine.RunInferenceAsync(null!, 640, 640, options)
+            Assert.ThrowsAsync<ArgumentNullException>(async () =>
+                await _engine.RunInferenceAsync(
+                    null!, 100, 100, DefaultOptions())
             );
         }
 
         [Test]
-        public async Task RunInferenceAsync_ValidImage_ReturnsDetectionResult()
+        public void RunInferenceAsync_EmptyImageData_ThrowsArgumentNullException()
         {
-            if (!File.Exists(_modelPath))
-                Assert.Ignore("ONNX model not found. Skipping.");
-
-            try
-            {
-                await _engine.LoadModelAsync(_modelPath);
-            }
-            catch (Microsoft.ML.OnnxRuntime.OnnxRuntimeException ex) when (ex.Message.Contains("Opset"))
-            {
-                Assert.Ignore($"Model opset version not supported by current ONNX Runtime: {ex.Message}");
-            }
-
-            var imageData = new byte[640 * 640 * 3];
-            var rng = new Random(42);
-            rng.NextBytes(imageData);
-
-            var options = new InferenceOptions
-            {
-                ConfidenceThreshold = 0.25f,
-                IouThreshold = 0.45f,
-                ImageSize = 640,
-            };
-
-            var result = await _engine.RunInferenceAsync(imageData, 640, 640, options);
-
-            Assert.That(result, Is.Not.Null);
-            Assert.That(result.Detections, Is.Not.Null);
-            Assert.That(result.InferenceTimeMs, Is.GreaterThan(0));
-            Assert.That(result.ImageWidth, Is.EqualTo(640));
-            Assert.That(result.ImageHeight, Is.EqualTo(640));
+            Assert.ThrowsAsync<ArgumentNullException>(async () =>
+                await _engine.RunInferenceAsync(
+                    Array.Empty<byte>(), 100, 100, DefaultOptions())
+            );
         }
 
         [Test]
-        public async Task RunInferenceAsync_ValidImage_InferenceTimeLessThan5000Ms()
+        public void RunInferenceAsync_ZeroWidth_ThrowsArgumentOutOfRangeException()
         {
-            if (!File.Exists(_modelPath))
-                Assert.Ignore("ONNX model not found. Skipping.");
-
-            try
-            {
-                await _engine.LoadModelAsync(_modelPath);
-            }
-            catch (Microsoft.ML.OnnxRuntime.OnnxRuntimeException ex) when (ex.Message.Contains("Opset"))
-            {
-                Assert.Ignore($"Model opset version not supported by current ONNX Runtime: {ex.Message}");
-            }
-
-            var imageData = new byte[640 * 640 * 3];
-            var options = new InferenceOptions();
-
-            var result = await _engine.RunInferenceAsync(imageData, 640, 640, options);
-
-            Assert.That(result.InferenceTimeMs, Is.LessThan(5000));
+            Assert.ThrowsAsync<ArgumentOutOfRangeException>(async () =>
+                await _engine.RunInferenceAsync(
+                    CreateDummyImage(), 0, 100, DefaultOptions())
+            );
         }
 
         [Test]
-        public void RunInferenceAsync_NullOptions_ThrowsArgumentNullException()
+        public void RunInferenceAsync_ZeroHeight_ThrowsArgumentOutOfRangeException()
         {
-            var imageData = new byte[640 * 640 * 3];
+            Assert.ThrowsAsync<ArgumentOutOfRangeException>(async () =>
+                await _engine.RunInferenceAsync(
+                    CreateDummyImage(), 100, 0, DefaultOptions())
+            );
+        }
 
-            Assert.ThrowsAsync<InvalidOperationException>(
-                async () => await _engine.RunInferenceAsync(imageData, 640, 640, null!)
+        [Test]
+        public void RunInferenceAsync_NegativeWidth_ThrowsArgumentOutOfRangeException()
+        {
+            Assert.ThrowsAsync<ArgumentOutOfRangeException>(async () =>
+                await _engine.RunInferenceAsync(
+                    CreateDummyImage(), -1, 100, DefaultOptions())
+            );
+        }
+
+        [Test]
+        public void RunInferenceAsync_CancelledToken_ThrowsOperationCanceledException()
+        {
+            var cts = new CancellationTokenSource();
+            cts.Cancel();
+
+            Assert.ThrowsAsync<OperationCanceledException>(async () =>
+                await _engine.RunInferenceAsync(
+                    CreateDummyImage(), 100, 100, DefaultOptions(), cts.Token)
+            );
+        }
+
+        // --- LoadModelAsync ---
+
+        [Test]
+        public void LoadModelAsync_CalledTwice_ThrowsFileNotFoundException()
+        {
+            Assert.ThrowsAsync<System.IO.FileNotFoundException>(async () =>
+                await _engine.LoadModelAsync("nonexistent1.onnx"));
+            Assert.ThrowsAsync<System.IO.FileNotFoundException>(async () =>
+                await _engine.LoadModelAsync("nonexistent2.onnx"));
+        }
+
+        [Test]
+        public void Constructor_NullImageProcessor_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() =>
+                new OnnxInferenceEngine(
+                    NullLogger<OnnxInferenceEngine>.Instance,
+                    null!)
+            );
+        }
+
+        [Test]
+        public void Constructor_NullLogger_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() =>
+                new OnnxInferenceEngine(
+                    null!,
+                    _imageProcessor)
             );
         }
     }

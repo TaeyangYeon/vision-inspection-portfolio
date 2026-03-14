@@ -51,58 +51,80 @@ namespace InspectionSystem.Core.Services
             InferenceOptions options,
             CancellationToken cancellationToken = default)
         {
-            if (_session == null)
-                throw new InvalidOperationException("Model is not loaded. Call LoadModelAsync first.");
-
-            if (imageData == null || imageData.Length == 0)
+            if (imageData == null)
                 throw new ArgumentNullException(nameof(imageData));
+
+            if (imageData.Length == 0)
+                throw new ArgumentNullException(nameof(imageData), "Image data cannot be empty.");
+
+            if (width <= 0)
+                throw new ArgumentOutOfRangeException(nameof(width), "Width must be greater than zero.");
+
+            if (height <= 0)
+                throw new ArgumentOutOfRangeException(nameof(height), "Height must be greater than zero.");
 
             if (options == null)
                 throw new ArgumentNullException(nameof(options));
 
             cancellationToken.ThrowIfCancellationRequested();
 
+            if (_session == null)
+                throw new InvalidOperationException("Model is not loaded. Call LoadModelAsync first.");
+
             var stopwatch = Stopwatch.StartNew();
 
-            int imgSize = options.ImageSize;
-
-            var processedImage = _imageProcessor.Preprocess(imageData, width, height, imgSize);
-            float[] tensor = processedImage.Tensor;
-            float scale = processedImage.Scale;
-
-            var inputName = _session.InputMetadata.Keys.First();
-            var dimensions = new int[] { 1, 3, imgSize, imgSize };
-            var inputTensor = new DenseTensor<float>(tensor, dimensions);
-            var inputs = new List<NamedOnnxValue>
+            try
             {
-                NamedOnnxValue.CreateFromTensor(inputName, inputTensor)
-            };
+                int imgSize = options.ImageSize;
 
-            using var outputs = _session.Run(inputs);
-            var outputTensor = outputs.First().AsTensor<float>();
-            var outputArray = outputTensor.ToArray();
-            var outputShape = outputTensor.Dimensions.ToArray();
+                var processedImage = _imageProcessor.Preprocess(imageData, width, height, imgSize);
+                float[] tensor = processedImage.Tensor;
+                float scale = processedImage.Scale;
 
-            stopwatch.Stop();
+                var inputName = _session.InputMetadata.Keys.First();
+                var dimensions = new int[] { 1, 3, imgSize, imgSize };
+                var inputTensor = new DenseTensor<float>(tensor, dimensions);
+                var inputs = new List<NamedOnnxValue>
+                {
+                    NamedOnnxValue.CreateFromTensor(inputName, inputTensor)
+                };
 
-            var detections = ParseDetections(
-                outputArray, outputShape, options, scale, width, height
-            );
+                using var outputs = _session.Run(inputs);
+                var outputTensor = outputs.First().AsTensor<float>();
+                var outputArray = outputTensor.ToArray();
+                var outputShape = outputTensor.Dimensions.ToArray();
 
-            var result = new DetectionResult
+                stopwatch.Stop();
+
+                var detections = ParseDetections(
+                    outputArray, outputShape, options, scale, width, height
+                );
+
+                var result = new DetectionResult
+                {
+                    Detections = detections,
+                    InferenceTimeMs = stopwatch.Elapsed.TotalMilliseconds,
+                    ImageWidth = width,
+                    ImageHeight = height,
+                };
+
+                _logger.LogDebug(
+                    "Inference complete: {Count} detections in {Ms:F1}ms",
+                    detections.Count, result.InferenceTimeMs
+                );
+
+                return Task.FromResult(result);
+            }
+            catch (OnnxRuntimeException ex)
             {
-                Detections = detections,
-                InferenceTimeMs = stopwatch.Elapsed.TotalMilliseconds,
-                ImageWidth = width,
-                ImageHeight = height,
-            };
-
-            _logger.LogDebug(
-                "Inference complete: {Count} detections in {Ms:F1}ms",
-                detections.Count, result.InferenceTimeMs
-            );
-
-            return Task.FromResult(result);
+                _logger.LogError(ex, "ONNX Runtime error during inference");
+                throw new InvalidOperationException("ONNX Runtime error during inference", ex);
+            }
+            catch (Exception ex) when (!(ex is ArgumentNullException || ex is ArgumentOutOfRangeException || ex is InvalidOperationException || ex is OperationCanceledException))
+            {
+                _logger.LogError(ex, "Unexpected error during inference");
+                throw new InvalidOperationException("Unexpected error during inference", ex);
+            }
         }
 
 

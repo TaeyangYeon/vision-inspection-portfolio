@@ -373,7 +373,7 @@ All NUnit tests pass 0 fail 0 skip
 
 ## Remaining Plan
 
-### Day 31 - TODO: Edge case testing (empty image / corrupted file / model error handling)
+### Day 31 - DONE: Edge case testing (null/empty input, zero dimensions, cancelled token, model not loaded), OnnxInferenceEngine error handling hardened, integration tests expanded, all NUnit tests pass 0 fail 0 skip
 ### Day 32 - TODO: Program 2 full integration test + NUnit coverage report
 ### Day 33 - TODO: Buffer + GitHub push + code review
 ### Day 34 - TODO: Multi-category support (tile/carpet training on Colab)
@@ -389,6 +389,6 @@ All NUnit tests pass 0 fail 0 skip
 ### Day 44 - TODO: Final GitHub push + portfolio submission ready
 
 ---
-Last updated: Day 30 complete
-Next: Day 31 - Edge case testing + error handling
+Last updated: Day 31 complete
+Next: Day 32 - Program 2 full integration test + NUnit coverage report
 ---

@@ -13,6 +13,12 @@ namespace InspectionSystem.Core.Services
         {
             if (imageData == null || imageData.Length == 0)
                 throw new ArgumentNullException(nameof(imageData));
+            
+            if (width <= 0)
+                throw new ArgumentOutOfRangeException(nameof(width), "Width must be greater than zero.");
+            
+            if (height <= 0)
+                throw new ArgumentOutOfRangeException(nameof(height), "Height must be greater than zero.");
 
             using var src = Mat.FromPixelData(height, width, MatType.CV_8UC3, imageData);
 

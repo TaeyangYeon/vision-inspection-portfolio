@@ -159,5 +159,68 @@ namespace InspectionSystem.Tests.Core
                 () => _processor.ResizeImage(null!, 320, 240, 160, 120)
             );
         }
+
+        [Test]
+        public void Preprocess_ZeroWidth_ThrowsArgumentOutOfRangeException()
+        {
+            var data = new byte[100 * 100 * 3];
+            Assert.Throws<ArgumentOutOfRangeException>(
+                () => _processor.Preprocess(data, 0, 100)
+            );
+        }
+
+        [Test]
+        public void Preprocess_ZeroHeight_ThrowsArgumentOutOfRangeException()
+        {
+            var data = new byte[100 * 100 * 3];
+            Assert.Throws<ArgumentOutOfRangeException>(
+                () => _processor.Preprocess(data, 100, 0)
+            );
+        }
+
+        [Test]
+        public void Preprocess_ValidInput_ReturnsTensorWithCorrectLength()
+        {
+            if (!IsOpenCvAvailable())
+                Assert.Ignore("OpenCV native libraries not found. Skipping.");
+
+            var data = new byte[100 * 100 * 3];
+            var result = _processor.Preprocess(data, 100, 100);
+            Assert.That(result, Is.Not.Null);
+            Assert.That(result.Tensor, Has.Length.EqualTo(3 * 640 * 640));
+        }
+
+        [Test]
+        public void Preprocess_ValidInput_TensorValuesNormalized()
+        {
+            if (!IsOpenCvAvailable())
+                Assert.Ignore("OpenCV native libraries not found. Skipping.");
+
+            var data = new byte[100 * 100 * 3];
+            for (int i = 0; i < data.Length; i++) data[i] = 128;
+            var result = _processor.Preprocess(data, 100, 100);
+            foreach (var v in result.Tensor)
+            {
+                Assert.That(v, Is.GreaterThanOrEqualTo(0.0f));
+                Assert.That(v, Is.LessThanOrEqualTo(1.0f));
+            }
+        }
+
+        [Test]
+        public void DrawDetections_EmptyDetections_ReturnsImageSameSize()
+        {
+            if (!IsOpenCvAvailable())
+                Assert.Ignore("OpenCV native libraries not found. Skipping.");
+
+            var data = new byte[100 * 100 * 3];
+            var result = new InspectionSystem.Core.Models.DetectionResult
+            {
+                Detections = new System.Collections.Generic.List<InspectionSystem.Core.Models.Detection>(),
+                ImageWidth = 100,
+                ImageHeight = 100,
+            };
+            var output = _processor.DrawDetections(data, 100, 100, result, new InspectionSystem.Core.Models.DrawOptions());
+            Assert.That(output, Has.Length.EqualTo(100 * 100 * 3));
+        }
     }
 }

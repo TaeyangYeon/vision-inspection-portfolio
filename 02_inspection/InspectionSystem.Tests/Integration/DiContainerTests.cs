@@ -83,5 +83,40 @@ namespace InspectionSystem.Tests.Integration
             var b = _provider.GetService<IInferenceEngine>();
             Assert.That(a, Is.Not.SameAs(b));
         }
+
+        [Test]
+        public void Container_ResolveBenchmarkViewModel_NotNull()
+        {
+            var vm = _provider.GetService<InspectionSystem.UI.ViewModels.BenchmarkViewModel>();
+            Assert.That(vm, Is.Not.Null);
+        }
+
+        [Test]
+        public void Container_ResolveNgImageSaver_NotNull()
+        {
+            var saver = _provider.GetService<InspectionSystem.Core.Services.NgImageSaver>();
+            Assert.That(saver, Is.Not.Null);
+        }
+
+        [Test]
+        public void Container_ResolveSettingsViewModel_NotNull()
+        {
+            var vm = _provider.GetService<InspectionSystem.UI.ViewModels.SettingsViewModel>();
+            Assert.That(vm, Is.Not.Null);
+        }
+
+        [Test]
+        public void Container_ResolveGradCamViewModel_NotNull()
+        {
+            var vm = _provider.GetService<InspectionSystem.UI.ViewModels.GradCamViewModel>();
+            Assert.That(vm, Is.Not.Null);
+        }
+
+        [Test]
+        public void Container_ResolveMainViewModel_AllDependenciesInjected()
+        {
+            var vm = _provider.GetService<InspectionSystem.UI.ViewModels.MainViewModel>();
+            Assert.That(vm, Is.Not.Null);
+        }
     }
 }
