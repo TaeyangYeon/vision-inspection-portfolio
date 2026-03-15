@@ -73,6 +73,17 @@
                                        Background="#1E1E2E"
                                        Foreground="#CDD6F4"/>
                     </StackPanel>
+
+                    <StackPanel Spacing="6">
+                        <TextBlock Text="Category"
+                                   Foreground="#BAC2DE"
+                                   FontSize="13"/>
+                        <ComboBox SelectedItem="{Binding SelectedCategory}"
+                                  ItemsSource="{Binding AvailableCategories}"
+                                  Background="#1E1E2E"
+                                  Foreground="#CDD6F4"
+                                  HorizontalAlignment="Stretch"/>
+                    </StackPanel>
                 </StackPanel>
             </Border>
 

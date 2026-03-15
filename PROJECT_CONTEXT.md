@@ -376,7 +376,7 @@ All NUnit tests pass 0 fail 0 skip
 ### Day 31 - DONE: Edge case testing (null/empty input, zero dimensions, cancelled token, model not loaded), OnnxInferenceEngine error handling hardened, integration tests expanded, all NUnit tests pass 0 fail 0 skip
 ### Day 32 - DONE: IntegrationScenarioTests (8 scenarios), NUnit coverage report generated, all tests pass 0 fail 0 skip
 ### Day 33 - DONE: Coverage improvement - OnnxInferenceEngine and GradCamService tests expanded, BoundingBox/GradCamResult model tests added, Core library coverage improved
-### Day 34 - TODO: Multi-category support (tile/carpet training on Colab)
+### Day 34 - DONE: Tile category trained (mAP50 0.946), ONNX exported opset 21, multi-category folder structure created (models/bottle + models/tile), SettingsView category selector added
 ### Day 35 - TODO: Model ensemble experiment (YOLOv8n vs YOLOv8s comparison)
 ### Day 36 - TODO: Inference speed benchmark by model size (FPS table)
 ### Day 37 - TODO: Small defect detection improvement experiments
@@ -389,6 +389,6 @@ All NUnit tests pass 0 fail 0 skip
 ### Day 44 - TODO: Final GitHub push + portfolio submission ready
 
 ---
-Last updated: Day 33 complete
-Next: Day 34 - Multi-category training (tile category) on Colab
+Last updated: Day 34 complete
+Next: Day 35 - Model ensemble experiment (YOLOv8n vs YOLOv8s comparison)
 ---

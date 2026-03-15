@@ -36,6 +36,18 @@ namespace InspectionSystem.UI.ViewModels
         [ObservableProperty]
         private string _statusMessage = string.Empty;
 
+        [ObservableProperty]
+        private string _selectedCategory = "bottle";
+
+        [ObservableProperty]
+        private System.Collections.ObjectModel.ObservableCollection<string> _availableCategories
+            = new System.Collections.ObjectModel.ObservableCollection<string>
+            {
+                "bottle", "tile", "carpet", "leather", "metal_nut",
+                "pill", "screw", "toothbrush", "transistor", "wood", "zipper",
+                "cable", "capsule", "grid", "hazelnut"
+            };
+
         public SettingsViewModel(ISettingsService settingsService)
         {
             _settingsService = settingsService;
@@ -53,6 +65,7 @@ namespace InspectionSystem.UI.ViewModels
             AutoSaveNg = s.AutoSaveNg;
             GradCamApiUrl = s.GradCamApiUrl;
             EnableGradCam = s.EnableGradCam;
+            SelectedCategory = s.Category;
         }
 
         [RelayCommand]
@@ -68,6 +81,7 @@ namespace InspectionSystem.UI.ViewModels
                 AutoSaveNg = AutoSaveNg,
                 GradCamApiUrl = GradCamApiUrl,
                 EnableGradCam = EnableGradCam,
+                Category = SelectedCategory,
             };
             _settingsService.Save(settings);
             StatusMessage = "Settings saved successfully.";
@@ -85,6 +99,7 @@ namespace InspectionSystem.UI.ViewModels
             AutoSaveNg = defaults.AutoSaveNg;
             GradCamApiUrl = defaults.GradCamApiUrl;
             EnableGradCam = defaults.EnableGradCam;
+            SelectedCategory = defaults.Category;
             StatusMessage = "Defaults restored. Click Save to apply.";
         }
     }

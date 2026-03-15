@@ -3,15 +3,20 @@ namespace InspectionSystem.Core.Models
     public class AppSettings
     {
         public string ModelPath { get; set; } = GetDefaultModelPath();
+        public string Category { get; set; } = "bottle";
+        public string CategoryModelPath { get; set; } = string.Empty;
 
         private static string GetDefaultModelPath()
         {
             var baseDir = AppContext.BaseDirectory;
             var candidates = new[]
             {
+                System.IO.Path.Combine(baseDir, "models", "bottle", "best.onnx"),
                 System.IO.Path.Combine(baseDir, "models", "best.onnx"),
-                System.IO.Path.Combine(baseDir, "..", "..", "..", "..", "..", "02_inspection", "models", "best.onnx"),
-                System.IO.Path.GetFullPath(System.IO.Path.Combine(baseDir, "..", "..", "..", "..", "models", "best.onnx")),
+                System.IO.Path.GetFullPath(System.IO.Path.Combine(baseDir,
+                    "..", "..", "..", "..", "models", "best.onnx")),
+                System.IO.Path.GetFullPath(System.IO.Path.Combine(baseDir,
+                    "..", "..", "..", "..", "..", "02_inspection", "models", "best.onnx")),
             };
             foreach (var path in candidates)
             {
