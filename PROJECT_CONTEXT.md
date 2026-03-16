@@ -1,5 +1,5 @@
 # Vision Inspection Portfolio - Project Context
-
+  
 ## Project Overview
 AI-based surface defect inspection system for job portfolio.
 Target companies: Semiconductor equipment (SFA, Hanwha), Machine vision (Cognex, Keyence), Robotics (Doosan, Rainbow)
