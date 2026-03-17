@@ -377,7 +377,7 @@ All NUnit tests pass 0 fail 0 skip
 ### Day 32 - DONE: IntegrationScenarioTests (8 scenarios), NUnit coverage report generated, all tests pass 0 fail 0 skip
 ### Day 33 - DONE: Coverage improvement - OnnxInferenceEngine and GradCamService tests expanded, BoundingBox/GradCamResult model tests added, Core library coverage improved
 ### Day 34 - DONE: Tile category trained (mAP50 0.946), ONNX exported opset 21, multi-category folder structure created (models/bottle + models/tile), SettingsView category selector added
-### Day 35 - TODO: Model ensemble experiment (YOLOv8n vs YOLOv8s comparison)
+### Day 35 - DONE: YOLOv8n vs YOLOv8s benchmark complete. bottle_n + bottle_s + tile_n trained and exported opset=21. ModelBenchmark project added. FPS and inference time comparison saved to CSV.
 ### Day 36 - TODO: Inference speed benchmark by model size (FPS table)
 ### Day 37 - TODO: Small defect detection improvement experiments
 ### Day 38 - TODO: Full performance metrics summary (mAP / FPS / accuracy by category)
@@ -389,6 +389,6 @@ All NUnit tests pass 0 fail 0 skip
 ### Day 44 - TODO: Final GitHub push + portfolio submission ready
 
 ---
-Last updated: Day 34 complete
-Next: Day 35 - Model ensemble experiment (YOLOv8n vs YOLOv8s comparison)
+Last updated: Day 35 complete
+Next: Day 36 - Inference speed benchmark by model size + README writing
 ---
