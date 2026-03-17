@@ -1,0 +1,4 @@
+Model,Description,AvgTimeMs,MinTimeMs,MaxTimeMs,FPS,WarmupRuns,BenchmarkRuns
+bottle_n,YOLOv8n Bottle Detection,35.74,27.68,49.35,27.98,5,50
+bottle_s,YOLOv8s Bottle Detection,88.79,74.40,106.54,11.26,5,50
+tile_n,YOLOv8n Tile Detection,35.37,27.20,46.36,28.27,5,50
