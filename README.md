@@ -137,3 +137,50 @@ This portfolio demonstrates capabilities relevant to:
 - Machine vision systems (Cognex, Keyence)
 - Industrial automation and robotics (Doosan, Rainbow)
 - Quality control and defect detection systems
+
+## Requirements
+
+### Program 1 (Model Trainer)
+- Python 3.11
+- See 01_training/requirements.txt for full list
+
+### Program 2 (Inspection System)
+- .NET 10 SDK
+- macOS Intel (OpenCvSharp4.runtime.osx.10.15-x64)
+- ONNX model file at 02_inspection/models/bottle/best.onnx
+
+## Quick Start
+
+### Program 1
+```bash
+cd 01_training
+source .venv/bin/activate
+streamlit run app/main.py
+```
+
+### Program 2
+```bash
+cd 02_inspection
+dotnet run --project InspectionSystem.UI/InspectionSystem.UI.csproj
+```
+
+### Run Tests
+```bash
+cd 02_inspection
+dotnet test InspectionSystem.Tests/InspectionSystem.Tests.csproj
+```
+
+## Demo
+
+### Program 1 Features
+- Data tab: MVTec dataset visualization with bounding box overlays
+- Train tab: YOLOv8 hyperparameter configuration and training progress
+- Eval tab: Confusion matrix, PR curves, FP/FN case analysis
+- Export tab: ONNX model conversion and inference benchmarking
+- GradCAM tab: Custom hook-based feature visualization across 9 YOLOv8 layers
+
+### Program 2 Features
+- Inspection view: Real-time ONNX inference with bounding box rendering
+- Benchmark view: Multi-model performance comparison and session statistics
+- GradCAM view: Heatmap visualization with original/overlay display modes
+- Settings view: Model configuration and inference parameter tuning
