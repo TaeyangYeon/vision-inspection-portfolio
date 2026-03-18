@@ -379,7 +379,7 @@ All NUnit tests pass 0 fail 0 skip
 ### Day 34 - DONE: Tile category trained (mAP50 0.946), ONNX exported opset 21, multi-category folder structure created (models/bottle + models/tile), SettingsView category selector added
 ### Day 35 - DONE: YOLOv8n vs YOLOv8s benchmark complete. bottle_n + bottle_s + tile_n trained and exported opset=21. ModelBenchmark project added. FPS and inference time comparison saved to CSV.
 ### Day 36 - DONE: README.md written with ASCII architecture diagram, training results table (bottle mAP50 0.869 / tile mAP50 0.946), benchmark table (YOLOv8n vs YOLOv8s FPS comparison), project structure, how to run
-### Day 37 - TODO: Small defect detection improvement experiments
+### Day 37 - DONE: GitHub Wiki docs created - GradCAM implementation guide (docs/gradcam-implementation.md) and interview prep guide in Korean (docs/interview-prep.md)
 ### Day 38 - TODO: Full performance metrics summary (mAP / FPS / accuracy by category)
 ### Day 39 - TODO: Buffer + GitHub push
 ### Day 40 - TODO: README writing (architecture diagram + performance metrics table)
@@ -389,6 +389,6 @@ All NUnit tests pass 0 fail 0 skip
 ### Day 44 - TODO: Final GitHub push + portfolio submission ready
 
 ---
-Last updated: Day 36 complete
-Next: Day 37 - Demo video recording (Program 1 + Program 2 NG detection flow)
+Last updated: Day 37 complete
+Next: Day 38 - Demo video recording + final portfolio review
 ---
